@@ -145,6 +145,10 @@ def soru_dagilimlari_paneli():
 def yks_konular_sayfasi():
     return render_template('yks_konulari.html')
 
+@app.route('/dgs/konular')
+def dgs_konulari():
+    return render_template('dgs_konulari.html')
+    
 @app.route('/lgs/konular')
 def lgs_konulari_sayfasi():
     return render_template('lgs_konulari.html')
