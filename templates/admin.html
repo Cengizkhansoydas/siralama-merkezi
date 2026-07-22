@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sıralama Merkezi - Moderasyon Paneli</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-[#FCFBF7] font-sans text-slate-800 p-8">
+
+    <div class="max-w-3xl mx-auto space-y-8">
+        
+        <!-- Başlık Kartı -->
+        <div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl p-6 shadow-xl text-white flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-black tracking-tight">✨ Atatürk Köşesi Moderasyon Paneli</h1>
+                <p class="text-xs text-slate-400 font-medium mt-1">SıralamaMerkezi trollerden arındırma kontrol odası</p>
+            </div>
+            <a href="/ataturk-kosesi" class="bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all" style="text-decoration: none;">
+                <i class="fa-solid fa-eye mr-1"></i> Sayfaya Git
+            </a>
+        </div>
+
+        <!-- BÖLÜM 1: ONAY BEKLEYENLER -->
+        <div class="space-y-3">
+            <h2 class="text-sm font-black uppercase text-orange-600 tracking-wider pl-1">
+                <i class="fa-solid fa-clock mr-1"></i> 📩 Onay Bekleyen Yeni Notlar
+            </h2>
+            
+            {% if notlar %}
+                {% for n in notlar %}
+                <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm flex justify-between items-center gap-4 hover:border-orange-100 transition-all">
+                    <div class="space-y-1">
+                        <span class="bg-orange-50 text-orange-700 text-[10px] font-black px-2 py-0.5 rounded-md uppercase">İncelemede</span>
+                        <h3 class="font-black text-slate-900 text-sm mt-1">{{ n[1] }}</h3>
+                        <p class="text-slate-600 text-xs md:text-sm font-medium">"{{ n[2] }}"</p>
+                    </div>
+                    
+                    <div class="flex gap-2 shrink-0">
+                        <a href="/ataturk-kosesi/islem/{{ n[0] }}/onayla" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black px-4 py-2.5 rounded-xl shadow-sm transition-all" style="text-decoration: none;">
+                            <i class="fa-solid fa-check mr-1"></i> Onayla
+                        </a>
+                        <a href="/ataturk-kosesi/islem/{{ n[0] }}/sil" class="bg-rose-600 hover:bg-rose-700 text-white text-xs font-black px-4 py-2.5 rounded-xl shadow-sm transition-all" style="text-decoration: none;">
+                            <i class="fa-solid fa-trash-can mr-1"></i> Sil
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="bg-white border border-dashed border-slate-200 rounded-2xl p-8 text-center text-slate-400">
+                    <p class="text-xs font-bold">Onay bekleyen herhangi bir yeni not bulunmuyor.</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- BÖLÜM 2: YAYINDA / VAR OLAN MESAJLAR -->
+        <div class="space-y-3">
+            <h2 class="text-sm font-black uppercase text-emerald-600 tracking-wider pl-1">
+                <i class="fa-solid fa-circle-check mr-1"></i> 🌐 Sitede Yayında Olan Notlar
+            </h2>
+            
+            {% if onayli_notlar %}
+                <div class="space-y-2 max-h-[400px] overflow-y-auto pr-1">
+                    {% for n in onayli_notlar %}
+                    <div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm flex justify-between items-center gap-4 hover:border-rose-100 transition-all opacity-85 hover:opacity-100">
+                        <div class="space-y-0.5">
+                            <h3 class="font-bold text-slate-800 text-xs">{{ n[1] }}</h3>
+                            <p class="text-slate-500 text-xs">"{{ n[2] }}"</p>
+                        </div>
+                        
+                        <div class="shrink-0">
+                            <!-- Yanlışlıkla onaylanan veya kaldırılmak istenen mesajı direkt siler -->
+                            <a href="/ataturk-kosesi/islem/{{ n[0] }}/sil" class="bg-slate-100 hover:bg-rose-50 hover:text-rose-600 text-slate-500 text-[11px] font-bold px-3 py-1.5 rounded-lg transition-all" style="text-decoration: none;">
+                                <i class="fa-solid fa-trash-can mr-1"></i> Kaldır
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="bg-white border border-dashed border-slate-200 rounded-2xl p-8 text-center text-slate-400">
+                    <p class="text-xs font-bold">Sitede henüz yayınlanmış hiçbir not yok.</p>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+</body>
+</html>

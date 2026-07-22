@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YKS Başarı Sıralamaları ve Taban Puanları - SiralamaMerkezi</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .osym-orange-bg { background-color: #E06B00; }
+        .osym-orange-text { color: #E06B00; }
+        .osym-orange-border { border-color: #E06B00; }
+        .osym-orange-hover:hover { background-color: #C65F00; }
+    </style>
+</head>
+<body class="bg-[#FCFBF7] font-sans text-slate-800 p-0 m-0 pb-16">
+
+       <!-- 🌐 NAVBAR -->
+    <nav class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center flex-shrink-0" style="margin-left: 100px;">
+                    <a href="/" class="text-2xl font-black tracking-tight flex items-center gap-2" style="text-decoration: none;">
+    <img src="/static/img/logo.png" class="h-8 w-auto transform translate-x-1">
+    <span class="osym-orange-text">Sıralama</span><span class="text-slate-800" style="margin-left: -7px;">Merkezi</span>
+</a>
+                </div>
+
+                <div class="hidden md:flex items-center flex-1 justify-center lg:justify-end space-x-1 lg:space-x-2 pl-4">
+                    <div class="flex items-center space-x-0.5 lg:space-x-1 mr-auto lg:mx-auto flex-wrap">
+                        <!-- YKS Dropdown -->
+                        <div class="relative dropdown">
+                            <button class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold flex items-center gap-1 cursor-pointer border-none bg-transparent">
+                                YKS <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 w-48 bg-white border border-slate-200 shadow-xl rounded-lg py-2 mt-0 z-50">
+    <a href="/yks/konular" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
+    <a href="/yks/soru-dagilimlari" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Soru Dağılımları</a>
+    <a href="/yks-siralamalari" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Sıralamalar</a>
+    <a href="/hesaplama/yks" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Sıralama Hesaplama</a>
+</div>
+                        </div>
+
+                        <!-- LGS Dropdown -->
+                        <div class="relative dropdown">
+                            <button class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold flex items-center gap-1 cursor-pointer border-none bg-transparent">
+                                LGS <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 w-52 bg-white border border-slate-200 shadow-xl rounded-lg py-2 mt-0 z-50">
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Puanlar / Yüzdelik Dilimler</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Puan Hesaplama</a>
+                            </div>
+                        </div>
+
+                        <!-- DGS Dropdown -->
+                        <div class="relative dropdown">
+                            <button class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold flex items-center gap-1 cursor-pointer border-none bg-transparent">
+                                DGS <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 w-48 bg-white border border-slate-200 shadow-xl rounded-lg py-2 mt-0 z-50">
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Taban Puanlar</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Puan Hesaplama</a>
+                            </div>
+                        </div>
+
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">KPSS</a>
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">ALES</a>
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">MSÜ</a>
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">YDS</a>
+                    </div>
+
+                    <div class="relative dropdown pb-0 mt-0 z-50" style="margin-right: 100px;">
+                        <button class="osym-orange-bg text-white osym-orange-hover px-3 py-2 rounded-full text-xs lg:text-sm font-bold shadow-sm transition-all flex items-center gap-1.5 cursor-pointer border-none">
+                            <i class="fa-solid fa-calculator"></i> Puan/Sıralama Hesaplama <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                        </button>
+                        <div class="dropdown-menu hidden absolute right-0 w-56 bg-white border border-slate-200 shadow-xl rounded-xl py-2 mt-0 z-50 text-left">
+                            <a href="/hesaplama/yks" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">YKS Sıralama</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">LGS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">DGS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">KPSS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">ALES Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">MSÜ Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">YDS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold border-t border-slate-100 mt-1 pt-2 text-amber-700" style="text-decoration: none;">OBP Hesaplama</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 📊 ÜST BAŞLIK -->
+    <header class="py-10 text-center max-w-4xl mx-auto px-4">
+        <span class="osym-orange-bg text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
+            YKS TERCİH REHBERİ
+        </span>
+        <h1 class="text-3xl md:text-5xl font-black text-slate-900 tracking-tight mt-3 mb-4">
+            YKS Bölüm Tercih Kılavuzu
+        </h1>
+        <p class="text-xs md:text-sm text-slate-500 max-w-2xl mx-auto leading-relaxed">
+            Gitmek istediğin bölümün üzerine tıklayarak son 4 yılın ÖSYM taban puanlarını, başarı sıralamalarını ve kontenjan analizlerini bizim dinamik şablonumuz üzerinden saniyeler içinde incele.
+        </p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 space-y-12">
+
+        <!-- ==========================================
+     🔥 1. POPÜLER BÖLÜMLER (REKLAMLAR BAŞLIK EN TEPESİNE KADAR UZATILMIŞ)
+     ========================================== -->
+<!-- relative sınıfı reklamların absolute olarak hizalanmasını sağlar -->
+<section class="max-w-6xl mx-auto px-4 relative mt-12">
+    
+    <!-- ==========================================
+         🚀 REKLAM KULELERİ (ABSOLUTE KONUMLANDIRMA)
+         ========================================== -->
+    <!-- SOL REKLAM: -top-[180px] ile kılavuz başlığının hizasına fırlatıldı, h-[calc(...)] ile tam boy uzatıldı -->
+    <div class="hidden lg:flex absolute left-4 -top-[180px] w-[170px] h-[calc(100%+180px)] border border-dashed border-slate-300 rounded-2xl bg-slate-50 items-center justify-center p-3 text-center shadow-sm z-10">
+        <div class="text-[10px] font-bold text-slate-400 tracking-wider uppercase">
+            <i class="fa-solid fa-rectangle-ad text-sm mb-1 block"></i>
+            Reklam
+        </div>
+    </div>
+
+    <!-- SAĞ REKLAM: -top-[180px] ile kılavuz başlığının hizasına fırlatıldı, h-[calc(...)] ile tam boy uzatıldı -->
+    <div class="hidden lg:flex absolute right-4 -top-[180px] w-[170px] h-[calc(100%+180px)] border border-dashed border-slate-300 rounded-2xl bg-slate-50 items-center justify-center p-3 text-center shadow-sm z-10">
+        <div class="text-[10px] font-bold text-slate-400 tracking-wider uppercase">
+            <i class="fa-solid fa-rectangle-ad text-sm mb-1 block"></i>
+            Reklam
+        </div>
+    </div>
+
+
+    <!-- ==========================================
+         📦 ORTA İÇERİK ALANI (ORİJİNAL YAPISI HİÇ BOZULMADI)
+         ========================================== -->
+    <!-- px-[190px] ile sağdan soldan reklam kulelerine çarpmasın diye güvenli alan bıraktık -->
+    <div class="px-0 lg:px-[190px] space-y-4">
+        
+        <h2 class="text-xl font-extrabold text-slate-900 flex items-center gap-2 border-b border-slate-200 pb-2">
+            <i class="fa-solid fa-fire text-amber-500"></i> Popüler Bölümler
+        </h2>
+        
+        <!-- Orijinal 3'lü kolon düzeni yerinde çakılı duruyor -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+            
+            <!-- Tıp -->
+            <a href="/yks/tip" class="block bg-white border border-slate-200 hover:border-orange-300 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all group relative overflow-hidden" style="text-decoration: none;">
+                <div class="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center text-lg mb-3 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-user-md"></i>
+                </div>
+                <h3 class="text-base font-bold text-slate-800 group-hover:osym-orange-text transition-colors mb-1">Tıp Fakültesi</h3>
+                <p class="text-xs text-slate-400">Sayısal (SAY)</p>
+                <div class="absolute bottom-4 right-4 text-slate-300 group-hover:text-orange-500 group-hover:translate-x-1 transition-all">
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </div>
+            </a>
+
+            <!-- Diş Hekimliği -->
+            <a href="/yks/dis-hekimligi" class="block bg-white border border-slate-200 hover:border-orange-300 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all group relative overflow-hidden" style="text-decoration: none;">
+                <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-lg mb-3 group-hover:bg-teal-600 group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-tooth"></i>
+                </div>
+                <h3 class="text-base font-bold text-slate-800 group-hover:osym-orange-text transition-colors mb-1">Diş Hekimliği</h3>
+                <p class="text-xs text-slate-400">Sayısal (SAY)</p>
+                <div class="absolute bottom-4 right-4 text-slate-300 group-hover:text-orange-500 group-hover:translate-x-1 transition-all">
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </div>
+            </a>
+
+            <!-- Bilgisayar Mühendisliği -->
+            <a href="/yks/bilgisayar-muhendisligi" class="block bg-white border border-slate-200 hover:border-orange-300 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all group relative overflow-hidden" style="text-decoration: none;">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg mb-3 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-laptop-code"></i>
+                </div>
+                <h3 class="text-base font-bold text-slate-800 group-hover:osym-orange-text transition-colors mb-1">Bilgisayar Mühendisliği</h3>
+                <p class="text-xs text-slate-400">Sayısal (SAY)</p>
+                <div class="absolute bottom-4 right-4 text-slate-300 group-hover:text-orange-500 group-hover:translate-x-1 transition-all">
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </div>
+            </a>
+
+            <!-- Hukuk -->
+            <a href="/yks/hukuk" class="block bg-white border border-slate-200 hover:border-orange-300 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all group relative overflow-hidden" style="text-decoration: none;">
+                <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center text-lg mb-3 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-gavel"></i>
+                </div>
+                <h3 class="text-base font-bold text-slate-800 group-hover:osym-orange-text transition-colors mb-1">Hukuk Fakültesi</h3>
+                <p class="text-xs text-slate-400">Eşit Ağırlık (EA)</p>
+                <div class="absolute bottom-4 right-4 text-slate-300 group-hover:text-orange-500 group-hover:translate-x-1 transition-all">
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </div>
+            </a>
+
+            <!-- Hemşirelik -->
+            <a href="/yks/hemsirelik" class="block bg-white border border-slate-200 hover:border-orange-300 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all group relative overflow-hidden" style="text-decoration: none;">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg mb-3 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-user-nurse"></i>
+                </div>
+                <h3 class="text-base font-bold text-slate-800 group-hover:osym-orange-text transition-colors mb-1">Hemşirelik</h3>
+                <p class="text-xs text-slate-400">Sayısal (SAY)</p>
+                <div class="absolute bottom-4 right-4 text-slate-300 group-hover:text-orange-500 group-hover:translate-x-1 transition-all">
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </div>
+            </a>
+
+            <!-- Makine Mühendisliği -->
+            <a href="/yks/makine-muhendisligi" class="block bg-white border border-slate-200 hover:border-orange-300 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all group relative overflow-hidden" style="text-decoration: none;">
+                <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-lg mb-3 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                    <i class="fa-solid fa-cogs"></i>
+                </div>
+                <h3 class="text-base font-bold text-slate-800 group-hover:osym-orange-text transition-colors mb-1">Makine Mühendisliği</h3>
+                <p class="text-xs text-slate-400">Sayısal (SAY)</p>
+                <div class="absolute bottom-4 right-4 text-slate-300 group-hover:text-orange-500 group-hover:translate-x-1 transition-all">
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </div>
+            </a>
+
+        </div>
+    </div>
+  <!-- ==========================================
+             🚀 1.5 GELECEĞİN MESLEKLERİ & TREND BÖLÜMLER (YENİ EKLEME)
+             ========================================== -->
+        <!-- px-[190px] ile sağ-sol reklam kulelerine çarpmayacak şekilde orta gövdeye hizalandı -->
+        <div class="px-0 lg:px-[190px] space-y-4 pt-4">
+            
+            <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+                <h2 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-chart-line text-emerald-500"></i> Geleceğin Meslekleri & Trendler
+                </h2>
+                <span class="text-xs font-semibold text-slate-400 bg-slate-100 px-2 py-1 rounded-lg">2027 Sezonu</span>
+            </div>
+            
+            <!-- 3'lü Modern Trend Kart Düzeni -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+                
+                <!-- Yapay Zeka Mühendisliği -->
+                <a href="/yks/yapay-zeka-muhendisligi" class="block bg-gradient-to-br from-white to-slate-50/50 border border-slate-200 hover:border-emerald-400 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all group relative overflow-hidden" style="text-decoration: none;">
+                    <!-- Parlayan Canlı Etiket -->
+                    <span class="absolute top-3 right-3 bg-emerald-50 text-emerald-600 border border-emerald-100 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md animate-pulse">
+                        🔥 Popüler Trend
+                    </span>
+                    
+                    <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg mb-3 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-800 group-hover:text-emerald-600 transition-colors mb-1">Yapay Zeka Müh.</h3>
+                    <p class="text-xs text-slate-400">Sayısal (SAY)</p>
+                    <p class="text-[11px] text-slate-500 mt-2 line-clamp-2">Kontenjanları ve iş dünyasındaki talebi en hızlı artan vizyoner bölüm.</p>
+                </a>
+
+                <!-- Veri Bilimi ve Analitiği -->
+                <a href="/yks/veri-bilimi-ve-analitigi" class="block bg-gradient-to-br from-white to-slate-50/50 border border-slate-200 hover:border-blue-400 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all group relative overflow-hidden" style="text-decoration: none;">
+                    <!-- Parlayan Canlı Etiket -->
+                    <span class="absolute top-3 right-3 bg-blue-50 text-blue-600 border border-blue-100 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md">
+                        📈 Yükselişte
+                    </span>
+                    
+                    <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg mb-3 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-800 group-hover:text-blue-600 transition-colors mb-1">Veri Bilimi ve Analitiği</h3>
+                    <p class="text-xs text-slate-400">Sayısal (SAY)</p>
+                    <p class="text-[11px] text-slate-500 mt-2 line-clamp-2">Büyük veri çağının en kritik mesleklerinden biri, taban sıralamaları tırmanıyor.</p>
+                </a>
+
+                <!-- Yönetim Bilişim Sistemleri (YBS) -->
+                <a href="/yks/yonetim-bilisim-sistemleri" class="block bg-gradient-to-br from-white to-slate-50/50 border border-slate-200 hover:border-amber-400 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all group group relative overflow-hidden" style="text-decoration: none;">
+                    <!-- Parlayan Canlı Etiket -->
+                    <span class="absolute top-3 right-3 bg-amber-50 text-amber-700 border border-amber-100 text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md">
+                        🌟 Yoğun Talep
+                    </span>
+                    
+                    <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center text-lg mb-3 group-hover:bg-amber-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-800 group-hover:text-amber-600 transition-colors mb-1">Yönetim Bilişim Sis.</h3>
+                    <p class="text-xs text-slate-400">Eşit Ağırlık (EA)</p>
+                    <p class="text-[11px] text-slate-500 mt-2 line-clamp-2">Yazılım ve işletmeyi birleştiren, EA kategorisinin açık ara en gözde tercihi.</p>
+                </a>
+
+            </div>
+        </div>  
+</section>
+<!-- ==========================================
+     🛑 BAŞARI SIRALAMASI BARAJLARI PANELİ (TAM BOY GÖRSELLİ)
+     ========================================== -->
+<div class="max-w-6xl mx-auto px-4 mb-8">
+    <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+            
+            <!-- SOL TARAF: ALANI TAMAMEN DOLDURAN FOTOĞRAF -->
+            <div class="md:col-span-4 rounded-2xl min-h-[220px] h-full overflow-hidden border border-slate-100 bg-slate-50 relative">
+                <!-- w-full h-full object-cover ile resim tüm gri alanı kaplar -->
+                <img src="/static/img/osym.jpg" alt="ÖSYM Sıralama Barajları" class="w-full h-full object-cover absolute inset-0">
+            </div>
+
+            <!-- SAĞ TARAF: BARAJ LİSTESİ -->
+            <div class="md:col-span-8 space-y-3">
+                <div>
+                    <span class="text-[9px] font-black bg-red-50 text-red-600 px-2 py-0.5 rounded-full border border-red-100 tracking-wider uppercase inline-block mb-1">YASAL ZORUNLULUK</span>
+                    <h3 class="text-base font-extrabold text-slate-950">ÖSYM Başarı Sırası Barajları</h3>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                    <div class="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+                        <span class="font-bold text-slate-700"><i class="fa-solid fa-user-md text-red-500 mr-1.5"></i>Tıp</span>
+                        <span class="font-black text-red-600 bg-red-50 px-2 py-0.5 rounded-md">İlk 50.000</span>
+                    </div>
+                    <div class="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+                        <span class="font-bold text-slate-700"><i class="fa-solid fa-tooth text-teal-500 mr-1.5"></i>Diş Hekimliği</span>
+                        <span class="font-black text-teal-600 bg-teal-50 px-2 py-0.5 rounded-md">İlk 80.000</span>
+                    </div>
+                    <div class="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+                        <span class="font-bold text-slate-700"><i class="fa-solid fa-gavel text-amber-600 mr-1.5"></i>Hukuk</span>
+                        <span class="font-black text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md">İlk 125.000</span>
+                    </div>
+                    <div class="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl border border-slate-100">
+                        <span class="font-bold text-slate-700"><i class="fa-solid fa-compass-drafting text-emerald-500 mr-1.5"></i>Mimarlık</span>
+                        <span class="font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">İlk 250.000</span>
+                    </div>
+                    <div class="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl border border-slate-100 sm:col-span-2">
+                        <span class="font-bold text-slate-700"><i class="fa-solid fa-laptop-code text-blue-500 mr-1.5"></i>Mühendislikler <span class="text-[10px] text-slate-400 font-normal">(Ziraat, Orman hariç)</span></span>
+                        <span class="font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md">İlk 300.000</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+        <!-- ==========================================
+             📚 2. TÜM DİĞER BÖLÜMLER (EKSİKSİZ TAM LİSTE & CANLI ARAMA)
+             ========================================== -->
+        <section class="space-y-6">
+            <!-- Başlık ve Kontroller Alanı -->
+            <div class="border-b border-slate-200 pb-4 space-y-4">
+                <h2 class="text-xl font-extrabold text-slate-900 flex items-center gap-2">
+                    <i class="fa-solid fa-list-ul osym-orange-text"></i> Diğer Tüm Bölümler
+                </h2>
+                
+                <!-- Gelişmiş Arama ve Filtreleme Paneli -->
+                <div class="flex flex-col md:flex-row gap-3 items-center justify-between">
+                    <!-- Arama Çubuğu -->
+                    <div class="relative w-full md:max-w-md">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                        </span>
+                        <input type="text" id="bolum-arama-input" placeholder="Bölüm adı ile ara... (Örn: Hemşirelik)" 
+                               class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-medium text-slate-700 placeholder-slate-400 focus:outline-none focus:border-orange-400 focus:bg-white focus:ring-2 focus:ring-orange-100 transition-all shadow-sm">
+                    </div>
+                    
+                    <!-- Puan Türü Hızlı Filtre Butonları -->
+                    <div class="flex flex-wrap gap-2 w-full md:w-auto justify-start md:justify-end">
+                        <button onclick="filtrelePuanTuru('HEPSİ')" id="btn-filtre-HEPSİ" class="px-3.5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all shadow-sm bg-slate-800 text-white">HEPSİ</button>
+                        <button onclick="filtrelePuanTuru('SAY')" id="btn-filtre-SAY" class="px-3.5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all shadow-sm bg-white border border-slate-200 text-slate-600 hover:bg-slate-50">SAY</button>
+                        <button onclick="filtrelePuanTuru('EA')" id="btn-filtre-EA" class="px-3.5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all shadow-sm bg-white border border-slate-200 text-slate-600 hover:bg-slate-50">EA</button>
+                        <button onclick="filtrelePuanTuru('SÖZ')" id="btn-filtre-SÖZ" class="px-3.5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all shadow-sm bg-white border border-slate-200 text-slate-600 hover:bg-slate-50">SÖZ</button>
+                        <button onclick="filtrelePuanTuru('DİL')" id="btn-filtre-DİL" class="px-3.5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all shadow-sm bg-white border border-slate-200 text-slate-600 hover:bg-slate-50">DİL</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 4'lü dikey grid listesi -->
+            <div id="tum-bolumler-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                <!-- Javascript verileri buraya jilet gibi yerleştirecek -->
+            </div>
+
+            <!-- Sonuç Bulunamadı Uyarısı -->
+            <div id="arama-bos-mesaj" class="hidden text-center py-12 border border-dashed border-slate-200 rounded-2xl bg-slate-50/50">
+                <i class="fa-solid fa-folder-open text-slate-300 text-3xl mb-2 block"></i>
+                <p class="text-sm font-bold text-slate-500">Aradığınız kriterlere uygun bölüm bulunamadı.</p>
+                <p class="text-xs text-slate-400 mt-1">Yazımı kontrol edebilir veya filtreleri sıfırlayabilirsiniz.</p>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             ⚙️ SCRIPT: VERİ LİSTESİ VE FİLTRELEME MOTORU
+             ========================================== -->
+        <script>
+            // Gönderdiğin eksiksiz tam liste veri tabanı
+            const bolumlerVerisi = [
+                {isim: "Acil Yardım ve Afet Yönetimi", tur: "SAY"},
+                {isim: "Adli Bilimler", tur: "SAY"},
+                {isim: "Adli Bilişim Mühendisliği", tur: "SAY"},
+                {isim: "Ağaç İşleri Endüstri Mühendisliği", tur: "SAY"},
+                {isim: "Aile ve Tüketici Bilimleri", tur: "EA"},
+                {isim: "Aktüerya Bilimleri", tur: "SAY"},
+                {isim: "Alman Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Almanca Mütercim ve Tercümanlık", tur: "DİL"},
+                {isim: "Almanca Öğretmenliği", tur: "DİL"},
+                {isim: "Amerikan Kültürü ve Edebiyatı", tur: "DİL"},
+                {isim: "Antrenörlük Eğitimi", tur: "EA"},
+                {isim: "Antropoloji", tur: "EA"},
+                {isim: "Arap Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Arapça Mütercim ve Tercümanlık", tur: "DİL"},
+                {isim: "Arapça Öğretmenliği", tur: "DİL"},
+                {isim: "Arkeoloji", tur: "EA"},
+                {isim: "Arkeoloji ve Sanat Tarihi", tur: "SÖZ"},
+                {isim: "Arnavut Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Astronomi ve Uzay Bilimleri", tur: "SAY"},
+                {isim: "Ayakkabı Tasarımı ve Üretimi", tur: "EA"},
+                {isim: "Azerbaycan Türkçesi ve Edebiyatı", tur: "SÖZ"},
+                {isim: "Bahçe Bitkileri", tur: "SAY"},
+                {isim: "Balıkçılık Teknolojisi Mühendisliği", tur: "SAY"},
+                {isim: "Bankacılık", tur: "EA"},
+                {isim: "Bankacılık ve Finans", tur: "EA"},
+                {isim: "Bankacılık ve Sigortacılık", tur: "EA"},
+                {isim: "Basım Teknolojileri", tur: "SAY"},
+                {isim: "Basın ve Yayın", tur: "SÖZ"},
+                {isim: "Batı Dilleri", tur: "DİL"},
+                {isim: "Beden Eğitimi ve Spor Öğretmenliği", tur: "EA"},
+                {isim: "Beslenme ve Diyetetik", tur: "SAY"},
+                {isim: "Bilgi Güvenliği Teknolojisi", tur: "SAY"},
+                {isim: "Bilgi ve Belge Yönetimi", tur: "EA"},
+                {isim: "Bilgisayar Bilimleri", tur: "SAY"},
+                {isim: "Bilgisayar Mühendisliği", tur: "SAY"},
+                {isim: "Bilgisayar Teknolojisi ve Bilişim Sistemleri", tur: "SAY"},
+                {isim: "Bilgisayar ve Öğretim Teknolojileri Öğretmenliği", tur: "SAY"},
+                {isim: "Bilim Tarihi", tur: "EA"},
+                {isim: "Bilişim Sistemleri Mühendisliği", tur: "SAY"},
+                {isim: "Bilişim Sistemleri ve Teknolojileri", tur: "SAY"},
+                {isim: "Bitki Koruma", tur: "SAY"},
+                {isim: "Bitkisel Üretim ve Teknolojileri", tur: "SAY"},
+                {isim: "Biyokimya", tur: "SAY"},
+                {isim: "Biyoloji Öğretmenliği", tur: "SAY"},
+                {isim: "Biyoloji", tur: "SAY"},
+                {isim: "Biyomedikal Mühendisliği", tur: "SAY"},
+                {isim: "Biyomühendislik", tur: "SAY"},
+                {isim: "Biyosistem Mühendisliği", tur: "SAY"},
+                {isim: "Biyoteknoloji", tur: "SAY"},
+                {isim: "Boşnak Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Bulgar Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Bulgarca Mütercim ve Tercümanlık", tur: "DİL"},
+                {isim: "Cevher Hazırlama Mühendisliği", tur: "SAY"},
+                {isim: "Coğrafya Öğretmenliği", tur: "SÖZ"},
+                {isim: "Coğrafya", tur: "SÖZ"},
+                {isim: "Çağdaş Türk Lehçeleri ve Edebiyatları", tur: "SÖZ"},
+                {isim: "Çağdaş Yunan Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Çalışma Ekonomisi ve Endüstri İlişkileri", tur: "EA"},
+                {isim: "Çerkez Dili ve Edebiyatı", tur: "SÖZ"},
+                {isim: "Çeviribilim", tur: "DİL"},
+                {isim: "Çevre Mühendisliği", tur: "SAY"},
+                {isim: "Çin Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Çince Mütercim ve Tercümanlık", tur: "DİL"},
+                {isim: "Çizgi Film ve Animasyon", tur: "SÖZ"},
+                {isim: "Çocuk Gelişimi", tur: "EA"},
+                {isim: "Deniz Ulaştırma İşletme Mühendisliği", tur: "SAY"},
+                {isim: "Denizcilik İşletmeleri Yönetimi", tur: "EA"},
+                {isim: "Deri Mühendisliği", tur: "SAY"},
+                {isim: "Dijital Oyun Tasarımı", tur: "SAY"},
+                {isim: "Dil ve Konuşma Terapisi", tur: "SAY"},
+                {isim: "Dilbilimi", tur: "DİL"},
+                {isim: "Diş Hekimliği", tur: "SAY"},
+                {isim: "Doğu Dilleri", tur: "DİL"},
+                {isim: "Ebelik", tur: "SAY"},
+                {isim: "Eczacılık", tur: "SAY"},
+                {isim: "Egzersiz ve Spor Bilimleri", tur: "EA"},
+                {isim: "Ekonometri", tur: "EA"},
+                {isim: "Ekonomi", tur: "EA"},
+                {isim: "Ekonomi ve Finans", tur: "EA"},
+                {isim: "El Sanatları", tur: "SÖZ"},
+                {isim: "Elektrik Mühendisliği", tur: "SAY"},
+                {isim: "Elektrik-Elektronik Mühendisliği", tur: "SAY"},
+                {isim: "Elektronik Mühendisliği", tur: "SAY"},
+                {isim: "Elektronik Ticaret Ve Yönetimi", tur: "EA"},
+                {isim: "Elektronik ve Haberleşme Mühendisliği", tur: "SAY"},
+                {isim: "Emlak Ve Emlak Yönetimi", tur: "EA"},
+                {isim: "Endüstri Mühendisliği", tur: "SAY"},
+                {isim: "Endüstriyel Tasarım Mühendisliği", tur: "SAY"},
+                {isim: "Endüstriyel Tasarım", tur: "SAY"},
+                {isim: "Enerji Bilimi ve Teknolojileri", tur: "SAY"},
+                {isim: "Enerji Sistemleri Mühendisliği", tur: "SAY"},
+                {isim: "Enerji Yönetimi", tur: "EA"},
+                {isim: "Ergoterapi", tur: "SAY"},
+                {isim: "Ermeni Dili ve Kültürü", tur: "DİL"},
+                {isim: "Eski Yunan Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Fars Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Farsça Mütercim ve Tercümanlık", tur: "DİL"},
+                {isim: "Felsefe Grubu Öğretmenliği", tur: "EA"},
+                {isim: "Felsefe", tur: "EA"},
+                {isim: "Fen Bilgisi Öğretmenliği", tur: "SAY"},
+                {isim: "Film Tasarım ve Yönetmenliği", tur: "SÖZ"},
+                {isim: "Film Tasarımı ve Yazarlığı", tur: "SÖZ"},
+                {isim: "Film Tasarımı ve Yönetimi", tur: "SÖZ"},
+                {isim: "Finans ve Bankacılık", tur: "EA"},
+                {isim: "Fizik Mühendisliği", tur: "SAY"},
+                {isim: "Fizik Öğretmenliği", tur: "SAY"},
+                {isim: "Fizik", tur: "SAY"},
+                {isim: "Fizyoterapi ve Rehabilitasyon", tur: "SAY"},
+                {isim: "Fotoğraf", tur: "SÖZ"},
+                {isim: "Fotoğraf ve Video", tur: "SÖZ"},
+                {isim: "Fotonik", tur: "SAY"},
+                {isim: "Fransız Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Fransızca Mütercim ve Tercümanlık", tur: "DİL"},
+                {isim: "Fransızca Öğretmenliği", tur: "DİL"},
+                {isim: "Gastronomi ve Mutfak Sanatları", tur: "SÖZ"},
+                {isim: "Gayrimenkul Geliştirme ve Yönetimi", tur: "EA"},
+                {isim: "Gazetecilik", tur: "SÖZ"},
+                {isim: "Geleneksel Türk Sanatları", tur: "SÖZ"},
+                {isim: "Gemi İnşaatı ve Gemi Makineleri Mühendisliği", tur: "SAY"},
+                {isim: "Gemi Makineleri İşletme Mühendisliği", tur: "SAY"},
+                {isim: "Gemi ve Deniz Teknolojisi Mühendisliği", tur: "SAY"},
+                {isim: "Gemi ve Yat Tasarımı", tur: "SAY"},
+                {isim: "Genetik ve Biyomühendislik", tur: "SAY"},
+                {isim: "Genetik ve Yaşam Bilimleri Programları", tur: "SAY"},
+                {isim: "Geomatik Mühendisliği", tur: "SAY"},
+                {isim: "Gerontoloji", tur: "SAY"},
+                {isim: "Gıda Mühendisliği", tur: "SAY"},
+                {isim: "Gıda Teknolojisi", tur: "SAY"},
+                {isim: "Girişimcilik", tur: "EA"},
+                {isim: "Görsel İletişim Tasarımı", tur: "SÖZ"},
+                {isim: "Görsel Sanatlar", tur: "SÖZ"},
+                {isim: "Görsel Sanatlar ve İletişim", tur: "SÖZ"},
+                {isim: "Grafik Sanatlar", tur: "EA"},
+                {isim: "Grafik", tur: "EA"},
+                {isim: "Grafik Tasarımı", tur: "EA"},
+                {isim: "Gümrük İşletme", tur: "EA"},
+                {isim: "Gürcü Dili ve Edebiyatı", tur: "SÖZ"},
+                {isim: "Halkbilim", tur: "SÖZ"},
+                {isim: "Halkla İlişkiler ve Reklamcılık", tur: "SÖZ"},
+                {isim: "Halkla İlişkiler ve Tanıtım", tur: "SÖZ"},
+                {isim: "Harita Mühendisliği", tur: "SAY"},
+                {isim: "Havacılık Elektrik ve Elektroniği", tur: "SAY"},
+                {isim: "Havacılık ve Uzay Mühendisliği", tur: "SAY"},
+                {isim: "Havacılık Yönetimi", tur: "EA"},
+                {isim: "Hayvansal Üretim ve Teknolojileri", tur: "SAY"},
+                {isim: "Hemşirelik", tur: "SAY"},
+                {isim: "Hidrojeoloji Mühendisliği", tur: "SAY"},
+                {isim: "Hindoloji", tur: "DİL"},
+                {isim: "Hititoloji", tur: "DİL"},
+                {isim: "Hukuk", tur: "EA"},
+                {isim: "Hungaroloji", tur: "DİL"},
+                {isim: "İbrani Dili ve Kültürü", tur: "DİL"},
+                {isim: "İç Mimarlık", tur: "SAY"},
+                {isim: "İç Mimarlık ve Çevre Tasarımı", tur: "EA"},
+                {isim: "İktisadi ve İdari Bilimler Programları", tur: "EA"},
+                {isim: "İktisat", tur: "EA"},
+                {isim: "İlahiyat", tur: "SÖZ"},
+                {isim: "İletişim Bilimleri", tur: "SÖZ"},
+                {isim: "İletişim Fakültesi", tur: "SÖZ"},
+                {isim: "İletişim Sanatları", tur: "SÖZ"},
+                {isim: "İletişim Tasarımı ve Yönetimi", tur: "SÖZ"},
+                {isim: "İletişim ve Tasarım", tur: "SÖZ"},
+                {isim: "İlköğretim Matematik Öğretmenliği", tur: "SAY"},
+                {isim: "İmalat Mühendisliği", tur: "SAY"},
+                {isim: "İngiliz Dil Bilimi", tur: "DİL"},
+                {isim: "İngiliz Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "İngiliz ve Rus Dilleri ve Edebiyatları", tur: "DİL"},
+                {isim: "İngilizce Mütercim ve Tercümanlık", tur: "DİL"},
+                {isim: "İngilizce Öğretmenliği", tur: "DİL"},
+                {isim: "İngilizce, Fransızca Mütercim ve Tercümanlık", tur: "DİL"},
+                {isim: "İnsan Kaynakları Yönetimi", tur: "EA"},
+                {isim: "Inşaat Mühendisliği", tur: "SAY"},
+                {isim: "İslam Bilimleri", tur: "SÖZ"},
+                {isim: "İslam İktisadı ve Finans", tur: "EA"},
+                {isim: "İslami İlimler", tur: "SÖZ"},
+                {isim: "İspanyol Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "İstatistik", tur: "SAY"},
+                {isim: "İstatistik ve Bilgisayar Bilimleri", tur: "SAY"},
+                {isim: "İş Sağlığı ve Güvenliği", tur: "SAY"},
+                {isim: "İşletme Mühendisliği", tur: "SAY"},
+                {isim: "İşletme", tur: "EA"},
+                {isim: "İtalyan Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Japon Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Japonca Mütercim ve Tercümanlık", tur: "DİL"},
+                {isim: "Japonca Öğretmenliği", tur: "DİL"},
+                {isim: "Jeofizik Mühendisliği", tur: "SAY"},
+                {isim: "Jeoloji Mühendisliği", tur: "SAY"},
+                {isim: "Kamu Yönetimi", tur: "EA"},
+                {isim: "Kanatlı Hayvan Yetiştiriciliği", tur: "SAY"},
+                {isim: "Karşılaştırmalı Edebiyat", tur: "DİL"},
+                {isim: "Kazak Dili ve Edebiyatı", tur: "SÖZ"},
+                {isim: "Kentsel Tasarım ve Peyzaj Mimarlığı", tur: "SAY"},
+                {isim: "Kimya Mühendisliği", tur: "SAY"},
+                {isim: "Kimya Öğretmenliği", tur: "SAY"},
+                {isim: "Kimya", tur: "SAY"},
+                {isim: "Kimya-Biyoloji Mühendisliği", tur: "SAY"},
+                {isim: "Klasik Arkeoloji", tur: "EA"},
+                {isim: "Kontrol ve Otomasyon Mühendisliği", tur: "SAY"},
+                {isim: "Kore Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Kurgu, Ses ve Görüntü Yönetimi", tur: "SÖZ"},
+                {isim: "Kuyumculuk ve Mücevher Tasarımı", tur: "EA"},
+                {isim: "Kültür Varlıklarını Koruma ve Onarım", tur: "EA"},
+                {isim: "Kültür ve İletişim Bilimleri", tur: "SÖZ"},
+                {isim: "Küresel Siyaset ve Uluslararası İlişkiler", tur: "EA"},
+                {isim: "Kürt Dili ve Edebiyatı", tur: "SÖZ"},
+                {isim: "Latin Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Leh Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Lojistik Yönetimi", tur: "EA"},
+                {isim: "Maden Mühendisliği", tur: "SAY"},
+                {isim: "Makine Mühendisliği", tur: "SAY"},
+                {isim: "Maliye", tur: "EA"},
+                {isim: "Malzeme Bilimi ve Mühendisliği", tur: "SAY"},
+                {isim: "Malzeme Bilimi ve Nanoteknoloji Mühendisliği", tur: "SAY"},
+                {isim: "Malzeme Bilimi ve Teknolojileri", tur: "SAY"},
+                {isim: "Matematik Mühendisliği", tur: "SAY"},
+                {isim: "Matematik Öğretmenliği", tur: "SAY"},
+                {isim: "Matematik", tur: "SAY"},
+                {isim: "Matematik ve Bilgisayar Bilimleri", tur: "SAY"},
+                {isim: "Medya ve Görsel Sanatlar", tur: "SÖZ"},
+                {isim: "Medya ve İletişim", tur: "SÖZ"},
+                {isim: "Mekatronik Mühendisliği", tur: "SAY"},
+                {isim: "Metalurji ve Malzeme Mühendisliği", tur: "SAY"},
+                {isim: "Meteoroloji Mühendisliği", tur: "SAY"},
+                {isim: "Mimarlık", tur: "SAY"},
+                {isim: "Moda Tasarımı", tur: "EA"},
+                {isim: "Moleküler Biyoloji ve Genetik", tur: "SAY"},
+                {isim: "Moleküler Biyoteknoloji", tur: "SAY"},
+                {isim: "Muhasebe ve Finans Yönetimi", tur: "EA"},
+                {isim: "Mühendislik Programları", tur: "SAY"},
+                {isim: "Mühendislik ve Doğa Bilimleri Programları", tur: "SAY"},
+                {isim: "Mütercim-Tercümanlık", tur: "DİL"},
+                {isim: "Müzecilik", tur: "EA"},
+                {isim: "Nanobilim ve Nanoteknoloji", tur: "SAY"},
+                {isim: "Nanoteknoloji Mühendisliği", tur: "SAY"},
+                {isim: "Nükleer Enerji Mühendisliği", tur: "SAY"},
+                {isim: "Odyoloji", tur: "SAY"},
+                {isim: "Okul Öncesi Öğretmenliği", tur: "SÖZ"},
+                {isim: "Optik ve Akustik Mühendisliği", tur: "SAY"},
+                {isim: "Organik Tarım İşletmeciliği", tur: "EA"},
+                {isim: "Orman Endüstri Mühendisliği", tur: "SAY"},
+                {isim: "Orman Mühendisliği", tur: "SAY"},
+                {isim: "Ortez ve Protez", tur: "SAY"},
+                {isim: "Otel Yöneticiliği", tur: "EA"},
+                {isim: "Otomotiv Mühendisliği", tur: "SAY"},
+                {isim: "Özel Eğitim Öğretmenliği", tur: "SÖZ"},
+                {isim: "Pazarlama", tur: "EA"},
+                {isim: "Perfüzyon", tur: "SAY"},
+                {isim: "Petrol ve Doğalgaz Mühendisliği", tur: "SAY"},
+                {isim: "Peyzaj Mimarlığı", tur: "SAY"},
+                {isim: "Pilotaj", tur: "SAY"},
+                {isim: "Polimer Malzeme Mühendisliği", tur: "SAY"},
+                {isim: "Politika ve Ekonomi", tur: "EA"},
+                {isim: "Protohistorya ve Ön Asya Arkeolojisi", tur: "EA"},
+                {isim: "Psikoloji", tur: "EA"},
+                {isim: "Psikolojik Danışmanlık ve Rehberlik Öğretmenliği", tur: "EA"},
+                {isim: "Radyo, Televizyon ve Sinema", tur: "SÖZ"},
+                {isim: "Raylı Sistemler Mühendisliği", tur: "SAY"},
+                {isim: "Rehberlik ve Psikolojik Danışmanlık", tur: "EA"},
+                {isim: "Reklam Tasarımı ve İletişimi", tur: "SÖZ"},
+                {isim: "Reklamcılık", tur: "SÖZ"},
+                {isim: "Rekreasyon", tur: "EA"},
+                {isim: "Rekreasyon Yönetimi", tur: "SÖZ"},
+                {isim: "Robotik ve Otonom Sistemleri Mühendisliği", tur: "SAY"},
+                {isim: "Rus Dili ve Edebiyatı Öğretmenliği", tur: "DİL"},
+                {isim: "Rus Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Rus ve İngiliz Dilleri ve Edebiyatları", tur: "DİL"},
+                {isim: "Rusça Mütercim ve Tercümanlık", tur: "DİL"},
+                {isim: "Sağlık Yönetimi", tur: "EA"},
+                {isim: "Sanat Tarihi", tur: "SÖZ"},
+                {isim: "Sanat ve Kültür Yönetimi", tur: "SÖZ"},
+                {isim: "Sanat ve Sosyal Bilimler Programları", tur: "EA"},
+                {isim: "Sermaye Piyasası", tur: "EA"},
+                {isim: "Seyahat İşletmeciliği", tur: "EA"},
+                {isim: "Seyahat İşletmeciliği ve Turizm Rehberliği", tur: "EA"},
+                {isim: "Sınıf Öğretmenliği", tur: "EA"},
+                {isim: "Siber Güvenlik Mühendisliği", tur: "SAY"},
+                {isim: "Sigortacılık", tur: "EA"},
+                {isim: "Sigortacılık ve Aktüerya Bilimleri", tur: "EA"},
+                {isim: "Sigortacılık ve Risk Yönetimi", tur: "EA"},
+                {isim: "Sigortacılık ve Sosyal Güvenlik", tur: "EA"},
+                {isim: "Sinema ve Dijital Medya", tur: "SÖZ"},
+                {isim: "Sinema ve Televizyon", tur: "SÖZ"},
+                {isim: "Sinoloji", tur: "DİL"},
+                {isim: "Siyasal Bilimler", tur: "EA"},
+                {isim: "Siyaset Bilimi", tur: "EA"},
+                {isim: "Siyaset Bilimi ve Kamu Yönetimi", tur: "EA"},
+                {isim: "Siyaset Bilimi ve Uluslararası İlişkiler", tur: "EA"},
+                {isim: "Sosyal Bilgiler Öğretmenliği", tur: "SÖZ"},
+                {isim: "Sosyal Hizmet", tur: "EA"},
+                {isim: "Sosyoloji", tur: "EA"},
+                {isim: "Spor Yöneticiliği", tur: "EA"},
+                {isim: "Su Bilimleri ve Mühendisliği", tur: "SAY"},
+                {isim: "Su Ürünleri Mühendisliği", tur: "SAY"},
+                {isim: "Sümeroloji", tur: "SÖZ"},
+                {isim: "Süryani Dili ve Edebiyatı", tur: "SÖZ"},
+                {isim: "Süt Teknolojisi", tur: "SAY"},
+                {isim: "Şehir ve Bölge Planlama", tur: "SAY"},
+                {isim: "Takı Tasarımı", tur: "EA"},
+                {isim: "Takı Tasarımı Ve İmalatı", tur: "EA"},
+                {isim: "Tapu Kadastro", tur: "EA"},
+                {isim: "Tarım Ekonomisi", tur: "EA"},
+                {isim: "Tarım Makineleri ve Teknolojileri Mühendisliği", tur: "SAY"},
+                {isim: "Tarım Ticareti ve İşletmeciliği", tur: "EA"},
+                {isim: "Tarımsal Biyoteknoloji", tur: "SAY"},
+                {isim: "Tarımsal Genetik Mühendisliği", tur: "SAY"},
+                {isim: "Tarımsal Yapılar ve Sulama", tur: "SAY"},
+                {isim: "Tarih Öğretmenliği", tur: "SÖZ"},
+                {isim: "Tarih Öncesi Arkeolojisi", tur: "EA"},
+                {isim: "Tarih", tur: "SÖZ"},
+                {isim: "Tarla Bitkileri", tur: "SAY"},
+                {isim: "Teknoloji ve Bilgi Yönetimi", tur: "EA"},
+                {isim: "Tekstil Mühendisliği", tur: "SAY"},
+                {isim: "Tekstil Tasarımı", tur: "EA"},
+                {isim: "Tekstil ve Moda Tasarımı", tur: "EA"},
+                {isim: "Televizyon Haberciliği ve Programcılığı", tur: "SÖZ"},
+                {isim: "Tıp Mühendisliği", tur: "SAY"},
+                {isim: "Tıp", tur: "SAY"},
+                {isim: "Tiyatro Eleştirmenliği ve Dramaturji", tur: "SÖZ"},
+                {isim: "Tohum Bilimi ve Teknolojisi", tur: "SAY"},
+                {isim: "Toprak Bilimi ve Bitki Besleme", tur: "SAY"},
+                {isim: "Turizm İşletmeciliği", tur: "EA"},
+                {isim: "Turizm Rehberliği", tur: "DİL"},
+                {isim: "Turizm ve Otel İşletmeciliği", tur: "EA"},
+                {isim: "Türk Dili ve Edebiyatı Öğretmenliği", tur: "SÖZ"},
+                {isim: "Türk Dili ve Edebiyatı", tur: "SÖZ"},
+                {isim: "Türk Halkbilimi", tur: "SÖZ"},
+                {isim: "Türk İslam Arkeolojisi", tur: "EA"},
+                {isim: "Türkçe Öğretmenliği", tur: "SÖZ"},
+                {isim: "Türkoloji", tur: "SÖZ"},
+                {isim: "Tütün Eksperliği", tur: "SAY"},
+                {isim: "Uçak Bakım ve Onarım", tur: "SAY"},
+                {isim: "Uçak Elektrik ve Elektroniği", tur: "SAY"},
+                {isim: "Uçak Gövde ve Motor Bakımı", tur: "SAY"},
+                {isim: "Uçak Mühendisliği", tur: "SAY"},
+                {isim: "Ukrayna Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Uluslararası Ekonomi", tur: "EA"},
+                {isim: "Uluslararası Finans", tur: "EA"},
+                {isim: "Uluslararası Finans ve Bankacılık", tur: "EA"},
+                {isim: "Uluslararası Girişimcilik", tur: "EA"},
+                {isim: "Uluslararası İlişkiler", tur: "EA"},
+                {isim: "Uluslararası İşletme Yönetimi", tur: "EA"},
+                {isim: "Uluslararası Tıp", tur: "SAY"},
+                {isim: "Uluslararası Ticaret", tur: "EA"},
+                {isim: "Uluslararası Ticaret ve Finans", tur: "EA"},
+                {isim: "Uluslararası Ticaret ve Finansman", tur: "EA"},
+                {isim: "Uluslararası Ticaret ve İşletmecilik", tur: "EA"},
+                {isim: "Uluslararası Ticaret ve Lojistik", tur: "EA"},
+                {isim: "Uluslararası Ulaştırma Sistemleri", tur: "EA"},
+                {isim: "Urdu Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Uzay Bilimleri ve Teknolojileri", tur: "SAY"},
+                {isim: "Uzay Mühendisliği", tur: "SAY"},
+                {isim: "Uzay ve Uydu Mühendisliği", tur: "SAY"},
+                {isim: "Veri Bilimi ve Analitiği", tur: "SAY"},
+                {isim: "Veteriner", tur: "SAY"},
+                {isim: "Yaban Hayatı Ekolojisi ve Yönetimi", tur: "SAY"},
+                {isim: "Yapay Zeka Mühendisliği", tur: "SAY"},
+                {isim: "Yapay Zeka ve Makine Öğrenmesi", tur: "SAY"},
+                {isim: "Yapay Zeka ve Veri Mühendisliği", tur: "SAY"},
+                {isim: "Yazılım Geliştirme", tur: "SAY"},
+                {isim: "Yazılım Mühendisliği", tur: "SAY"},
+                {isim: "Yeni Medya", tur: "SÖZ"},
+                {isim: "Yeni Medya ve İletişim", tur: "SÖZ"},
+                {isim: "Yerel Yönetimler", tur: "EA"},
+                {isim: "Yiyecek ve İçecek İşletmeciliği", tur: "EA"},
+                {isim: "Yönetim Bilimleri Programları", tur: "EA"},
+                {isim: "Yönetim Bilişim Sistemleri", tur: "EA"},
+                {isim: "Yunan Dili ve Edebiyatı", tur: "DİL"},
+                {isim: "Zaza Dili ve Edebiyatı", tur: "SÖZ"},
+                {isim: "Ziraat Mühendisliği Programları", tur: "SAY"},
+                {isim: "Zootekni", tur: "SAY"}
+            ];
+
+            let seciliPuanTuru = "HEPSİ";
+
+            // Puan türlerine göre rozet renk haritası
+            const rozetRenkleri = {
+                "SAY": "bg-red-50 text-red-600 border-red-100",
+                "EA": "bg-amber-50 text-amber-600 border-amber-100",
+                "SÖZ": "bg-purple-50 text-purple-600 border-purple-100",
+                "DİL": "bg-blue-50 text-blue-600 border-blue-100"
+            };
+
+            // URL dostu slug oluşturma fonksiyonu (Türkçe karakter düzeltmesi)
+            function slugify(text) {
+                const trMap = { 'ç': 'c', 'ğ': 'g', 'ı': 'i', 'i': 'i', 'ö': 'o', 'ş': 's', 'ü': 'u', 'Ç': 'c', 'Ğ': 'g', 'İ': 'i', 'I': 'i', 'Ö': 'o', 'Ş': 's', 'Ü': 'u', ' ': '-', '.': '', ',': '' };
+                return text.split('').map(c => trMap[c] || c).join('').toLowerCase().replace(/-+/g, '-');
+            }
+
+            // Grid listesini render eden ana motor
+            function listeyiYenile() {
+                const grid = document.getElementById("tum-bolumler-grid");
+                const bosMesaj = document.getElementById("arama-bos-mesaj");
+                const aramaSorgusu = document.getElementById("bolum-arama-input").value.toLowerCase().trim();
+                
+                grid.innerHTML = "";
+                let görünürKartSayisi = 0;
+
+                bolumlerVerisi.forEach(bolum => {
+                    // Filtreleme mantığı (Arama sorgusu + Buton filtre eşleşmesi)
+                    const aramaEslesti = bolum.isim.toLowerCase().includes(aramaSorgusu);
+                    const filtreEslesti = (seciliPuanTuru === "HEPSİ" || bolum.tur === seciliPuanTuru);
+
+                    if (aramaEslesti && filtreEslesti) {
+                        görünürKartSayisi++;
+                        
+                        // Dinamik kart HTML'i oluşturma (SıralamaMerkezi UI standartlarında)
+                        const kart = document.createElement("a");
+                        kart.href = `/yks/${slugify(bolum.isim)}`;
+                        kart.className = "flex items-center justify-between p-3 bg-white border border-slate-200 hover:border-orange-300 rounded-xl shadow-sm hover:shadow-md transition-all group";
+                        kart.style.textDecoration = "none";
+
+                        const renkClass = rozetRenkleri[bolum.tur] || "bg-slate-50 text-slate-600";
+
+                        kart.innerHTML = `
+                            <div class="min-w-0 pr-2">
+                                <span class="text-xs font-bold text-slate-700 group-hover:text-orange-500 transition-colors block truncate" title="${bolum.isim}">
+                                    ${bolum.isim}
+                                </span>
+                            </div>
+                            <div class="flex items-center gap-2 shrink-0">
+                                <span class="px-2 py-0.5 text-[10px] font-black uppercase tracking-wider rounded border ${renkClass}">
+                                    ${bolum.tur}
+                                </span>
+                                <i class="fa-solid fa-chevron-right text-[10px] text-slate-300 group-hover:text-orange-400 group-hover:translate-x-0.5 transition-all"></i>
+                            </div>
+                        `;
+                        grid.appendChild(kart);
+                    }
+                });
+
+                // Boş sonuç kontrolü
+                if (görünürKartSayisi === 0) {
+                    grid.classList.add("hidden");
+                    bosMesaj.classList.remove("hidden");
+                } else {
+                    grid.classList.remove("hidden");
+                    bosMesaj.classList.add("hidden");
+                }
+            }
+
+            // Filtre butonlarının aktif/pasif tasarım yönetimi
+            function filtrelePuanTuru(tur) {
+                seciliPuanTuru = tur;
+                
+                // Tüm butonları pasif tasarıma çek
+                const butonlar = ["HEPSİ", "SAY", "EA", "SÖZ", "DİL"];
+                butonlar.forEach(bId => {
+                    const btn = document.getElementById(`btn-filtre-${bId}`);
+                    btn.className = "px-3.5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all shadow-sm bg-white border border-slate-200 text-slate-600 hover:bg-slate-50";
+                });
+
+                // Aktif butona koyu temayı çak
+                const aktifBtn = document.getElementById(`btn-filtre-${tur}`);
+                aktifBtn.className = "px-3.5 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition-all shadow-sm bg-slate-800 text-white";
+
+                listeyiYenile();
+            }
+
+            // Input alanına yazı yazıldıkça anlık tetikleme yap
+            document.getElementById("bolum-arama-input").addEventListener("input", listeyiYenile);
+
+            // Sayfa açıldığında listeyi ilk kez otomatik doldur
+            document.addEventListener("DOMContentLoaded", listeyiYenile);
+        </script>
+
+    </main>
+
+    <!-- 📊 JAVASCRIPT: TÜM BÖLÜMLERİ OTOMATİK LİNKLERE DÖNÜŞTÜREN SİSTEM -->
+    <script>
+        const bolumlerListesi = [
+            {isim: "Acil Yardım ve Afet Yönetimi", tur: "SAY"},
+            {isim: "Adli Bilimler", tur: "SAY"},
+            {isim: "Adli Bilişim Mühendisliği", tur: "SAY"},
+            {isim: "Ağaç İşleri Endüstri Mühendisliği", tur: "SAY"},
+            {isim: "Aile ve Tüketici Bilimleri", tur: "EA"},
+            {isim: "Aktüerya Bilimleri", tur: "SAY"},
+            {isim: "Alman Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Almanca Mütercim ve Tercümanlık", tur: "DİL"},
+            {isim: "Almanca Öğretmenliği", tur: "DİL"},
+            {isim: "Amerikan Kültürü ve Edebiyatı", tur: "DİL"},
+            {isim: "Antrenörlük Eğitimi", tur: "EA"},
+            {isim: "Antropoloji", tur: "EA"},
+            {isim: "Arap Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Arapça Mütercim ve Tercümanlık", tur: "DİL"},
+            {isim: "Arapça Öğretmenliği", tur: "DİL"},
+            {isim: "Arkeoloji", tur: "EA"},
+            {isim: "Arkeoloji ve Sanat Tarihi", tur: "SÖZ"},
+            {isim: "Arnavut Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Astronomi ve Uzay Bilimleri", tur: "SAY"},
+            {isim: "Ayakkabı Tasarımı ve Üretimi", tur: "EA"},
+            {isim: "Azerbaycan Türkçesi ve Edebiyatı", tur: "SÖZ"},
+            {isim: "Bahçe Bitkileri", tur: "SAY"},
+            {isim: "Balıkçılık Teknolojisi Mühendisliği", tur: "SAY"},
+            {isim: "Bankacılık", tur: "EA"},
+            {isim: "Bankacılık ve Finans", tur: "EA"},
+            {isim: "Bankacılık ve Sigortacılık", tur: "EA"},
+            {isim: "Basım Teknolojileri", tur: "SAY"},
+            {isim: "Basın ve Yayın", tur: "SÖZ"},
+            {isim: "Batı Dilleri", tur: "DİL"},
+            {isim: "Beden Eğitimi ve Spor Öğretmenliği", tur: "EA"},
+            {isim: "Beslenme ve Diyetetik", tur: "SAY"},
+            {isim: "Bilgi Güvenliği Teknolojisi", tur: "SAY"},
+            {isim: "Bilgi ve Belge Yönetimi", tur: "EA"},
+            {isim: "Bilgisayar Bilimleri", tur: "SAY"},
+            {isim: "Bilgisayar Mühendisliği", tur: "SAY"},
+            {isim: "Bilgisayar Teknolojisi ve Bilişim Sistemleri", tur: "SAY"},
+            {isim: "Bilgisayar ve Öğretim Teknolojileri Öğretmenliği", tur: "SAY"},
+            {isim: "Bilim Tarihi", tur: "EA"},
+            {isim: "Bilişim Sistemleri Mühendisliği", tur: "SAY"},
+            {isim: "Bilişim Sistemleri ve Teknolojileri", tur: "SAY"},
+            {isim: "Bitki Koruma", tur: "SAY"},
+            {isim: "Bitkisel Üretim ve Teknolojileri", tur: "SAY"},
+            {isim: "Biyokimya", tur: "SAY"},
+            {isim: "Biyoloji Öğretmenliği", tur: "SAY"},
+            {isim: "Biyoloji", tur: "SAY"},
+            {isim: "Biyomedikal Mühendisliği", tur: "SAY"},
+            {isim: "Biyomühendislik", tur: "SAY"},
+            {isim: "Biyosistem Mühendisliği", tur: "SAY"},
+            {isim: "Biyoteknoloji", tur: "SAY"},
+            {isim: "Boşnak Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Bulgar Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Bulgarca Mütercim ve Tercümanlık", tur: "DİL"},
+            {isim: "Cevher Hazırlama Mühendisliği", tur: "SAY"},
+            {isim: "Coğrafya Öğretmenliği", tur: "SÖZ"},
+            {isim: "Coğrafya", tur: "SÖZ"},
+            {isim: "Çağdaş Türk Lehçeleri ve Edebiyatları", tur: "SÖZ"},
+            {isim: "Çağdaş Yunan Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Çalışma Ekonomisi ve Endüstri İlişkileri", tur: "EA"},
+            {isim: "Çerkez Dili ve Edebiyatı", tur: "SÖZ"},
+            {isim: "Çeviribilim", tur: "DİL"},
+            {isim: "Çevre Mühendisliği", tur: "SAY"},
+            {isim: "Çin Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Çince Mütercim ve Tercümanlık", tur: "DİL"},
+            {isim: "Çizgi Film ve Animasyon", tur: "SÖZ"},
+            {isim: "Çocuk Gelişimi", tur: "EA"},
+            {isim: "Deniz Ulaştırma İşletme Mühendisliği", tur: "SAY"},
+            {isim: "Denizcilik İşletmeleri Yönetimi", tur: "EA"},
+            {isim: "Deri Mühendisliği", tur: "SAY"},
+            {isim: "Dijital Oyun Tasarımı", tur: "SAY"},
+            {isim: "Dil ve Konuşma Terapisi", tur: "SAY"},
+            {isim: "Dilbilimi", tur: "DİL"},
+            {isim: "Diş Hekimliği", tur: "SAY"},
+            {isim: "Doğu Dilleri", tur: "DİL"},
+            {isim: "Ebelik", tur: "SAY"},
+            {isim: "Eczacılık", tur: "SAY"},
+            {isim: "Egzersiz ve Spor Bilimleri", tur: "EA"},
+            {isim: "Ekonometri", tur: "EA"},
+            {isim: "Ekonomi", tur: "EA"},
+            {isim: "Ekonomi ve Finans", tur: "EA"},
+            {isim: "El Sanatları", tur: "SÖZ"},
+            {isim: "Elektrik Mühendisliği", tur: "SAY"},
+            {isim: "Elektrik-Elektronik Mühendisliği", tur: "SAY"},
+            {isim: "Elektronik Mühendisliği", tur: "SAY"},
+            {isim: "Elektronik Ticaret Ve Yönetimi", tur: "EA"},
+            {isim: "Elektronik ve Haberleşme Mühendisliği", tur: "SAY"},
+            {isim: "Emlak Ve Emlak Yönetimi", tur: "EA"},
+            {isim: "Endüstri Mühendisliği", tur: "SAY"},
+            {isim: "Endüstriyel Tasarım Mühendisliği", tur: "SAY"},
+            {isim: "Endüstriyel Tasarım", tur: "SAY"},
+            {isim: "Enerji Bilimi ve Teknolojileri", tur: "SAY"},
+            {isim: "Enerji Sistemleri Mühendisliği", tur: "SAY"},
+            {isim: "Enerji Yönetimi", tur: "EA"},
+            {isim: "Ergoterapi", tur: "SAY"},
+            {isim: "Ermeni Dili ve Kültürü", tur: "DİL"},
+            {isim: "Eski Yunan Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Fars Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Farsça Mütercim ve Tercümanlık", tur: "DİL"},
+            {isim: "Felsefe Grubu Öğretmenliği", tur: "EA"},
+            {isim: "Felsefe", tur: "EA"},
+            {isim: "Fen Bilgisi Öğretmenliği", tur: "SAY"},
+            {isim: "Film Tasarım ve Yönetmenliği", tur: "SÖZ"},
+            {isim: "Film Tasarımı ve Yazarlığı", tur: "SÖZ"},
+            {isim: "Film Tasarımı ve Yönetimi", tur: "SÖZ"},
+            {isim: "Finans ve Bankacılık", tur: "EA"},
+            {isim: "Fizik Mühendisliği", tur: "SAY"},
+            {isim: "Fizik Öğretmenliği", tur: "SAY"},
+            {isim: "Fizik", tur: "SAY"},
+            {isim: "Fizyoterapi ve Rehabilitasyon", tur: "SAY"},
+            {isim: "Fotoğraf", tur: "SÖZ"},
+            {isim: "Fotoğraf ve Video", tur: "SÖZ"},
+            {isim: "Fotonik", tur: "SAY"},
+            {isim: "Fransız Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Fransızca Mütercim ve Tercümanlık", tur: "DİL"},
+            {isim: "Fransızca Öğretmenliği", tur: "DİL"},
+            {isim: "Gastronomi ve Mutfak Sanatları", tur: "SÖZ"},
+            {isim: "Gayrimenkul Geliştirme ve Yönetimi", tur: "EA"},
+            {isim: "Gazetecilik", tur: "SÖZ"},
+            {isim: "Geleneksel Türk Sanatları", tur: "SÖZ"},
+            {isim: "Gemi İnşaatı ve Gemi Makineleri Mühendisliği", tur: "SAY"},
+            {isim: "Gemi Makineleri İşletme Mühendisliği", tur: "SAY"},
+            {isim: "Gemi ve Deniz Teknolojisi Mühendisliği", tur: "SAY"},
+            {isim: "Gemi ve Yat Tasarımı", tur: "SAY"},
+            {isim: "Genetik ve Biyomühendislik", tur: "SAY"},
+            {isim: "Genetik ve Yaşam Bilimleri Programları", tur: "SAY"},
+            {isim: "Geomatik Mühendisliği", tur: "SAY"},
+            {isim: "Gerontoloji", tur: "SAY"},
+            {isim: "Gıda Mühendisliği", tur: "SAY"},
+            {isim: "Gıda Teknolojisi", tur: "SAY"},
+            {isim: "Girişimcilik", tur: "EA"},
+            {isim: "Görsel İletişim Tasarımı", tur: "SÖZ"},
+            {isim: "Görsel Sanatlar", tur: "SÖZ"},
+            {isim: "Görsel Sanatlar ve İletişim", tur: "SÖZ"},
+            {isim: "Grafik Sanatlar", tur: "EA"},
+            {isim: "Grafik", tur: "EA"},
+            {isim: "Grafik Tasarımı", tur: "EA"},
+            {isim: "Gümrük İşletme", tur: "EA"},
+            {isim: "Gürcü Dili ve Edebiyatı", tur: "SÖZ"},
+            {isim: "Halkbilim", tur: "SÖZ"},
+            {isim: "Halkla İlişkiler ve Reklamcılık", tur: "SÖZ"},
+            {isim: "Halkla İlişkiler ve Tanıtım", tur: "SÖZ"},
+            {isim: "Harita Mühendisliği", tur: "SAY"},
+            {isim: "Havacılık Elektrik ve Elektroniği", tur: "SAY"},
+            {isim: "Havacılık ve Uzay Mühendisliği", tur: "SAY"},
+            {isim: "Havacılık Yönetimi", tur: "EA"},
+            {isim: "Hayvansal Üretim ve Teknolojileri", tur: "SAY"},
+            {isim: "Hemşirelik", tur: "SAY"},
+            {isim: "Hidrojeoloji Mühendisliği", tur: "SAY"},
+            {isim: "Hindoloji", tur: "DİL"},
+            {isim: "Hititoloji", tur: "DİL"},
+            {isim: "Hukuk", tur: "EA"},
+            {isim: "Hungaroloji", tur: "DİL"},
+            {isim: "İbrani Dili ve Kültürü", tur: "DİL"},
+            {isim: "İç Mimarlık", tur: "SAY"},
+            {isim: "İç Mimarlık ve Çevre Tasarımı", tur: "EA"},
+            {isim: "İktisadi ve İdari Bilimler Programları", tur: "EA"},
+            {isim: "İktisat", tur: "EA"},
+            {isim: "İlahiyat", tur: "SÖZ"},
+            {isim: "İletişim Bilimleri", tur: "SÖZ"},
+            {isim: "İletişim Fakültesi", tur: "SÖZ"},
+            {isim: "İletişim Sanatları", tur: "SÖZ"},
+            {isim: "İletişim Tasarımı ve Yönetimi", tur: "SÖZ"},
+            {isim: "İletişim ve Tasarım", tur: "SÖZ"},
+            {isim: "İlköğretim Matematik Öğretmenliği", tur: "SAY"},
+            {isim: "İmalat Mühendisliği", tur: "SAY"},
+            {isim: "İngiliz Dil Bilimi", tur: "DİL"},
+            {isim: "İngiliz Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "İngiliz ve Rus Dilleri ve Edebiyatları", tur: "DİL"},
+            {isim: "İngilizce Mütercim ve Tercümanlık", tur: "DİL"},
+            {isim: "İngilizce Öğretmenliği", tur: "DİL"},
+            {isim: "İngilizce, Fransızca Mütercim ve Tercümanlık", tur: "DİL"},
+            {isim: "İnsan Kaynakları Yönetimi", tur: "EA"},
+            {isim: "Inşaat Mühendisliği", tur: "SAY"},
+            {isim: "İslam Bilimleri", tur: "SÖZ"},
+            {isim: "İslam İktisadı ve Finans", tur: "EA"},
+            {isim: "İslami İlimler", tur: "SÖZ"},
+            {isim: "İspanyol Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "İstatistik", tur: "SAY"},
+            {isim: "İstatistik ve Bilgisayar Bilimleri", tur: "SAY"},
+            {isim: "İş Sağlığı ve Güvenliği", tur: "SAY"},
+            {isim: "İşletme Mühendisliği", tur: "SAY"},
+            {isim: "İşletme", tur: "EA"},
+            {isim: "İtalyan Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Japon Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Japonca Mütercim ve Tercümanlık", tur: "DİL"},
+            {isim: "Japonca Öğretmenliği", tur: "DİL"},
+            {isim: "Jeofizik Mühendisliği", tur: "SAY"},
+            {isim: "Jeoloji Mühendisliği", tur: "SAY"},
+            {isim: "Kamu Yönetimi", tur: "EA"},
+            {isim: "Kanatlı Hayvan Yetiştiriciliği", tur: "SAY"},
+            {isim: "Karşılaştırmalı Edebiyat", tur: "DİL"},
+            {isim: "Kazak Dili ve Edebiyatı", tur: "SÖZ"},
+            {isim: "Kentsel Tasarım ve Peyzaj Mimarlığı", tur: "SAY"},
+            {isim: "Kimya Mühendisliği", tur: "SAY"},
+            {isim: "Kimya Öğretmenliği", tur: "SAY"},
+            {isim: "Kimya", tur: "SAY"},
+            {isim: "Kimya-Biyoloji Mühendisliği", tur: "SAY"},
+            {isim: "Klasik Arkeoloji", tur: "EA"},
+            {isim: "Kontrol ve Otomasyon Mühendisliği", tur: "SAY"},
+            {isim: "Kore Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Kurgu, Ses ve Görüntü Yönetimi", tur: "SÖZ"},
+            {isim: "Kuyumculuk ve Mücevher Tasarımı", tur: "EA"},
+            {isim: "Kültür Varlıklarını Koruma ve Onarım", tur: "EA"},
+            {isim: "Kültür ve İletişim Bilimleri", tur: "SÖZ"},
+            {isim: "Küresel Siyaset ve Uluslararası İlişkiler", tur: "EA"},
+            {isim: "Kürt Dili ve Edebiyatı", tur: "SÖZ"},
+            {isim: "Latin Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Leh Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Lojistik Yönetimi", tur: "EA"},
+            {isim: "Maden Mühendisliği", tur: "SAY"},
+            {isim: "Makine Mühendisliği", tur: "SAY"},
+            {isim: "Maliye", tur: "EA"},
+            {isim: "Malzeme Bilimi ve Mühendisliği", tur: "SAY"},
+            {isim: "Malzeme Bilimi ve Nanoteknoloji Mühendisliği", tur: "SAY"},
+            {isim: "Malzeme Bilimi ve Teknolojileri", tur: "SAY"},
+            {isim: "Matematik Mühendisliği", tur: "SAY"},
+            {isim: "Matematik Öğretmenliği", tur: "SAY"},
+            {isim: "Matematik", tur: "SAY"},
+            {isim: "Matematik ve Bilgisayar Bilimleri", tur: "SAY"},
+            {isim: "Medya ve Görsel Sanatlar", tur: "SÖZ"},
+            {isim: "Medya ve İletişim", tur: "SÖZ"},
+            {isim: "Mekatronik Mühendisliği", tur: "SAY"},
+            {isim: "Metalurji ve Malzeme Mühendisliği", tur: "SAY"},
+            {isim: "Meteoroloji Mühendisliği", tur: "SAY"},
+            {isim: "Mimarlık", tur: "SAY"},
+            {isim: "Moda Tasarımı", tur: "EA"},
+            {isim: "Moleküler Biyoloji ve Genetik", tur: "SAY"},
+            {isim: "Moleküler Biyoteknoloji", tur: "SAY"},
+            {isim: "Muhasebe ve Finans Yönetimi", tur: "EA"},
+            {isim: "Mühendislik Programları", tur: "SAY"},
+            {isim: "Mühendislik ve Doğa Bilimleri Programları", tur: "SAY"},
+            {isim: "Mütercim-Tercümanlık", tur: "DİL"},
+            {isim: "Müzecilik", tur: "EA"},
+            {isim: "Nanobilim ve Nanoteknoloji", tur: "SAY"},
+            {isim: "Nanoteknoloji Mühendisliği", tur: "SAY"},
+            {isim: "Nükleer Enerji Mühendisliği", tur: "SAY"},
+            {isim: "Odyoloji", tur: "SAY"},
+            {isim: "Okul Öncesi Öğretmenliği", tur: "SÖZ"},
+            {isim: "Optik ve Akustik Mühendisliği", tur: "SAY"},
+            {isim: "Organik Tarım İşletmeciliği", tur: "EA"},
+            {isim: "Orman Endüstri Mühendisliği", tur: "SAY"},
+            {isim: "Orman Mühendisliği", tur: "SAY"},
+            {isim: "Ortez ve Protez", tur: "SAY"},
+            {isim: "Otel Yöneticiliği", tur: "EA"},
+            {isim: "Otomotiv Mühendisliği", tur: "SAY"},
+            {isim: "Özel Eğitim Öğretmenliği", tur: "SÖZ"},
+            {isim: "Pazarlama", tur: "EA"},
+            {isim: "Perfüzyon", tur: "SAY"},
+            {isim: "Petrol ve Doğalgaz Mühendisliği", tur: "SAY"},
+            {isim: "Peyzaj Mimarlığı", tur: "SAY"},
+            {isim: "Pilotaj", tur: "SAY"},
+            {isim: "Polimer Malzeme Mühendisliği", tur: "SAY"},
+            {isim: "Politika ve Ekonomi", tur: "EA"},
+            {isim: "Protohistorya ve Ön Asya Arkeolojisi", tur: "EA"},
+            {isim: "Psikoloji", tur: "EA"},
+            {isim: "Psikolojik Danışmanlık ve Rehberlik Öğretmenliği", tur: "EA"},
+            {isim: "Radyo, Televizyon ve Sinema", tur: "SÖZ"},
+            {isim: "Raylı Sistemler Mühendisliği", tur: "SAY"},
+            {isim: "Rehberlik ve Psikolojik Danışmanlık", tur: "EA"},
+            {isim: "Reklam Tasarımı ve İletişimi", tur: "SÖZ"},
+            {isim: "Reklamcılık", tur: "SÖZ"},
+            {isim: "Rekreasyon", tur: "EA"},
+            {isim: "Rekreasyon Yönetimi", tur: "SÖZ"},
+            {isim: "Robotik ve Otonom Sistemleri Mühendisliği", tur: "SAY"},
+            {isim: "Rus Dili ve Edebiyatı Öğretmenliği", tur: "DİL"},
+            {isim: "Rus Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Rus ve İngiliz Dilleri ve Edebiyatları", tur: "DİL"},
+            {isim: "Rusça Mütercim ve Tercümanlık", tur: "DİL"},
+            {isim: "Sağlık Yönetimi", tur: "EA"},
+            {isim: "Sanat Tarihi", tur: "SÖZ"},
+            {isim: "Sanat ve Kültür Yönetimi", tur: "SÖZ"},
+            {isim: "Sanat ve Sosyal Bilimler Programları", tur: "EA"},
+            {isim: "Sermaye Piyasası", tur: "EA"},
+            {isim: "Seyahat İşletmeciliği", tur: "EA"},
+            {isim: "Seyahat İşletmeciliği ve Turizm Rehberliği", tur: "EA"},
+            {isim: "Sınıf Öğretmenliği", tur: "EA"},
+            {isim: "Siber Güvenlik Mühendisliği", tur: "SAY"},
+            {isim: "Sigortacılık", tur: "EA"},
+            {isim: "Sigortacılık ve Aktüerya Bilimleri", tur: "EA"},
+            {isim: "Sigortacılık ve Risk Yönetimi", tur: "EA"},
+            {isim: "Sigortacılık ve Sosyal Güvenlik", tur: "EA"},
+            {isim: "Sinema ve Dijital Medya", tur: "SÖZ"},
+            {isim: "Sinema ve Televizyon", tur: "SÖZ"},
+            {isim: "Sinoloji", tur: "DİL"},
+            {isim: "Siyasal Bilimler", tur: "EA"},
+            {isim: "Siyaset Bilimi", tur: "EA"},
+            {isim: "Siyaset Bilimi ve Kamu Yönetimi", tur: "EA"},
+            {isim: "Siyaset Bilimi ve Uluslararası İlişkiler", tur: "EA"},
+            {isim: "Sosyal Bilgiler Öğretmenliği", tur: "SÖZ"},
+            {isim: "Sosyal Hizmet", tur: "EA"},
+            {isim: "Sosyoloji", tur: "EA"},
+            {isim: "Spor Yöneticiliği", tur: "EA"},
+            {isim: "Su Bilimleri ve Mühendisliği", tur: "SAY"},
+            {isim: "Su Ürünleri Mühendisliği", tur: "SAY"},
+            {isim: "Sümeroloji", tur: "SÖZ"},
+            {isim: "Süryani Dili ve Edebiyatı", tur: "SÖZ"},
+            {isim: "Süt Teknolojisi", tur: "SAY"},
+            {isim: "Şehir ve Bölge Planlama", tur: "SAY"},
+            {isim: "Takı Tasarımı", tur: "EA"},
+            {isim: "Takı Tasarımı Ve İmalatı", tur: "EA"},
+            {isim: "Tapu Kadastro", tur: "EA"},
+            {isim: "Tarım Ekonomisi", tur: "EA"},
+            {isim: "Tarım Makineleri ve Teknolojileri Mühendisliği", tur: "SAY"},
+            {isim: "Tarım Ticareti ve İşletmeciliği", tur: "EA"},
+            {isim: "Tarımsal Biyoteknoloji", tur: "SAY"},
+            {isim: "Tarımsal Genetik Mühendisliği", tur: "SAY"},
+            {isim: "Tarımsal Yapılar ve Sulama", tur: "SAY"},
+            {isim: "Tarih Öğretmenliği", tur: "SÖZ"},
+            {isim: "Tarih Öncesi Arkeolojisi", tur: "EA"},
+            {isim: "Tarih", tur: "SÖZ"},
+            {isim: "Tarla Bitkileri", tur: "SAY"},
+            {isim: "Teknoloji ve Bilgi Yönetimi", tur: "EA"},
+            {isim: "Tekstil Mühendisliği", tur: "SAY"},
+            {isim: "Tekstil Tasarımı", tur: "EA"},
+            {isim: "Tekstil ve Moda Tasarımı", tur: "EA"},
+            {isim: "Televizyon Haberciliği ve Programcılığı", tur: "SÖZ"},
+            {isim: "Tıp Mühendisliği", tur: "SAY"},
+            {isim: "Tıp", tur: "SAY"},
+            {isim: "Tiyatro Eleştirmenliği ve Dramaturji", tur: "SÖZ"},
+            {isim: "Tohum Bilimi ve Teknolojisi", tur: "SAY"},
+            {isim: "Toprak Bilimi ve Bitki Besleme", tur: "SAY"},
+            {isim: "Turizm İşletmeciliği", tur: "EA"},
+            {isim: "Turizm Rehberliği", tur: "DİL"},
+            {isim: "Turizm ve Otel İşletmeciliği", tur: "EA"},
+            {isim: "Türk Dili ve Edebiyatı Öğretmenliği", tur: "SÖZ"},
+            {isim: "Türk Dili ve Edebiyatı", tur: "SÖZ"},
+            {isim: "Türk Halkbilimi", tur: "SÖZ"},
+            {isim: "Türk İslam Arkeolojisi", tur: "EA"},
+            {isim: "Türkçe Öğretmenliği", tur: "SÖZ"},
+            {isim: "Türkoloji", tur: "SÖZ"},
+            {isim: "Tütün Eksperliği", tur: "SAY"},
+            {isim: "Uçak Bakım ve Onarım", tur: "SAY"},
+            {isim: "Uçak Elektrik ve Elektroniği", tur: "SAY"},
+            {isim: "Uçak Gövde ve Motor Bakımı", tur: "SAY"},
+            {isim: "Uçak Mühendisliği", tur: "SAY"},
+            {isim: "Ukrayna Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Uluslararası Ekonomi", tur: "EA"},
+            {isim: "Uluslararası Finans", tur: "EA"},
+            {isim: "Uluslararası Finans ve Bankacılık", tur: "EA"},
+            {isim: "Uluslararası Girişimcilik", tur: "EA"},
+            {isim: "Uluslararası İlişkiler", tur: "EA"},
+            {isim: "Uluslararası İşletme Yönetimi", tur: "EA"},
+            {isim: "Uluslararası Tıp", tur: "SAY"},
+            {isim: "Uluslararası Ticaret", tur: "EA"},
+            {isim: "Uluslararası Ticaret ve Finans", tur: "EA"},
+            {isim: "Uluslararası Ticaret ve Finansman", tur: "EA"},
+            {isim: "Uluslararası Ticaret ve İşletmecilik", tur: "EA"},
+            {isim: "Uluslararası Ticaret ve Lojistik", tur: "EA"},
+            {isim: "Uluslararası Ulaştırma Sistemleri", tur: "EA"},
+            {isim: "Urdu Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Uzay Bilimleri ve Teknolojileri", tur: "SAY"},
+            {isim: "Uzay Mühendisliği", tur: "SAY"},
+            {isim: "Uzay ve Uydu Mühendisliği", tur: "SAY"},
+            {isim: "Veri Bilimi ve Analitiği", tur: "SAY"},
+            {isim: "Veteriner", tur: "SAY"},
+            {isim: "Yaban Hayatı Ekolojisi ve Yönetimi", tur: "SAY"},
+            {isim: "Yapay Zeka Mühendisliği", tur: "SAY"},
+            {isim: "Yapay Zeka ve Makine Öğrenmesi", tur: "SAY"},
+            {isim: "Yapay Zeka ve Veri Mühendisliği", tur: "SAY"},
+            {isim: "Yazılım Geliştirme", tur: "SAY"},
+            {isim: "Yazılım Mühendisliği", tur: "SAY"},
+            {isim: "Yeni Medya", tur: "SÖZ"},
+            {isim: "Yeni Medya ve İletişim", tur: "SÖZ"},
+            {isim: "Yerel Yönetimler", tur: "EA"},
+            {isim: "Yiyecek ve İçecek İşletmeciliği", tur: "EA"},
+            {isim: "Yönetim Bilimleri Programları", tur: "EA"},
+            {isim: "Yönetim Bilişim Sistemleri", tur: "EA"},
+            {isim: "Yunan Dili ve Edebiyatı", tur: "DİL"},
+            {isim: "Zaza Dili ve Edebiyatı", tur: "SÖZ"},
+            {isim: "Ziraat Mühendisliği Programları", tur: "SAY"},
+            {isim: "Zootekni", tur: "SAY"}
+        ];
+
+        // Türkçe karakterleri güvenli link yapısına çeviren asil fonksiyon
+        function slugify(text) {
+            const trMap = {
+                'ç': 'c', 'Ç': 'c',
+                'ğ': 'g', 'Ğ': 'g',
+                'ı': 'i', 'I': 'i',
+                'İ': 'i',
+                'ö': 'o', 'Ö': 'o',
+                'ş': 's', 'Ş': 's',
+                'ü': 'u', 'Ü': 'u'
+            };
+            let slug = text.split('').map(char => trMap[char] || char).join('');
+            return slug.toLowerCase()
+                       .replace(/[^a-z0-9\s-]/g, '') // Özel karakterleri sil
+                       .replace(/\s+/g, '-')         // Boşlukları - yap
+                       .replace(/-+/g, '-');         // Çift tireleri sil
+        }
+
+        const grid = document.getElementById("tum-bolumler-grid");
+        
+        bolumlerListesi.forEach(bolum => {
+            const linkPath = slugify(bolum.isim);
+            const kartHTML = `
+                <a href="/yks/${linkPath}" class="flex items-center justify-between bg-white border border-slate-200 hover:border-orange-300 hover:bg-orange-50/20 rounded-xl p-3 hover:shadow-sm transition-all" style="text-decoration: none;">
+                    <div class="flex flex-col">
+                        <span class="text-[12px] md:text-sm font-bold text-slate-700">${bolum.isim}</span>
+                        <span class="text-[9px] font-black text-slate-400 mt-0.5 uppercase tracking-wider">${bolum.tur}</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-slate-300 text-[10px] ml-2"></i>
+                </a>
+            `;
+            grid.insertAdjacentHTML('beforeend', kartHTML);
+        });
+    </script>
+
+</body>
+<div class="h-16 md:h-24 w-full bg-[#FCFBF7]"></div>
+<footer class="bg-slate-900 text-slate-300 mt-auto border-t-4 border-[#E06B00] relative z-10">
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            
+            <div class="lg:col-span-2 space-y-4">
+                <a href="/" class="text-2xl font-black text-white tracking-tight" style="text-decoration: none;">
+                    Sıralama<span class="text-[#E06B00]">Merkezi</span>
+                </a>
+                <p class="text-sm text-slate-400 max-w-sm mt-2 leading-relaxed">
+                    Türkiye'nin en dinamik tercih ve sıralama portalı. Güncel ÖSYM verileri, sınav sayaçları ve akıllı hesaplama araçlarıyla geleceğe giden yolda yanındayız.
+                </p>
+                
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2">Tercih Rehberi</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="/yks/konular" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> YKS Konuları</a></li>
+                    <li><a href="/yks/tip" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> Tıp Sıralamaları</a></li>
+                    <li><a href="/yks/soru-dagilimlari" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> Soru Dağılımları</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> LGS Puanları</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2">Hesaplama</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="/hesaplama/yks" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> YKS Sıralama Hesapla</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> LGS Puan Hesaplama</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> DGS Puan Hesaplama</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> KPSS Puan Hesaplama</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2">Kurumsal</h4>
+                <ul class="space-y-2 text-sm mb-4">
+                    <!-- KURUMSAL Bölümündeki Mevcut Linkleri Şununla Güncelle -->
+<div class="flex flex-col gap-2 mt-2">
+    <a href="javascript:void(0)" onclick="acModal('modal-hakkimizda')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">Hakkımızda</a>
+    <a href="javascript:void(0)" onclick="acModal('modal-gizlilik')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">Gizlilik Politikası</a>
+    <a href="javascript:void(0)" onclick="acModal('modal-iletisim')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">İletişim</a>
+</div>
+                </ul>
+                <div class="pt-2">
+                    <div class="text-xs font-bold text-slate-400 mb-2">Gelişmelerden haberdar ol:</div>
+                    <div class="flex">
+                        <input type="email" placeholder="E-posta yaz..." class="bg-slate-800 text-white text-xs px-3 py-2 rounded-l-md border border-slate-700 focus:outline-none focus:border-[#E06B00] w-full">
+                        <button class="bg-[#E06B00] hover:bg-[#C65F00] text-white px-3 py-2 rounded-r-md text-xs font-bold transition-colors">Katıl</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="bg-slate-950 py-6 border-t border-slate-800/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            
+            <div class="text-xs text-slate-500 text-center sm:text-left">
+                &copy; 2026-2027 <span class="text-slate-400 font-semibold">SıralamaMerkezi</span>. Tüm hakları saklıdır. İzinsiz kopyalanamaz.
+            </div>
+
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+                    class="bg-[#E06B00] hover:bg-[#C65F00] text-white w-10 h-10 rounded-lg flex items-center justify-center shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer border-none"
+                    title="Yukarı Çık">
+                <i class="fa-solid fa-chevron-up text-sm"></i>
+            </button>
+            
+        </div>
+    </div>
+    <style>
+    /* Sayfa içeriği az olsa bile footer'ı en alta zorlar */
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+    footer {
+        margin-top: auto;
+    }
+</style>
+</footer>
+</html>

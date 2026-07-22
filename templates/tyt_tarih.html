@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 TYT Tarih Konuları, Soru Dağılımı ve Öneriler - SiralamaMerkezi</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .osym-orange-bg { background-color: #E06B00; }
+        .osym-orange-text { color: #E06B00; }
+        .osym-orange-hover:hover { background-color: #C65F00; }
+    </style>
+</head>
+<body class="bg-[#FCFBF7] font-sans text-slate-800 p-0 m-0 pb-24">
+
+    <!-- 🌐 NAVBAR -->
+    <nav class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center flex-shrink-0" style="margin-left: 100px;">
+                    <a href="/" class="text-2xl font-black tracking-tight flex items-center gap-2" style="text-decoration: none;">
+    <img src="/static/img/logo.png" class="h-8 w-auto transform translate-x-1">
+    <span class="osym-orange-text">Sıralama</span><span class="text-slate-800" style="margin-left: -7px;">Merkezi</span>
+</a>
+                </div>
+
+                <div class="hidden md:flex items-center flex-1 justify-center lg:justify-end space-x-1 lg:space-x-2 pl-4">
+                    <div class="flex items-center space-x-0.5 lg:space-x-1 mr-auto lg:mx-auto flex-wrap">
+                        <!-- YKS Dropdown -->
+                        <div class="relative dropdown">
+                            <button class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold flex items-center gap-1 cursor-pointer border-none bg-transparent">
+                                YKS <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 w-48 bg-white border border-slate-200 shadow-xl rounded-lg py-2 mt-0 z-50">
+    <a href="/yks/konular" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
+    <a href="/yks/soru-dagilimlari" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Soru Dağılımları</a>
+    <a href="/yks-siralamalari" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Sıralamalar</a>
+    <a href="/hesaplama/yks" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Sıralama Hesaplama</a>
+</div>
+                        </div>
+
+                        <!-- LGS Dropdown -->
+                        <div class="relative dropdown">
+                            <button class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold flex items-center gap-1 cursor-pointer border-none bg-transparent">
+                                LGS <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 w-52 bg-white border border-slate-200 shadow-xl rounded-lg py-2 mt-0 z-50">
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Puanlar / Yüzdelik Dilimler</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Puan Hesaplama</a>
+                            </div>
+                        </div>
+
+                        <!-- DGS Dropdown -->
+                        <div class="relative dropdown">
+                            <button class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold flex items-center gap-1 cursor-pointer border-none bg-transparent">
+                                DGS <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 w-48 bg-white border border-slate-200 shadow-xl rounded-lg py-2 mt-0 z-50">
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Taban Puanlar</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Puan Hesaplama</a>
+                            </div>
+                        </div>
+
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">KPSS</a>
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">ALES</a>
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">MSÜ</a>
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">YDS</a>
+                    </div>
+
+                    <div class="relative dropdown pb-0 mt-0 z-50" style="margin-right: 100px;">
+                        <button class="osym-orange-bg text-white osym-orange-hover px-3 py-2 rounded-full text-xs lg:text-sm font-bold shadow-sm transition-all flex items-center gap-1.5 cursor-pointer border-none">
+                            <i class="fa-solid fa-calculator"></i> Puan/Sıralama Hesaplama <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                        </button>
+                        <div class="dropdown-menu hidden absolute right-0 w-56 bg-white border border-slate-200 shadow-xl rounded-xl py-2 mt-0 z-50 text-left">
+                            <a href="/hesaplama/yks" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">YKS Sıralama</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">LGS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">DGS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">KPSS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">ALES Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">MSÜ Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">YDS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold border-t border-slate-100 mt-1 pt-2 text-amber-700" style="text-decoration: none;">OBP Hesaplama</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Başlık Bölümü -->
+    <header class="max-w-5xl mx-auto px-4 mt-8">
+        <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
+            <!-- ⬅️ Saf Geri Dön Butonu -->
+            <div class="mb-4">
+                <a href="javascript:history.back();" class="inline-flex items-center gap-2 text-xs md:text-sm font-bold text-slate-500 hover:osym-orange-text transition-colors group" style="text-decoration: none;">
+                    <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-1"></i> 
+                    <span>Geri Dön</span>
+                </a>
+            </div>
+            <span class="osym-orange-bg text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase">TYT</span>
+            <h1 class="text-3xl font-black text-slate-900 tracking-tight mt-2">TYT Tarih Konuları ve Soru Dağılımı</h1>
+            <p class="text-sm text-slate-500 mt-2">TYT Sosyal Bilimler testinde 5 soru ile yer alan, kronolojik bilgi ve neden-sonuç yorumlama gücüne dayalı Tarih dersinin müfredatı ve soru dağılımları.</p>
+        </div>
+    </header>
+
+    <!-- Ana İçerik Alanı -->
+    <main class="max-w-5xl mx-auto px-4 mt-6 space-y-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+            <!-- Sol Kutucuk: Tarih Konu Paneli -->
+            <div class="md:col-span-9 bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm flex flex-col justify-between h-full">
+                <div>
+                    <div class="border-b border-slate-100 pb-3 mb-4">
+                        <h2 class="text-xl md:text-2xl font-black text-slate-900 tracking-tight">2026 TYT Güncel Tarih Konuları Nelerdir?</h2>
+                        <p class="text-xs md:text-sm text-slate-500 font-medium italic mt-1">TYT Tarih müfredatında yer alan güncel konu başlıkları aşağıda listelenmiştir:</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-0 text-sm md:text-base font-semibold text-slate-700 items-start">
+                        <!-- Sol Sütun -->
+                        <div class="divide-y divide-slate-100">
+                            <div class="py-2.5 flex items-center gap-3"><span class="text-xs font-black text-orange-500 bg-orange-50 w-6 h-6 rounded-md flex items-center justify-center">1</span> <span>Tarih ve Zaman</span></div>
+                            <div class="py-2.5 flex items-center gap-3"><span class="text-xs font-black text-orange-500 bg-orange-50 w-6 h-6 rounded-md flex items-center justify-center">2</span> <span>İnsanlığın İlk Dönemleri</span></div>
+                            <div class="py-2.5 flex items-center gap-3"><span class="text-xs font-black text-orange-500 bg-orange-50 w-6 h-6 rounded-md flex items-center justify-center">3</span> <span>Orta Çağ’da Dünya</span></div>
+                            <div class="py-2.5 flex items-center gap-3"><span class="text-xs font-black text-orange-500 bg-orange-50 w-6 h-6 rounded-md flex items-center justify-center">4</span> <span>İlk ve Orta Çağlarda Türk Dünyası</span></div>
+                            <div class="py-2.5 flex items-center gap-3"><span class="text-xs font-black text-orange-500 bg-orange-50 w-6 h-6 rounded-md flex items-center justify-center">5</span> <span>İslam Medeniyetinin Doğuşu ve İlk İslam Devletleri</span></div>
+                            <div class="py-2.5 flex items-center gap-3"><span class="text-xs font-black text-orange-500 bg-orange-50 w-6 h-6 rounded-md flex items-center justify-center">6</span> <span>Türklerin İslamiyet’i Kabulü ve İlk Türk İslam Devletleri</span></div>
+                            <div class="py-2.5 flex items-center gap-3"><span class="text-xs font-black text-orange-500 bg-orange-50 w-6 h-6 rounded-md flex items-center justify-center">7</span> <span>Yerleşme ve Devletleşme Sürecinde Selçuklu Türkiyesi</span></div>
+                        </div>
+
+                        <!-- Sağ Sütun -->
+                        <div class="divide-y divide-slate-100 border-t border-slate-100 sm:border-t-0">
+                            <div class="py-2.5 flex items-center gap-3"><span class="text-xs font-black text-orange-500 bg-orange-50 w-6 h-6 rounded-md flex items-center justify-center">8</span> <span>Beylikten Devlete Osmanlı Siyaseti (1302-1453)</span></div>
+                            <div class="py-2.5 flex items-center gap-3"><span class="text-xs font-black text-orange-500 bg-orange-50 w-6 h-6 rounded-md flex items-center justify-center">9</span> <span>Dünya Gücü Osmanlı Devleti (1453-1595)</span></div>
+                            <div class="py-2.5 flex items-center gap-3"><span class="text-xs font-black text-orange-500 bg-orange-50 w-6 h-6 rounded-md flex items-center justify-center">10</span> <span>Değişim Çağında Avrupa ve Osmanlı</span></div>
+                            <div class="py-2.5 flex items-center gap-3"><span class="text-xs font-black text-orange-500 bg-orange-50 w-6 h-6 rounded-md flex items-center justify-center">11</span> <span>Uluslararası İlişkilerde Denge Stratejisi (1774-1914)</span></div>
+                            <div class="py-2.5 flex items-center gap-3"><span class="text-xs font-black text-orange-500 bg-orange-50 w-6 h-6 rounded-md flex items-center justify-center">12</span> <span>XX. Yüzyıl Başlarında Osmanlı Devleti ve Dünya</span></div>
+                            <div class="py-2.5 flex items-center gap-3"><span class="text-xs font-black text-orange-500 bg-orange-50 w-6 h-6 rounded-md flex items-center justify-center">13</span> <span>Milli Mücadele Dönemi (Kongreler ve Cepheler)</span></div>
+                            <div class="py-2.5 flex items-center gap-3"><span class="text-xs font-black text-orange-500 bg-orange-50 w-6 h-6 rounded-md flex items-center justify-center">14</span> <span>Atatürkçülük ve Türk İnkılabı</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-xs text-slate-400 font-bold border-t border-slate-100 pt-3 mt-4">Müfredat, MEB ve ÖSYM güncel kazanımları esas alınmıştır.</div>
+            </div>
+
+            <!-- Sağ Kutucuk: Reklam Paneli -->
+            <div class="md:col-span-3 bg-white border border-slate-200 rounded-3xl p-5 shadow-sm flex flex-col items-center justify-center h-full">
+                <div class="w-full bg-slate-50 border border-slate-100 rounded-2xl p-4 text-center flex flex-col items-center justify-center h-full min-h-[300px]">
+                    <span class="text-xs font-black text-slate-400 tracking-wider uppercase flex items-center gap-1.5 justify-center mb-1"><i class="fa-solid fa-rectangle-ad"></i> REKLAM ALANI</span>
+                    <span class="text-xs text-slate-400 font-medium">300x250 / Dikey Band</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Soru Dağılım Tablosu -->
+        <div class="border border-slate-200 shadow-md rounded-3xl overflow-hidden max-w-5xl mx-auto">
+            <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">📝 TYT TARİH SORU DAĞILIMI</div>
+            <div class="overflow-x-auto w-full">
+                <table class="w-full text-center border-collapse min-w-[800px]">
+                    <thead>
+                        <tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase">
+                            <th class="p-3 text-left pl-6 border-r">Soru Konuları</th>
+                            {% for yil in yillar %} <th class="p-3 border-r font-mono">{{ yil }}</th> {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                        {% for satir in satirlar %}
+                        <tr class="odd:bg-slate-50/60 even:bg-white hover:bg-orange-50/30">
+                            <td class="p-3 text-left pl-6 border-r font-bold text-slate-900">{{ satir[0] }}</td>
+                            {% for veri in satir[1:] %} <td class="p-3 border-r">{{ veri }}</td> {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Yatay Reklam Bandı -->
+        <div class="max-w-5xl mx-auto">
+            <div class="bg-white border border-slate-200 rounded-3xl p-4 shadow-sm w-full">
+                <div class="w-full bg-slate-50 border border-slate-100 rounded-2xl py-3 px-4 text-center flex items-center justify-between gap-4 min-h-[60px] md:min-h-[80px]">
+                    <div class="flex items-center gap-2.5">
+                        <span class="text-[10px] font-black text-slate-400 tracking-wider uppercase bg-slate-200/60 px-2 py-0.5 rounded-md flex items-center gap-1"><i class="fa-solid fa-rectangle-ad text-xs"></i> REKLAM</span>
+                        <span class="text-xs md:text-sm text-slate-500 font-semibold hidden sm:inline">Sponsorlu İçerik Alanı</span>
+                    </div>
+                    <span class="text-xs text-slate-400 font-mono font-bold">728x90 / Yatay Leaderboard</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Öneriler ve Stratejiler -->
+        <div class="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm max-w-5xl mx-auto">
+            <h2 class="text-2xl font-black text-slate-900 mb-2 flex items-center gap-2"><i class="fa-solid fa-lightbulb text-amber-500"></i> SiralamaMerkezi'nden Tarih Çalışma Önerileri</h2>
+            <p class="mb-6 text-slate-600 italic">Tarih sadece kuru ezber değil, kavramsal okuma ve olaylar arası bağ kurma sanatıdır:</p>
+            <div class="space-y-4">
+                <div class="border-l-4 border-emerald-500 bg-emerald-50/40 p-4 rounded-r-2xl">
+                    <h4 class="font-bold text-emerald-900 text-base">🔍 ÖSYM Terimlerine Hakim Olun (Veraset, Meşrutiyet, İltizam)</h4>
+                    <p class="text-sm text-slate-700 mt-1 font-medium">Sorularda doğrudan paragrafı anlamanızı zorlaştıracak tarihsel kavramlar (merkezi otorite, feodalite, teokrasi vb.) sıkça kullanılır. Bu terimlerin ne anlama geldiğini iyi bilmek, yorum gücünüzü doğrudan iki katına çıkarır.</p>
+                </div>
+                <div class="border-l-4 border-amber-500 bg-amber-50/40 p-4 rounded-r-2xl">
+                    <h4 class="font-bold text-amber-900 text-base">📌 Kurtuluş Savaşı ve İnkılap Tarihi Sabit Net Deposudur</h4>
+                    <p class="text-sm text-slate-700 mt-1 font-medium">Her yıl 5 sorudan en az 2 tanesi doğrudan Amasya Genelgesi'nden başlayıp Atatürk ilkelerine kadar uzanan İnkılap Tarihi bölümünden gelir. Kongrelerin maddelerindeki gizli amaçları (örneğin "Milli sınırlar içinde vatan bir bütündür" ifadesinin manda ve himayeyi reddetmesi gibi) derinlemesine analiz edin.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- 🧭 TÜM DERSLER HIZLI GEÇİŞ PANELİ -->
+        <div class="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm max-w-5xl mx-auto mt-8">
+            <h2 class="text-xl md:text-2xl font-black text-slate-900 mb-2 flex items-center gap-2">
+                <i class="fa-solid fa-compass osym-orange-text"></i> Diğer Derslerin Konuları ve Müfredatı
+            </h2>
+            <p class="mb-6 text-xs md:text-sm text-slate-500 font-medium italic">Çalışmak istediğiniz diğer dersin güncel ÖSYM konu listesine hızlıca geçiş yapın:</p>
+
+            <div class="space-y-6">
+                <!-- TYT Oturumu Konuları -->
+                <div>
+                    <h3 class="text-xs md:text-sm font-black text-slate-400 tracking-wider uppercase mb-3 flex items-center gap-1.5 border-b border-slate-100 pb-1.5">
+                        <span class="osym-orange-bg text-white text-[9px] px-1.5 py-0.5 rounded font-black">TYT</span> 1. Oturum Konu Listeleri
+                    </h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                        <a href="/yks/konular/tyt-turkce" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-pen-nib text-sm"></i> TYT Türkçe
+                        </a>
+                        <a href="/yks/konular/tyt-matematik" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-calculator text-sm"></i> TYT Matematik
+                        </a>
+                        <a href="/yks/konular/tyt-geometri" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-compass-drafting text-sm"></i> TYT Geometri
+                        </a>
+                        <a href="/yks/konular/tyt-fizik" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-bolt text-sm"></i> TYT Fizik
+                        </a>
+                        <a href="/yks/konular/tyt-kimya" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-flask text-sm"></i> TYT Kimya
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mt-3">
+                        <a href="/yks/konular/tyt-biyoloji" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-dna text-sm"></i> TYT Biyoloji
+                        </a>
+                        <a href="/yks/konular/tyt-tarih" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-landmark text-sm"></i> TYT Tarih
+                        </a>
+                        <a href="/yks/konular/tyt-cografya" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-earth-americas text-sm"></i> TYT Coğrafya
+                        </a>
+                        <a href="/yks/konular/tyt-felsefe" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-brain text-sm"></i> TYT Felsefe
+                        </a>
+                        <a href="/yks/konular/tyt-din-kulturu" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-book-quran text-sm"></i> TYT Din Kül.
+                        </a>
+                    </div>
+                </div>
+
+                <!-- AYT Oturumu Konuları -->
+                <div>
+                    <h3 class="text-xs md:text-sm font-black text-slate-400 tracking-wider uppercase mb-3 flex items-center gap-1.5 border-b border-slate-100 pb-1.5">
+                        <span class="bg-blue-600 text-white text-[9px] px-1.5 py-0.5 rounded font-black">AYT</span> 2. Oturum Konu Listeleri
+                    </h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                        <a href="/yks/konular/ayt-matematik" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-square-root-variable text-sm"></i> AYT Matematik
+                        </a>
+                        <a href="/yks/konular/ayt-edebiyat" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-book-open text-sm"></i> AYT Edebiyat
+                        </a>
+                        <a href="/yks/konular/ayt-fizik" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-atom text-sm"></i> AYT Fizik
+                        </a>
+                        <a href="/yks/konular/ayt-kimya" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-vial-virus text-sm"></i> AYT Kimya
+                        </a>
+                        <a href="/yks/konular/ayt-biyoloji" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-microscope text-sm"></i> AYT Biyoloji
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mt-3">
+                        <a href="/yks/konular/ayt-tarih" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-scroll text-sm"></i> AYT Tarih
+                        </a>
+                        <a href="/yks/konular/ayt-cografya" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-map-location-dot text-sm"></i> AYT Coğrafya
+                        </a>
+                        <a href="/yks/konular/ayt-felsefe" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-clock-rotate-left text-sm"></i> AYT Felsefe Gr.
+                        </a>
+                        <a href="/yks/konular/ayt-din-kulturu" class="flex items-center justify-center gap-2 bg-slate-50 border border-slate-100 text-slate-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-mosque text-sm"></i> AYT Din Kül.
+                        </a>
+                        <!-- Ana Konular Dizini Paneli -->
+                        <a href="/yks/konular" class="flex items-center justify-center gap-2 bg-orange-50/40 border border-orange-100/70 text-orange-700 hover:osym-orange-bg hover:text-white hover:border-transparent transition-all duration-200 py-3 px-4 rounded-xl text-xs font-bold shadow-sm text-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-layer-group text-sm"></i> Tüm Konular <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<style>
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+</style>
+
+<div class="w-full bg-[#FCFBF7]" style="min-height: 25vh;"></div>
+
+<footer class="bg-slate-900 text-slate-300 mt-auto border-t-4 border-[#E06B00] relative z-10">
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            
+            <div class="lg:col-span-2 space-y-4">
+                <a href="/" class="text-2xl font-black text-white tracking-tight" style="text-decoration: none;">
+                    Sıralama<span class="text-[#E06B00]">Merkezi</span>
+                </a>
+                <p class="text-sm text-slate-400 max-w-sm mt-2 leading-relaxed">
+                    Türkiye'nin en dinamik tercih ve sıralama portalı. Güncel ÖSYM verileri, sınav sayaçları ve akıllı hesaplama araçlarıyla geleceğe giden yolda yanındayız.
+                </p>
+                
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2">Tercih Rehberi</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="/yks/konular" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> YKS Konuları</a></li>
+                    <li><a href="/yks/tip" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> Tıp Sıralamaları</a></li>
+                    <li><a href="/yks/soru-dagilimlari" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> Soru Dağılımları</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> LGS Puanları</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2">Hesaplama</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="/hesaplama/yks" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> YKS Sıralama Hesapla</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> LGS Puan Hesaplama</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> DGS Puan Hesaplama</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> KPSS Puan Hesaplama</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2">Kurumsal</h4>
+                <ul class="space-y-2 text-sm mb-4">
+                    <!-- KURUMSAL Bölümündeki Mevcut Linkleri Şununla Güncelle -->
+<div class="flex flex-col gap-2 mt-2">
+    <a href="javascript:void(0)" onclick="acModal('modal-hakkimizda')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">Hakkımızda</a>
+    <a href="javascript:void(0)" onclick="acModal('modal-gizlilik')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">Gizlilik Politikası</a>
+    <a href="javascript:void(0)" onclick="acModal('modal-iletisim')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">İletişim</a>
+</div>
+                </ul>
+                <div class="pt-2">
+                    <div class="text-xs font-bold text-slate-400 mb-2">Gelişmelerden haberdar ol:</div>
+                    <div class="flex">
+                        <input type="email" placeholder="E-posta yaz..." class="bg-slate-800 text-white text-xs px-3 py-2 rounded-l-md border border-slate-700 focus:outline-none focus:border-[#E06B00] w-full">
+                        <button class="bg-[#E06B00] hover:bg-[#C65F00] text-white px-3 py-2 rounded-r-md text-xs font-bold transition-colors">Katıl</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="bg-slate-950 py-6 border-t border-slate-800/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            
+            <div class="text-xs text-slate-500 text-center sm:text-left">
+                &copy; 2026-2027 <span class="text-slate-400 font-semibold">SıralamaMerkezi</span>. Tüm hakları saklıdır. İzinsiz kopyalanamaz.
+            </div>
+
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+                    class="bg-[#E06B00] hover:bg-[#C65F00] text-white w-10 h-10 rounded-lg flex items-center justify-center shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer border-none"
+                    title="Yukarı Çık">
+                <i class="fa-solid fa-chevron-up text-sm"></i>
+            </button>
+            
+        </div>
+    </div>
+    <style>
+    /* Sayfa içeriği az olsa bile footer'ı en alta zorlar */
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+    footer {
+        margin-top: auto;
+    }
+</style>
+</footer>
+</html>

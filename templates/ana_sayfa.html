@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiralamaMerkezi - YKS, LGS, DGS Taban Puanları ve Sıralamalar</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .osym-orange-bg { background-color: #E06B00; }
+        .osym-orange-text { color: #E06B00; }
+        .osym-orange-hover:hover { background-color: #C65F00; }
+        
+        /* Atatürk İmzası için Özel Beyazlatma Filtresi */
+        .ataturk-imza-white {
+            filter: invert(1) brightness(2);
+        }
+    </style>
+</head>
+<body class="bg-[#FCFBF7] font-sans text-slate-800 p-0 m-0 pb-16">
+
+    <!-- 🌐 NAVBAR -->
+    <nav class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center flex-shrink-0" style="margin-left: 100px;">
+                    <a href="/" class="text-2xl font-black tracking-tight flex items-center gap-2" style="text-decoration: none;">
+    <img src="/static/img/logo.png" class="h-8 w-auto transform translate-x-1">
+    <span class="osym-orange-text">Sıralama</span><span class="text-slate-800" style="margin-left: -7px;">Merkezi</span>
+</a>
+                </div>
+
+                <div class="hidden md:flex items-center flex-1 justify-center lg:justify-end space-x-1 lg:space-x-2 pl-4">
+                    <div class="flex items-center space-x-0.5 lg:space-x-1 mr-auto lg:mx-auto flex-wrap">
+                        <!-- YKS Dropdown -->
+                        <div class="relative dropdown">
+                            <button class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold flex items-center gap-1 cursor-pointer border-none bg-transparent">
+                                YKS <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 w-48 bg-white border border-slate-200 shadow-xl rounded-lg py-2 mt-0 z-50">
+    <a href="/yks/konular" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
+    <a href="/yks/soru-dagilimlari" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Soru Dağılımları</a>
+    <a href="/yks-siralamalari" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Sıralamalar</a>
+    <a href="/hesaplama/yks" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Sıralama Hesaplama</a>
+</div>
+                        </div>
+
+                        <!-- LGS Dropdown -->
+                        <div class="relative dropdown">
+                            <button class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold flex items-center gap-1 cursor-pointer border-none bg-transparent">
+                                LGS <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 w-52 bg-white border border-slate-200 shadow-xl rounded-lg py-2 mt-0 z-50">
+                                <a href="/lgs/konular" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Puanlar / Yüzdelik Dilimler</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Puan Hesaplama</a>
+                            </div>
+                        </div>
+
+                        <!-- DGS Dropdown -->
+                        <div class="relative dropdown">
+                            <button class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold flex items-center gap-1 cursor-pointer border-none bg-transparent">
+                                DGS <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 w-48 bg-white border border-slate-200 shadow-xl rounded-lg py-2 mt-0 z-50">
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Taban Puanlar</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Puan Hesaplama</a>
+                            </div>
+                        </div>
+
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">KPSS</a>
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">ALES</a>
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">MSÜ</a>
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">YDS</a>
+                    </div>
+
+                    <div class="relative dropdown pb-0 mt-0 z-50" style="margin-right: 100px;">
+                        <button class="osym-orange-bg text-white osym-orange-hover px-3 py-2 rounded-full text-xs lg:text-sm font-bold shadow-sm transition-all flex items-center gap-1.5 cursor-pointer border-none">
+                            <i class="fa-solid fa-calculator"></i> Puan/Sıralama Hesaplama <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                        </button>
+                        <div class="dropdown-menu hidden absolute right-0 w-56 bg-white border border-slate-200 shadow-xl rounded-xl py-2 mt-0 z-50 text-left">
+                            <a href="/hesaplama/yks" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">YKS Sıralama</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">LGS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">DGS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">KPSS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">ALES Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">MSÜ Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">YDS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold border-t border-slate-100 mt-1 pt-2 text-amber-700" style="text-decoration: none;">OBP Hesaplama</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+
+    <header class="py-16 text-center max-w-4xl mx-auto px-4">
+        <h1 class="text-4xl md:text-6xl font-black text-slate-900 tracking-tight mb-6">
+            Geleceğini Şansa Bırakma, <br><span class="osym-orange-text">Sıralamanı Keşfet!</span>
+        </h1>
+        <p class="text-lg text-slate-500 max-w-2xl mx-auto">
+            Sınav sayaçları, güncel ÖSYM taban puanları ve başarı sıralamaları rehberi. Gitmek istediğin yolu seç ve incelemeye başla.
+        </p>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 space-y-12">
+
+       <div class="space-y-6">
+    <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2 px-1">
+        <i class="fa-regular fa-clock text-orange-500"></i> Yaklaşan Sınavlar
+    </h2>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 items-stretch">
+        
+        <div class="bg-white border border-slate-200 shadow-sm rounded-2xl p-5 text-center flex flex-col justify-between h-full hover:shadow-md transition-shadow duration-300">
+            <div>
+                <div class="text-2xl font-black osym-orange-text tracking-tight mb-0.5">YKS</div>
+                <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-3">2027 Yükseköğretim Kurumları Sınavı</div>
+                <div id="yks-sayac" class="text-base font-mono font-black text-slate-800">Yükleniyor...</div>
+            </div>
+            <div>
+                <div class="w-full bg-slate-100 h-2 rounded-full mt-8 relative overflow-visible">
+                    <div id="yks-bar" class="osym-orange-bg h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                    <img id="yks-runner" src="/static/img/runner_man.png" class="absolute h-6 w-auto bottom-full -ml-3 mb-0.5 transition-all duration-500 z-10" style="left: 0%;">
+                    <img src="/static/img/racing_flag.png" class="absolute h-6 w-auto bottom-full mb-0.5 z-10" style="right: -19px;">
+                </div>
+                <div class="mt-4 pt-2.5 border-t border-slate-100 text-left space-y-1">
+                    <div class="text-[9px] text-slate-500 font-bold flex justify-between">
+                        <span><span class="osym-orange-text">●</span> TYT:</span> <span class="text-slate-700">20 Haziran 2027 Pazar</span>
+                    </div>
+                    <div class="text-[9px] text-slate-500 font-bold flex justify-between">
+                        <span><span class="osym-orange-text">●</span> AYT:</span> <span class="text-slate-700">21 Haziran 2027 Pazartesi</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 shadow-sm rounded-2xl p-5 text-center flex flex-col justify-between h-full hover:shadow-md transition-shadow duration-300">
+            <div>
+                <div class="text-2xl font-black text-blue-600 tracking-tight mb-0.5">KPSS</div>
+                <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-3">2026 Kamu Personel Seçme Sınavı</div>
+                <div id="kpss-sayac" class="text-base font-mono font-black text-slate-800">Yükleniyor...</div>
+            </div>
+            <div>
+                <div class="w-full bg-slate-100 h-2 rounded-full mt-8 relative overflow-visible">
+                    <div id="kpss-bar" class="bg-blue-600 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                    <img id="kpss-runner" src="/static/img/runner_man.png" class="absolute h-6 w-auto bottom-full -ml-3 mb-0.5 transition-all duration-500 z-10" style="left: 0%;">
+                    <img src="/static/img/racing_flag.png" class="absolute h-6 w-auto bottom-full mb-0.5 z-10" style="right: -19px;">
+                </div>
+                <div class="mt-4 pt-2.5 border-t border-slate-100 text-left space-y-1">
+                    <div class="text-[9px] text-slate-500 font-bold flex justify-between">
+                        <span><span>●</span> GY-GK:</span> <span class="text-slate-700">06 Eylül 2026</span>
+                    </div>
+                    <div class="text-[9px] text-slate-500 font-bold flex justify-between">
+                        <span><span>●</span> Alan B. 1. Gün:</span> <span class="text-slate-700">12 Eylül 2026</span>
+                    </div>
+                    <div class="text-[9px] text-slate-500 font-bold flex justify-between">
+                        <span><span>●</span> Alan B. 2. Gün:</span> <span class="text-slate-700">13 Eylül 2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 shadow-sm rounded-2xl p-5 text-center flex flex-col justify-between h-full hover:shadow-md transition-shadow duration-300">
+            <div>
+                <div class="text-2xl font-black text-emerald-600 tracking-tight mb-0.5">MSÜ</div>
+                <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-3">2027 Millî Savunma Üniversitesi Sınavı</div>
+                <div id="msu-sayac" class="text-base font-mono font-black text-slate-800">Yükleniyor...</div>
+            </div>
+            <div>
+                <div class="w-full bg-slate-100 h-2 rounded-full mt-8 relative overflow-visible">
+                    <div id="msu-bar" class="bg-emerald-600 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                    <img id="msu-runner" src="/static/img/runner_man.png" class="absolute h-6 w-auto bottom-full -ml-3 mb-0.5 transition-all duration-500 z-10" style="left: 0%;">
+                    <img src="/static/img/racing_flag.png" class="absolute h-6 w-auto bottom-full mb-0.5 z-10" style="right: -19px;">
+                </div>
+                <div class="text-[10px] text-slate-400 font-bold mt-4 pt-2.5 border-t border-slate-100 flex justify-center items-center gap-1">
+                    <i class="fa-regular fa-calendar-days text-[9px]"></i> 4 Nisan 2027 Pazar
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 items-stretch">
+        
+        <div class="bg-white border border-slate-200 shadow-sm rounded-2xl p-5 text-center flex flex-col justify-between h-full hover:shadow-md transition-shadow duration-300">
+            <div>
+                <div class="text-2xl font-black text-purple-600 tracking-tight mb-0.5">DGS</div>
+                <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-3">2027 Dikey Geçiş Sınavı</div>
+                <div id="dgs-sayac" class="text-base font-mono font-black text-slate-800">Yükleniyor...</div>
+            </div>
+            <div>
+                <div class="w-full bg-slate-100 h-2 rounded-full mt-8 relative overflow-visible">
+                    <div id="dgs-bar" class="bg-purple-600 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                    <img id="dgs-runner" src="/static/img/runner_man.png" class="absolute h-6 w-auto bottom-full -ml-3 mb-0.5 transition-all duration-500 z-10" style="left: 0%;">
+                    <img src="/static/img/racing_flag.png" class="absolute h-6 w-auto bottom-full mb-0.5 z-10" style="right: -19px;">
+                </div>
+                <div class="text-[10px] text-slate-400 font-bold mt-4 pt-2.5 border-t border-slate-100 flex justify-center items-center gap-1">
+                    <i class="fa-regular fa-calendar-days text-[9px]"></i> 4 Temmuz 2027 Pazar
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 shadow-sm rounded-2xl p-5 text-center flex flex-col justify-between h-full hover:shadow-md transition-shadow duration-300">
+            <div>
+                <div class="text-2xl font-black text-teal-600 tracking-tight mb-0.5">LGS</div>
+                <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-3">2027 Liselere Geçiş Sistemi</div>
+                <div id="lgs-sayac" class="text-base font-mono font-black text-slate-800">Yükleniyor...</div>
+            </div>
+            <div>
+                <div class="w-full bg-slate-100 h-2 rounded-full mt-8 relative overflow-visible">
+                    <div id="lgs-bar" class="bg-teal-600 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                    <img id="lgs-runner" src="/static/img/runner_man.png" class="absolute h-6 w-auto bottom-full -ml-3 mb-0.5 transition-all duration-500 z-10" style="left: 0%;">
+                    <img src="/static/img/racing_flag.png" class="absolute h-6 w-auto bottom-full mb-0.5 z-10" style="right: -19px;">
+                </div>
+                <div class="text-[10px] text-slate-400 font-bold mt-4 pt-2.5 border-t border-slate-100 flex justify-center items-center gap-1">
+                    <i class="fa-regular fa-calendar-days text-[9px]"></i> 6 Haziran 2027 Pazar
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 shadow-sm rounded-2xl p-5 text-center flex flex-col justify-between h-full hover:shadow-md transition-shadow duration-300">
+            <div>
+                <div class="text-2xl font-black text-indigo-600 tracking-tight mb-0.5">ALES</div>
+                <div class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-3">2026 Akademik Personel ve Lisansüstü Eğitimi Giriş Sınavı</div>
+                <div id="ales-sayac" class="text-base font-mono font-black text-slate-800">Yükleniyor...</div>
+            </div>
+            <div>
+                <div class="w-full bg-slate-100 h-2 rounded-full mt-8 relative overflow-visible">
+                    <div id="ales-bar" class="bg-indigo-600 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                    <img id="ales-runner" src="/static/img/runner_man.png" class="absolute h-6 w-auto bottom-full -ml-3 mb-0.5 transition-all duration-500 z-10" style="left: 0%;">
+                    <img src="/static/img/racing_flag.png" class="absolute h-6 w-auto bottom-full mb-0.5 z-10" style="right: -19px;">
+                </div>
+                <div class="mt-4 pt-2.5 border-t border-slate-100 text-left space-y-1">
+                    <div class="text-[9px] text-slate-500 font-bold flex justify-between">
+                        <span><span class="text-indigo-600">●</span> 2026-ALES/2:</span> <span class="text-slate-700">02 Ağustos 2026 Pazar</span>
+                    </div>
+                    <div class="text-[9px] text-slate-500 font-bold flex justify-between">
+                        <span><span class="text-indigo-600">●</span> 2026-ALES/3:</span> <span class="text-slate-700">29 Kasım 2026 Pazar</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+       
+        </section>
+        <!-- Popüler YKS Bölümleri -->
+        <div class="space-y-6">
+            <h2 class="text-2xl font-bold text-slate-900 text-center md:text-left flex items-center justify-center md:justify-start gap-2">
+                <i class="fa-solid fa-fire text-amber-500"></i> Popüler YKS Bölümleri
+            </h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                {% for bolum in bolumler %}
+                <a href="/yks/{{ bolum.link }}" class="block bg-white border border-slate-200 hover:border-orange-300 rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group relative overflow-hidden" style="text-decoration: none;">
+                    <div class="w-12 h-12 rounded-xl bg-orange-50 group-hover:bg-orange-500 transition-colors flex items-center justify-center text-xl osym-orange-text group-hover:text-white mb-4">
+                        <i class="fa-solid {{ bolum.ikon }}"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-800 group-hover:osym-orange-text transition-colors mb-1">{{ bolum.isim }}</h3>
+                    <p class="text-xs text-slate-400">Son 4 yılın taban puanları, başarı sıralamaları ve kontenjanları.</p>
+                    <div class="absolute bottom-4 right-4 text-slate-300 group-hover:text-orange-500 group-hover:translate-x-1 transition-all">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- 📢 POPÜLER BÖLÜMLER & ATATÜRK KÖŞESİ ARASI YATAY REKLAM -->
+<div class="w-full bg-white border border-dashed border-slate-300 rounded-2xl shadow-sm p-3 text-center my-8">
+    <span class="text-[10px] font-bold text-slate-400 tracking-wider uppercase block mb-1">Reklam</span>
+    <div class="w-full min-h-[90px] bg-slate-50 rounded-xl flex items-center justify-center text-xs text-slate-400 font-medium">
+        <!-- Reklam kodun veya yatay görselin buraya gelecek -->
+        728 x 90 / Esnek Yatay Reklam Alanı
+    </div>
+</div>
+
+        <!-- 🏛️ YENİ TASARIM: İKİ BÖLÜMLÜ PREMİUM ATATÜRK KÖŞESİ PANELİ -->
+        <section class="max-w-5xl mx-auto pt-4">
+            <div class="bg-gradient-to-r from-slate-950 via-slate-900 to-rose-950 border border-slate-800 rounded-3xl p-6 md:p-8 shadow-xl flex flex-col md:flex-row items-center gap-8 relative overflow-hidden transition-all duration-300 hover:border-red-900">
+                <!-- Arka Planda Hafif Işıyan Ay-Yıldız Filigranı -->
+                <div class="absolute -right-10 -bottom-10 opacity-5 text-white select-none pointer-events-none">
+                    <i class="fa-solid fa-star-and-crescent text-[180px]"></i>
+                </div>
+
+                <!-- 1. BÖLÜM (SOL): ATATÜRK SİLÜETİ VE ALTINDAKİ BEYAZ İMZASI -->
+<div class="w-full md:w-1/4 flex items-center justify-center border-b md:border-b-0 md:border-r border-slate-800 pb-6 md:pb-0 md:pr-6 select-none shrink-0">
+    <img src="{{ url_for('static', filename='img/ataturk.jpg') }}" 
+         alt="Mustafa Kemal Atatürk" 
+         class="h-64 md:h-72 max-h-[300px] w-auto object-contain rounded-2xl pointer-events-none select-none drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]">
+</div>
+
+                <!-- 2. BÖLÜM (SAĞ): CUMHURİYET AÇIKLAMASI VE YÖNLENDİRME LİNKİ -->
+                <div class="w-full md:w-3/4 text-center md:text-left flex flex-col justify-between h-full relative z-10">
+                    <div>
+                        <span class="text-red-500 text-[10px] font-black uppercase tracking-widest flex items-center justify-center md:justify-start gap-1.5">
+                            <i class="fa-solid fa-star-and-crescent animate-pulse text-amber-400"></i> ATATÜRK KÖŞESİ
+                        </span>
+                        <h2 class="text-xl md:text-2xl font-black text-white tracking-tight mt-2">
+                            Geleceğine Sarsılmaz Bir Cumhuriyet Sözü Bırak!
+                        </h2>
+                        <p class="text-slate-400 text-xs md:text-sm mt-2 leading-relaxed font-medium">
+                            Atamızın cumhuriyetin ilk yıllarında İstanbul Garı'ndan Berlin'e uğurladığı Sadi Irmak'a yolladığı o muazzam tarihi telgrafın hikayesini biliyor musun? <em>"Sizi birer kıvılcım olarak gönderiyorum, alev topları olarak geri dönmelisiniz!"</em> <br><br>
+                            Üniversite kapısını geçmeden önce, senden sonra bu sıralardan geçecek Türk gençliğine ilham olmak ve hedefini mühürlemek için sen de geleceğine bir not bırak.
+                        </p>
+                    </div>
+                    
+                    <div class="mt-5">
+                        <a href="/ataturk-kosesi" class="inline-flex items-center gap-2 bg-red-700 hover:bg-red-800 text-white font-black text-xs md:text-sm px-5 py-3 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5" style="text-decoration: none;">
+                            <i class="fa-solid fa-fire-flame-curved text-amber-400"></i>
+                            Tarihi Hikayeyi Oku & Notunu Bırak
+                            <i class="fa-solid fa-arrow-right text-xs ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="relative bg-slate-900 text-white rounded-3xl p-8 md:p-12 shadow-xl overflow-hidden mb-16 md:mb-24 border border-slate-800 transition-all hover:border-orange-500/50 group">
+    
+    <div class="absolute -top-24 -right-24 w-64 h-64 bg-orange-600/20 rounded-full blur-3xl opacity-60 group-hover:bg-orange-600/30 transition-all duration-500"></div>
+    <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl opacity-40"></div>
+    
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30"></div>
+
+    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <div class="lg:col-span-7 space-y-6 text-left">
+            <div class="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+                <i class="fa-solid fa-chart-line text-[10px]"></i> YKS ANALİZ MERKEZİ
+            </div>
+            
+            <h2 class="text-3xl md:text-4xl font-black tracking-tight leading-tight">
+                Hangi Konudan <br class="hidden md:inline">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">Kaç Soru Çıktı?</span>
+            </h2>
+            
+            <p class="text-sm md:text-base text-slate-300 font-medium leading-relaxed max-w-xl">
+                ÖSYM'nin son yıllardaki tüm sınav eğilimlerini tek tek filtreledik. <strong class="text-white">AYT Matematik, Fizik, Kimya ve Biyoloji</strong> derslerinin nokta atışı soru dağılım tabloları ve yıllara göre değişim grafiklerini senin için hazırladık. Eksik analizini yap, stratejini belirle!
+            </p>
+            
+            <div class="pt-2">
+                <a href="/yks/soru-dagilimlari" class="inline-flex items-center gap-3 bg-gradient-to-r from-[#E06B00] to-[#FF8412] hover:from-[#C65F00] hover:to-[#E06B00] text-white text-base md:text-lg font-black px-8 py-4 rounded-2xl shadow-lg shadow-orange-500/20 transition-all transform hover:-translate-y-1 hover:shadow-orange-500/30 cursor-pointer" style="text-decoration: none;">
+                    <i class="fa-solid fa-chart-simple text-xl"></i>
+                    Güncel Soru Dağılımlarını İncele
+                    <i class="fa-solid fa-arrow-right text-sm"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="lg:col-span-5 flex justify-center lg:justify-end">
+            <div class="w-full max-w-[340px] bg-slate-950/60 border border-slate-800 rounded-2xl p-5 shadow-2xl relative">
+                
+                <div class="flex items-center justify-between mb-4 border-b border-slate-800/80 pb-3">
+                    <span class="text-xs font-bold text-slate-400 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span> Yıllara Göre Dağılım
+                    </span>
+                    <span class="text-[10px] font-bold text-slate-500 bg-slate-900 px-2 py-0.5 rounded">AYT MAT</span>
+                </div>
+
+                <div class="space-y-3">
+                    <div>
+                        <div class="flex justify-between text-xs font-bold text-slate-300 mb-1">
+                            <span>Türev & İntegral</span>
+                            <span class="text-orange-400">8-10 Soru</span>
+                        </div>
+                        <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-orange-500 to-amber-400 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-bold text-slate-300 mb-1">
+                            <span>Trigonometri</span>
+                            <span class="text-orange-400">4 Soru</span>
+                        </div>
+                        <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-orange-500 to-amber-400 rounded-full" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-xs font-bold text-slate-300 mb-1">
+                            <span>Limit & Süreklilik</span>
+                            <span class="text-orange-400">2 Soru</span>
+                        </div>
+                        <div class="w-full h-2 bg-slate-900 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-orange-500 to-amber-400 rounded-full" style="width: 35%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[10px] text-slate-500 font-bold">
+                    <span>* Son 6 Yılın ÖSYM Verileri</span>
+                    <span class="text-orange-500/80">Analiz Edildi</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    </main>
+
+    <script>
+    function geriSayimBaslat(sayacId, barId, runnerId, hedefTarih) {
+        const sayacEleman = document.getElementById(sayacId);
+        const barEleman = document.getElementById(barId);
+        const runnerEleman = document.getElementById(runnerId);
+        
+        function guncelle() {
+            const simdi = new Date().getTime();
+            const fark = hedefTarih - simdi;
+            
+            if (fark < 0) { 
+                if (sayacEleman) sayacEleman.innerText = "Sınav Günü!"; 
+                if (barEleman) barEleman.style.width = "100%";
+                if (runnerEleman) runnerEleman.style.left = "94%";
+                return; 
+            }
+            
+            const gun = Math.floor(fark / (1000 * 60 * 60 * 24));
+            const saat = Math.floor((fark % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const dakika = Math.floor((fark % (1000 * 60 * 60)) / (1000 * 60));
+            const saniye = Math.floor((fark % (1000 * 60)) / 1000);
+            
+            if (sayacEleman) {
+                sayacEleman.innerText = `${gun} gün ${saat}s ${dakika}dk ${saniye}s`;
+            }
+
+            if (barEleman) {
+                const birGunMilisaniye = 24 * 60 * 60 * 1000;
+                const toplamDonguGunu = 365;
+                
+                const kalanGun = fark / birGunMilisaniye;
+                const gecenGun = toplamDonguGunu - kalanGun;
+                
+                let yuzde = (gecenGun / toplamDonguGunu) * 100;
+                
+                if (yuzde < 0) yuzde = 0;
+                if (yuzde > 100) yuzde = 100;
+                
+                barEleman.style.width = yuzde.toFixed(1) + "%";
+                
+                if (runnerEleman) {
+                    let runnerYuzde = yuzde;
+                    // Adam bayrağın tam altına kadar jilet gibi sokulabilsin diye sınır %94 yapıldı
+                    if (runnerYuzde > 94) runnerYuzde = 94;
+                    runnerEleman.style.left = runnerYuzde.toFixed(1) + "%";
+                }
+            }
+        }
+        
+        guncelle(); 
+        setInterval(guncelle, 1000);
+    }
+
+    // Başlatıcılar
+    geriSayimBaslat("yks-sayac", "yks-bar", "yks-runner", new Date("Jun 20, 2027 10:15:00").getTime());
+    geriSayimBaslat("kpss-sayac", "kpss-bar", "kpss-runner", new Date("Sep 6, 2026 10:15:00").getTime());
+    geriSayimBaslat("msu-sayac", "msu-bar", "msu-runner", new Date("Apr 4, 2027 10:15:00").getTime());
+    geriSayimBaslat("dgs-sayac", "dgs-bar", "dgs-runner", new Date("Jul 4, 2027 10:15:00").getTime());
+    geriSayimBaslat("lgs-sayac", "lgs-bar", "lgs-runner", new Date("Jun 6, 2027 09:30:00").getTime());
+    // ALES/2 (En yakın oturum hedeflendi): 02 Ağustos 2026 10:15:00
+    geriSayimBaslat("ales-sayac", "ales-bar", "ales-runner", new Date("Aug 2, 2026 10:15:00").getTime());
+</script>
+<!-- ================= AÇILIR HUKUKİ KUTULAR (MODALS) ================= -->
+
+<!-- 1. HAKKIMIZDA -->
+<div id="modal-hakkimizda" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs hidden z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-xl w-full max-h-[85vh] overflow-y-auto p-6 md:p-8 shadow-2xl space-y-4">
+        <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+            <h3 class="text-base font-black text-slate-900 flex items-center gap-2">📊 Hakkımızda</h3>
+            <button onclick="kapatModal('modal-hakkimizda')" class="text-slate-400 hover:text-slate-600 text-lg cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <p class="text-slate-600 text-xs md:text-sm leading-relaxed font-medium">
+            <strong>SıralamaMerkezi</strong>, mezun öğrencilerin ve üniversite adaylarının YKS/sınav süreçlerini daha şeffaf takip edebilmesi, gerçekçi sıralama simülasyonları yapabilmesi amacıyla kurulmuş tamamen bağımsız ve ücretsiz bir platformdur. 
+        </p>
+        <p class="text-slate-600 text-xs md:text-sm leading-relaxed font-medium">
+            Vizyonumuz; Atatürk ilke ve inkılaplarına bağlı, eğitimde şeffaflığı savunan, gençlerin gelecek yolculuğuna destek veren ve trollerden arındırılmış güvenli bir topluluk alanı sunmaktır.
+        </p>
+    </div>
+</div>
+
+<!-- 2. GİZLİLİK VE KVKK -->
+<div id="modal-gizlilik" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs hidden z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-xl w-full max-h-[85vh] overflow-y-auto p-6 md:p-8 shadow-2xl space-y-4">
+        <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+            <h3 class="text-base font-black text-slate-900 flex items-center gap-2">🛡️ Gizlilik ve KVKK Politikası</h3>
+            <button onclick="kapatModal('modal-gizlilik')" class="text-slate-400 hover:text-slate-600 text-lg cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="space-y-3 text-xs md:text-sm text-slate-600 leading-relaxed font-medium">
+            <p>6698 sayılı KVKK uyarınca, SıralamaMerkezi platformunda kullanıcıların kendi rızasıyla girdikleri ad/rumuz, netler, sıralama verileri ve Atatürk Köşesi notları sistemin çalışması amacıyla işlenir.</p>
+            <p><strong>Veri Paylaşımı:</strong> Toplanan hiçbir veri ticari amaçla üçüncü taraflara satılmaz veya aktarılmaz. Yalnızca yasal zorunluluk halinde adli makamlarla paylaşılabilir.</p>
+            <p><strong>Kullanıcı Hakları:</strong> Dilediğiniz an bizimle iletişime geçerek verilerinizin sistemden tamamen silinmesini talep edebilirsiniz. Sistemden silinen içerikler geri döndürülemez şekilde yok edilir.</p>
+        </div>
+    </div>
+</div>
+
+<!-- 3. İLETİŞİM / UYAR-KALDIR -->
+<div id="modal-iletisim" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs hidden z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-xl w-full max-h-[85vh] overflow-y-auto p-6 md:p-8 shadow-2xl space-y-4">
+        <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+            <h3 class="text-base font-black text-slate-900 flex items-center gap-2">📩 İletişim & Uyar-Kaldır</h3>
+            <button onclick="kapatModal('modal-iletisim')" class="text-slate-400 hover:text-slate-600 text-lg cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <p class="text-slate-600 text-xs md:text-sm leading-relaxed font-medium">
+            SıralamaMerkezi, 5651 sayılı kanun kapsamında "Yer Sağlayıcı" olarak hizmet vermektedir. Kullanıcılar tarafından üretilen içeriklerin yasalara, telif haklarına veya kişilik haklarına aykırı olduğunu düşünüyorsanız bizimle iletişime geçebilirsiniz.
+        </p>
+        <div class="bg-slate-50 border border-slate-100 rounded-xl p-3 text-center">
+            <p class="text-xs text-slate-400 font-bold uppercase">Resmi İletişim E-Posta</p>
+            <p class="text-sm font-black text-slate-800 mt-0.5">iletisim@siralamamerkezi.com</p>
+        </div>
+        <p class="text-[11px] text-slate-400 leading-relaxed text-center font-medium">
+            Bildirilen yasa dışı veya hatalı içerikler, inceleme sonucunda en geç 48 saat içinde moderasyon ekibimiz tarafından platformdan kaldırılır.
+        </p>
+    </div>
+</div>
+
+<!-- MODAL SCRIPTLERİ -->
+<script>
+function acModal(id) {
+    document.getElementById(id).classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+function kapatModal(id) {
+    document.getElementById(id).classList.add('hidden');
+    document.body.style.overflow = 'auto';
+}
+window.onclick = function(event) {
+    if (event.target.classList.contains('fixed')) {
+        event.target.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+}
+</script>
+</body>
+<!-- SOL REKLAM -->
+<div class="hidden xl:block fixed left-4 top-[80px] w-[160px] h-[600px] bg-white border border-dashed border-slate-300 rounded-2xl shadow-sm text-center p-2 z-0">
+    <span class="text-[10px] font-bold text-slate-400 tracking-wider uppercase block mb-1">Reklam</span>
+    <div class="h-[calc(100%-20px)] flex items-center justify-center text-xs text-slate-400 font-medium">
+        160 x 600<br>Sol Kule
+    </div>
+</div>
+
+<!-- SAĞ REKLAM -->
+<div class="hidden xl:block fixed right-4 top-[80px] w-[160px] h-[600px] bg-white border border-dashed border-slate-300 rounded-2xl shadow-sm text-center p-2 z-0">
+    <span class="text-[10px] font-bold text-slate-400 tracking-wider uppercase block mb-1">Reklam</span>
+    <div class="h-[calc(100%-20px)] flex items-center justify-center text-xs text-slate-400 font-medium">
+        160 x 600<br>Sağ Kule
+    </div>
+</div>
+
+<div class="h-16 md:h-24 w-full bg-[#FCFBF7]"></div>
+<!-- Mevcut footer etiketini bu şekilde değiştir -->
+<footer class="bg-slate-900 text-slate-300 mt-auto border-t-4 border-[#E06B00] relative z-10">
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            
+            <div class="lg:col-span-2 space-y-4">
+                <a href="/" class="text-2xl font-black text-white tracking-tight" style="text-decoration: none;">
+                    Sıralama<span class="text-[#E06B00]">Merkezi</span>
+                </a>
+                <p class="text-sm text-slate-400 max-w-sm mt-2 leading-relaxed">
+                    Türkiye'nin en dinamik tercih ve sıralama portalı. Güncel ÖSYM verileri, sınav sayaçları ve akıllı hesaplama araçlarıyla geleceğe giden yolda yanındayız.
+                </p>
+                
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2">Tercih Rehberi</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="/yks/konular" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> YKS Konuları</a></li>
+                    <li><a href="/yks/tip" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> Tıp Sıralamaları</a></li>
+                    <li><a href="/yks/soru-dagilimlari" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> Soru Dağılımları</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> LGS Puanları</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2">Hesaplama</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="/hesaplama/yks" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> YKS Sıralama Hesapla</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> LGS Puan Hesaplama</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> DGS Puan Hesaplama</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> KPSS Puan Hesaplama</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2">Kurumsal</h4>
+                <ul class="space-y-2 text-sm mb-4">
+                    <!-- KURUMSAL Bölümündeki Mevcut Linkleri Şununla Güncelle -->
+<div class="flex flex-col gap-2 mt-2">
+    <a href="javascript:void(0)" onclick="acModal('modal-hakkimizda')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">Hakkımızda</a>
+    <a href="javascript:void(0)" onclick="acModal('modal-gizlilik')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">Gizlilik Politikası</a>
+    <a href="javascript:void(0)" onclick="acModal('modal-iletisim')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">İletişim</a>
+</div>
+                </ul>
+                <div class="pt-2">
+                    <div class="text-xs font-bold text-slate-400 mb-2">Gelişmelerden haberdar ol:</div>
+                    <div class="flex">
+                        <input type="email" placeholder="E-posta yaz..." class="bg-slate-800 text-white text-xs px-3 py-2 rounded-l-md border border-slate-700 focus:outline-none focus:border-[#E06B00] w-full">
+                        <button class="bg-[#E06B00] hover:bg-[#C65F00] text-white px-3 py-2 rounded-r-md text-xs font-bold transition-colors">Katıl</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="bg-slate-950 py-6 border-t border-slate-800/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            
+            <div class="text-xs text-slate-500 text-center sm:text-left">
+                &copy; 2026-2027 <span class="text-slate-400 font-semibold">SıralamaMerkezi</span>. Tüm hakları saklıdır. İzinsiz kopyalanamaz.
+            </div>
+
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+                    class="bg-[#E06B00] hover:bg-[#C65F00] text-white w-10 h-10 rounded-lg flex items-center justify-center shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer border-none"
+                    title="Yukarı Çık">
+                <i class="fa-solid fa-chevron-up text-sm"></i>
+            </button>
+            
+        </div>
+    </div>
+    <style>
+    /* Sayfa içeriği az olsa bile footer'ı en alta zorlar */
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+    footer {
+        margin-top: auto;
+    }
+</style>
+</footer>
+</html>

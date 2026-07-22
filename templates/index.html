@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ sayfa_basligi }} - SiralamaMerkezi</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link class="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .align-middle { vertical-align: middle; }
+        .osym-orange-bg { background-color: #E06B00; }
+        .osym-orange-text { color: #E06B00; }
+        .osym-orange-border { border-color: #E06B00; }
+        .osym-orange-hover:hover { background-color: #C65F00; }
+    </style>
+</head>
+<body class="bg-[#FCFBF7] font-sans text-slate-800 p-0 m-0">
+
+       <!-- 🌐 NAVBAR -->
+    <nav class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center flex-shrink-0" style="margin-left: 100px;">
+                    <a href="/" class="text-2xl font-black tracking-tight flex items-center gap-2" style="text-decoration: none;">
+    <img src="/static/img/logo.png" class="h-8 w-auto transform translate-x-1">
+    <span class="osym-orange-text">Sıralama</span><span class="text-slate-800" style="margin-left: -7px;">Merkezi</span>
+</a>
+                </div>
+
+                <div class="hidden md:flex items-center flex-1 justify-center lg:justify-end space-x-1 lg:space-x-2 pl-4">
+                    <div class="flex items-center space-x-0.5 lg:space-x-1 mr-auto lg:mx-auto flex-wrap">
+                        <!-- YKS Dropdown -->
+                        <div class="relative dropdown">
+                            <button class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold flex items-center gap-1 cursor-pointer border-none bg-transparent">
+                                YKS <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 w-48 bg-white border border-slate-200 shadow-xl rounded-lg py-2 mt-0 z-50">
+    <a href="/yks/konular" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
+    <a href="/yks/soru-dagilimlari" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Soru Dağılımları</a>
+    <a href="/yks-siralamalari" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Sıralamalar</a>
+    <a href="/hesaplama/yks" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Sıralama Hesaplama</a>
+</div>
+                        </div>
+
+                        <!-- LGS Dropdown -->
+                        <div class="relative dropdown">
+                            <button class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold flex items-center gap-1 cursor-pointer border-none bg-transparent">
+                                LGS <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 w-52 bg-white border border-slate-200 shadow-xl rounded-lg py-2 mt-0 z-50">
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Puanlar / Yüzdelik Dilimler</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Puan Hesaplama</a>
+                            </div>
+                        </div>
+
+                        <!-- DGS Dropdown -->
+                        <div class="relative dropdown">
+                            <button class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold flex items-center gap-1 cursor-pointer border-none bg-transparent">
+                                DGS <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 w-48 bg-white border border-slate-200 shadow-xl rounded-lg py-2 mt-0 z-50">
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Taban Puanlar</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Puan Hesaplama</a>
+                            </div>
+                        </div>
+
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">KPSS</a>
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">ALES</a>
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">MSÜ</a>
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">YDS</a>
+                    </div>
+
+                    <div class="relative dropdown pb-0 mt-0 z-50" style="margin-right: 100px;">
+                        <button class="osym-orange-bg text-white osym-orange-hover px-3 py-2 rounded-full text-xs lg:text-sm font-bold shadow-sm transition-all flex items-center gap-1.5 cursor-pointer border-none">
+                            <i class="fa-solid fa-calculator"></i> Puan/Sıralama Hesaplama <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                        </button>
+                        <div class="dropdown-menu hidden absolute right-0 w-56 bg-white border border-slate-200 shadow-xl rounded-xl py-2 mt-0 z-50 text-left">
+                            <a href="/hesaplama/yks" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">YKS Sıralama</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">LGS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">DGS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">KPSS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">ALES Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">MSÜ Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">YDS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold border-t border-slate-100 mt-1 pt-2 text-amber-700" style="text-decoration: none;">OBP Hesaplama</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-4 mt-6">
+        <div class="w-full bg-slate-200/40 h-24 border border-dashed border-slate-300 rounded-lg flex items-center justify-center text-slate-400 text-sm">
+            <i class="fa-solid fa-rectangle-ad mr-2"></i> Reklam Alanı (728x90)
+        </div>
+    </div>
+
+    <div class="max-w-[1440px] mx-auto px-2 md:px-4 py-6 relative flex justify-center gap-6 items-start">
+        
+        <div class="hidden xl:block sticky top-24 w-[160px] min-w-[160px] h-[600px] select-none">
+            <div class="w-full h-full bg-slate-200/50 border border-dashed border-slate-300 rounded-xl flex flex-col items-center justify-center text-center p-2 text-slate-400 text-xs font-bold">
+                Sol Reklam<br>(160x600)
+            </div>
+        </div>
+
+       <div class="flex-1 max-w-4xl w-full overflow-hidden">
+    <main>
+        <!-- ==========================================
+             🔍 TEMİZLENMİŞ KUSURSUZ BAŞLIK & ARAMA ALANI (ÇİFT KAYITLAR SİLİNDİ)
+             ========================================== -->
+        <div class="text-center max-w-4xl mx-auto mb-6 px-2">
+            <span class="osym-orange-bg text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
+                ÖSYM TERCİH REHBERİ
+            </span>
+            <h1 class="text-2xl font-black text-slate-900 tracking-tight sm:text-4xl mt-3 mb-6 leading-tight">
+                {{ sayfa_basligi }}
+            </h1>
+            
+            <!-- Arama Çubuğu ve Butonların Yan Yana Kusursuz Durduğu Flex Yapı -->
+            <div class="flex flex-col md:flex-row items-center gap-3 w-full">
+                
+                <!-- Arama Kutusu -->
+                <div class="relative rounded-full shadow-md flex-1 w-full">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+                    </div>
+                    <input type="text" id="aramaKutusu" placeholder="Üniversite, şehir veya burs oranı ara..." 
+                           class="block w-full pl-10 pr-4 py-3 border border-slate-200 rounded-full bg-white text-sm shadow-inner focus:outline-none focus:ring-2 focus:ring-orange-500">
+                </div>
+
+                <!-- Hızlı Zıplama Butonları -->
+                <div class="flex items-center justify-center gap-1.5 shrink-0 w-full md:w-auto mt-2 md:mt-0 bg-slate-100/80 border border-slate-200/60 rounded-full px-3 py-1.5">
+                    <span class="text-[11px] font-bold text-slate-500 mr-1 hidden sm:inline"><i class="fa-solid fa-bolt text-amber-500"></i> Bul:</span>
+                    <button onclick="siralamayaZipli(20000)" class="bg-white border border-slate-200 hover:osym-orange-border hover:osym-orange-text text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm cursor-pointer transition-all">20k</button>
+                    <button onclick="siralamayaZipli(50000)" class="bg-white border border-slate-200 hover:osym-orange-border hover:osym-orange-text text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm cursor-pointer transition-all">50k</button>
+                    <button onclick="siralamayaZipli(100000)" class="bg-white border border-slate-200 hover:osym-orange-border hover:osym-orange-text text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm cursor-pointer transition-all">100k</button>
+                    <button onclick="siralamayaZipli(200000)" class="bg-white border border-slate-200 hover:osym-orange-border hover:osym-orange-text text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm cursor-pointer transition-all">200k</button>
+                    <button onclick="siralamayaZipli(300000)" class="bg-white border border-slate-200 hover:osym-orange-border hover:osym-orange-text text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm cursor-pointer transition-all">300k</button>
+                    <button onclick="siralamayaZipli(500000)" class="bg-white border border-slate-200 hover:osym-orange-border hover:osym-orange-text text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm cursor-pointer transition-all">500k</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 🎯 DİNAMİK ALAN BİLGİSİ ROZETİ -->
+        <div class="flex items-center justify-between mb-3 mx-1">
+            <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Alan Bilgisi:</span>
+                <span id="puanTuruRozeti" class="px-3 py-1 rounded-full text-xs font-black uppercase shadow-xs bg-slate-200 text-slate-700 border border-slate-300">
+                    -
+                </span>
+            </div>
+        </div>
+        
+        <!-- Sayaç/Metrik Kartları -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 mx-1">
+            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
+                <div class="text-[10px] font-black text-slate-400 uppercase">Kontenjan Durumu</div>
+                <div class="text-base md:text-lg font-black text-slate-800 mt-1" id="karttoplamKont">-</div>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
+                <div class="text-[10px] font-black text-slate-400 uppercase">En Yüksek Sıralama</div>
+                <div class="text-base md:text-lg font-black text-emerald-600 mt-1" id="kartenYuksekSira">-</div>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
+                <div class="text-[10px] font-black text-slate-400 uppercase">En Düşük Puan</div>
+                <div class="text-base md:text-lg font-black text-rose-600 mt-1" id="kartenDusukPuan">-</div>
+            </div>
+            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
+                <div class="text-[10px] font-black text-slate-400 uppercase">Aktif Üniversiteler</div>
+                <div class="text-base md:text-lg font-black text-blue-600 mt-1" id="karttoplamUni">-</div>
+            </div>
+        </div>
+
+        <div class="bg-white shadow-md rounded-2xl overflow-hidden border-2 border-slate-400 mx-1">
+            <table class="table-fixed w-full text-center border-collapse">
+                <thead>
+                    <tr class="bg-slate-800 text-white text-[10px] md:text-xs font-bold uppercase tracking-wider">
+                        <th class="p-3 border border-slate-600 w-[26%] md:w-auto">Üniversite</th>
+                        <th class="p-3 border border-slate-600 w-[24%] md:w-48">Bölüm / Özellik</th>
+                        <th class="p-0.5 border border-slate-600 w-[11%] md:w-16">Yıl</th>
+                        <th class="p-0.5 border border-slate-600 w-[11%] md:w-20">Kont.</th>
+                        <th class="p-0.5 border border-slate-600 w-[11%] md:w-24">Puan</th>
+                        <th class="p-0.5 border border-slate-600 w-[17%] md:w-28">Sıralama</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y-2 divide-slate-300 text-[11px] md:text-sm font-medium">
+                    {% if veriler %}
+                        {% for veri in veriler %}
+                        <tr class="odd:bg-white even:bg-slate-200/70 hover:bg-orange-50 transition-colors veri-satiri">
+                            <td class="p-2 align-middle border-r border-slate-300 veri-uni break-words"><span>{{ veri[0] }}</span></td>
+                            <td class="p-2 align-middle border-r border-slate-300 veri-bolum break-words"><span>{{ veri[1] }}</span></td>
+                            <td class="p-0 bg-slate-500/5 align-middle border-r border-slate-300 veri-yil"><span>{{ veri[3] }}</span></td> 
+                            <td class="p-0 align-middle border-r border-slate-300 veri-kontenjan"><span>{{ veri[4] }}</span></td> 
+                            <td class="p-0 font-semibold text-slate-700 align-middle border-r border-slate-300 data-puan"><span>{{ veri[6] }}</span></td> 
+                            <td class="p-0 font-bold text-slate-900 align-middle veri-siralamasi"><span>{{ veri[7] }}</span></td> 
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="6" class="px-6 py-12 text-slate-400 text-xs text-center">Veri bulunamadı.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+
+        <div class="hidden xl:block sticky top-24 w-[160px] min-w-[160px] h-[600px] select-none">
+            <div class="w-full h-full bg-slate-200/50 border border-dashed border-slate-300 rounded-xl flex flex-col items-center justify-center text-center p-2 text-slate-400 text-xs font-bold">
+                Sağ Reklam<br>(160x600)
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const mevcutMeslek = "{{ mevcut_meslek }}";
+
+        // 📚 TÜM BÖLÜMLER VE ALANLARI
+        const bolumAlaniHaritasi = {
+            "Acil Yardım ve Afet Yönetimi": "SAY", "Adli Bilimler": "SAY", "Adli Bilişim Mühendisliği": "SAY",
+            "Ağaç İşleri Endüstri Mühendisliği": "SAY", "Aile ve Tüketici Bilimleri": "EA", "Aktüerya Bilimleri": "SAY",
+            "Alman Dili ve Edebiyatı": "DİL", "Almanca Mütercim ve Tercümanlık": "DİL", "Almanca Öğretmenliği": "DİL",
+            "Amerikan Kültürü ve Edebiyatı": "DİL", "Antrenörlük Eğitimi": "EA", "Antropoloji": "EA",
+            "Arap Dili ve Edebiyatı": "DİL", "Arapça Mütercim ve Tercümanlık": "DİL", "Arapça Öğretmenliği": "DİL",
+            "Arkeoloji": "EA", "Arkeoloji ve Sanat Tarihi": "SÖZ", "Arnavut Dili ve Edebiyatı": "DİL",
+            "Astronomi ve Uzay Bilimleri": "SAY", "Ayakkabı Tasarımı ve Üretimi": "EA", "Azerbaycan Türkçesi ve Edebiyatı": "SÖZ",
+            "Bahçe Bitkileri": "SAY", "Balıkçılık Teknolojisi Mühendisliği": "SAY", "Bankacılık": "EA",
+            "Bankacılık ve Finans": "EA", "Bankacılık ve Sigortacılık": "EA", "Basım Teknolojileri": "SAY",
+            "Basın ve Yayın": "SÖZ", "Batı Dilleri": "DİL", "Beden Eğitimi ve Spor Öğretmenliği": "EA",
+            "Beslenme ve Diyetetik": "SAY", "Bilgi Güvenliği Teknolojisi": "SAY", "Bilgi ve Belge Yönetimi": "EA",
+            "Bilgisayar Bilimleri": "SAY", "Bilgisayar Mühendisliği": "SAY", "Bilgisayar Teknolojisi ve Bilişim Sistemleri": "SAY",
+            "Bilgisayar ve Öğretim Teknolojileri Öğretmenliği": "SAY", "Bilim Tarihi": "EA", "Bilişim Sistemleri Mühendisliği": "SAY",
+            "Bilişim Sistemleri ve Teknolojileri": "SAY", "Bitki Koruma": "SAY", "Bitkisel Üretim ve Teknolojileri": "SAY",
+            "Biyokimya": "SAY", "Biyoloji Öğretmenliği": "SAY", "Biyoloji": "SAY", "Biyomedikal Mühendisliği": "SAY",
+            "Biyomühendislik": "SAY", "Biyosistem Mühendisliği": "SAY", "Biyoteknoloji": "SAY", "Boşnak Dili ve Edebiyatı": "DİL",
+            "Bulgar Dili ve Edebiyatı": "DİL", "Bulgarca Mütercim ve Tercümanlık": "DİL", "Cevher Hazırlama Mühendisliği": "SAY",
+            "Coğrafya Öğretmenliği": "SÖZ", "Coğrafya": "SÖZ", "Çağdaş Türk Lehçeleri ve Edebiyatları": "SÖZ",
+            "Çağdaş Yunan Dili ve Edebiyatı": "DİL", "Çalışma Ekonomisi ve Endüstri İlişkileri": "EA", "Çerkez Dili ve Edebiyatı": "SÖZ",
+            "Çeviribilim": "DİL", "Çevre Mühendisliği": "SAY", "Çin Dili ve Edebiyatı": "DİL", "Çince Mütercim ve Tercümanlık": "DİL",
+            "Çizgi Film ve Animasyon": "SÖZ", "Çocuk Gelişimi": "EA", "Deniz Ulaştırma İşletme Mühendisliği": "SAY",
+            "Denizcilik İşletmeleri Yönetimi": "EA", "Deri Mühendisliği": "SAY", "Dijital Oyun Tasarımı": "SAY",
+            "Dil ve Konuşma Terapisi": "SAY", "Dilbilimi": "DİL", "Diş Hekimliği": "SAY", "Doğu Dilleri": "DİL",
+            "Ebelik": "SAY", "Eczacılık": "SAY", "Egzersiz ve Spor Bilimleri": "EA", "Ekonometri": "EA", "Ekonomi": "EA",
+            "Ekonomi ve Finans": "EA", "El Sanatları": "SÖZ", "Elektrik Mühendisliği": "SAY", "Elektrik-Elektronik Mühendisliği": "SAY",
+            "Elektronik Mühendisliği": "SAY", "Elektronik Ticaret Ve Yönetimi": "EA", "Elektronik ve Haberleşme Mühendisliği": "SAY",
+            "Emlak Ve Emlak Yönetimi": "EA", "Endüstri Mühendisliği": "SAY", "Endüstriyel Tasarım Mühendisliği": "SAY",
+            "Endüstriyel Tasarım": "SAY", "Enerji Bilimi ve Teknolojileri": "SAY", "Enerji Sistemleri Mühendisliği": "SAY",
+            "Enerji Yönetimi": "EA", "Ergoterapi": "SAY", "Ermeni Dili ve Kültürü": "DİL", "Eski Yunan Dili ve Edebiyatı": "DİL",
+            "Fars Dili ve Edebiyatı": "DİL", "Farsça Mütercim ve Tercümanlık": "DİL", "Felsefe Grubu Öğretmenliği": "EA",
+            "Felsefe": "EA", "Fen Bilgisi Öğretmenliği": "SAY", "Film Tasarım ve Yönetmenliği": "SÖZ",
+            "Film Tasarımı ve Yazarlığı": "SÖZ", "Film Tasarımı ve Yönetimi": "SÖZ", "Finans ve Bankacılık": "EA",
+            "Fizik Mühendisliği": "SAY", "Fizik Öğretmenliği": "SAY", "Fizik": "SAY", "Fizyoterapi ve Rehabilitasyon": "SAY",
+            "Fotoğraf": "SÖZ", "Fotoğraf ve Video": "SÖZ", "Fotonik": "SAY", "Fransız Dili ve Edebiyatı": "DİL",
+            "Fransızca Mütercim ve Tercümanlık": "DİL", "Fransızca Öğretmenliği": "DİL", "Gastronomi ve Mutfak Sanatları": "SÖZ",
+            "Gayrimenkul Geliştirme ve Yönetimi": "EA", "Gazetecilik": "SÖZ", "Geleneksel Türk Sanatları": "SÖZ",
+            "Gemi İnşaatı ve Gemi Makineleri Mühendisliği": "SAY", "Gemi Makineleri İşletme Mühendisliği": "SAY",
+            "Gemi ve Deniz Teknolojisi Mühendisliği": "SAY", "Gemi ve Yat Tasarımı": "SAY", "Genetik ve Biyomühendislik": "SAY",
+            "Genetik ve Yaşam Bilimleri Programları": "SAY", "Geomatik Mühendisliği": "SAY", "Gerontoloji": "SAY",
+            "Gıda Mühendisliği": "SAY", "Gıda Teknolojisi": "SAY", "Girişimcilik": "EA", "Görsel İletişim Tasarımı": "SÖZ",
+            "Görsel Sanatlar": "SÖZ", "Görsel Sanatlar ve İletişim": "SÖZ", "Grafik Sanatlar": "EA", "Grafik": "EA",
+            "Grafik Tasarımı": "EA", "Gümrük İşletme": "EA", "Gürcü Dili ve Edebiyatı": "SÖZ", "Halkbilim": "SÖZ",
+            "Halkla İlişkiler ve Reklamcılık": "SÖZ", "Halkla İlişkiler ve Tanıtım": "SÖZ", "Harita Mühendisliği": "SAY",
+            "Havacılık Elektrik ve Elektroniği": "SAY", "Havacılık ve Uzay Mühendisliği": "SAY", "Havacılık Yönetimi": "EA",
+            "Hayvansal Üretim ve Teknolojileri": "SAY", "Hemşirelik": "SAY", "Hidrojeoloji Mühendisliği": "SAY",
+            "Hindoloji": "DİL", "Hititoloji": "DİL", "Hukuk": "EA", "Hungaroloji": "DİL", "İbrani Dili ve Kültürü": "DİL",
+            "İç Mimarlık": "SAY", "İç Mimarlık ve Çevre Tasarımı": "EA", "İktisadi ve İdari Bilimler Programları": "EA",
+            "İktisat": "EA", "İlahiyat": "SÖZ", "İletişim Bilimleri": "SÖZ", "İletişim Fakültesi": "SÖZ", "İletişim Sanatları": "SÖZ",
+            "İletişim Tasarımı ve Yönetimi": "SÖZ", "İletişim ve Tasarım": "SÖZ", "İlköğretim Matematik Öğretmenliği": "SAY",
+            "İmalat Mühendisliği": "SAY", "İngiliz Dil Bilimi": "DİL", "İngiliz Dili ve Edebiyatı": "DİL",
+            "İngiliz ve Rus Dilleri ve Edebiyatları": "DİL", "İngilizce Mütercim ve Tercümanlık": "DİL", "İngilizce Öğretmenliği": "DİL",
+            "İngilizce, Fransızca Mütercim ve Tercümanlık": "DİL", "İnsan Kaynakları Yönetimi": "EA", "Inşaat Mühendisliği": "SAY",
+            "İslam Bilimleri": "SÖZ", "İslam İktisadı ve Finans": "EA", "İslami İlimler": "SÖZ", "İspanyol Dili ve Edebiyatı": "DİL",
+            "İstatistik": "SAY", "İstatistik ve Bilgisayar Bilimleri": "SAY", "İş Sağlığı ve Güvenliği": "SAY",
+            "İşletme Mühendisliği": "SAY", "İşletme": "EA", "İtalyan Dili ve Edebiyatı": "DİL", "Japon Dili ve Edebiyatı": "DİL",
+            "Japonca Mütercim ve Tercümanlık": "DİL", "Japonca Öğretmenliği": "DİL", "Jeofizik Mühendisliği": "SAY",
+            "Jeoloji Mühendisliği": "SAY", "Kamu Yönetimi": "EA", "Kanatlı Hayvan Yetiştiriciliği": "SAY",
+            "Karşılaştırmalı Edebiyat": "DİL", "Kazak Dili ve Edebiyatı": "SÖZ", "Kentsel Tasarım ve Peyzaj Mimarlığı": "SAY",
+            "Kimya Mühendisliği": "SAY", "Kimya Öğretmenliği": "SAY", "Kimya": "SAY", "Kimya-Biyoloji Mühendisliği": "SAY",
+            "Klasik Arkeoloji": "EA", "Kontrol ve Otomasyon Mühendisliği": "SAY", "Kore Dili ve Edebiyatı": "DİL",
+            "Kurgu, Ses ve Görüntü Yönetimi": "SÖZ", "Kuyumculuk ve Mücevher Tasarımı": "EA", "Kültür Varlıklarını Koruma ve Onarım": "EA",
+            "Kültür ve İletişim Bilimleri": "SÖZ", "Küresel Siyaset ve Uluslararası İlişkiler": "EA", "Kürt Dili ve Edebiyatı": "SÖZ",
+            "Latin Dili ve Edebiyatı": "DİL", "Leh Dili ve Edebiyatı": "DİL", "Lojistik Yönetimi": "EA", "Maden Mühendisliği": "SAY",
+            "Makine Mühendisliği": "SAY", "Maliye": "EA", "Malzeme Bilimi ve Mühendisliği": "SAY",
+            "Malzeme Bilimi ve Nanoteknoloji Mühendisliği": "SAY", "Malzeme Bilimi ve Teknolojileri": "SAY", "Matematik Mühendisliği": "SAY",
+            "Matematik Öğretmenliği": "SAY", "Matematik": "SAY", "Matematik ve Bilgisayar Bilimleri": "SAY", "Medya ve Görsel Sanatlar": "SÖZ",
+            "Medya ve İletişim": "SÖZ", "Mekatronik Mühendisliği": "SAY", "Metalurji ve Malzeme Mühendisliği": "SAY",
+            "Meteoroloji Mühendisliği": "SAY", "Mimarlık": "SAY", "Moda Tasarımı": "EA", "Moleküler Biyoloji ve Genetik": "SAY",
+            "Moleküler Biyoteknoloji": "SAY", "Muhasebe ve Finans Yönetimi": "EA", "Mühendislik Programları": "SAY",
+            "Mühendislik ve Doğa Bilimleri Programları": "SAY", "Mütercim-Tercümanlık": "DİL", "Müzecilik": "EA",
+            "Nanobilim ve Nanoteknoloji": "SAY", "Nanoteknoloji Mühendisliği": "SAY", "Nükleer Enerji Mühendisliği": "SAY",
+            "Odyoloji": "SAY", "Okul Öncesi Öğretmenliği": "SÖZ", "Optik ve Akustik Mühendisliği": "SAY",
+            "Organik Tarım İşletmeciliği": "EA", "Orman Endüstri Mühendisliği": "SAY", "Orman Mühendisliği": "SAY",
+            "Ortez ve Protez": "SAY", "Otel Yöneticiliği": "EA", "Otomotiv Mühendisliği": "SAY", "Özel Eğitim Öğretmenliği": "SÖZ",
+            "Pazarlama": "EA", "Perfüzyon": "SAY", "Petrol ve Doğalgaz Mühendisliği": "SAY", "Peyzaj Mimarlığı": "SAY",
+            "Pilotaj": "SAY", "Polimer Malzeme Mühendisliği": "SAY", "Politika ve Ekonomi": "EA",
+            "Protohistorya ve Ön Asya Arkeolojisi": "EA", "Psikoloji": "EA", "Psikolojik Danışmanlık ve Rehberlik Öğretmenliği": "EA",
+            "Radyo, Televizyon ve Sinema": "SÖZ", "Raylı Sistemler Mühendisliği": "SAY", "Rehberlik ve Psikolojik Danışmanlık": "EA",
+            "Reklam Tasarımı ve İletişimi": "SÖZ", "Reklamcılık": "SÖZ", "Rekreasyon": "EA", "Rekreasyon Yönetimi": "SÖZ",
+            "Robotik ve Otonom Sistemleri Mühendisliği": "SAY", "Rus Dili ve Edebiyatı Öğretmenliği": "DİL", "Rus Dili ve Edebiyatı": "DİL",
+            "Rus ve İngiliz Dilleri ve Edebiyatları": "DİL", "Rusça Mütercim ve Tercümanlık": "DİL", "Sağlık Yönetimi": "EA",
+            "Sanat Tarihi": "SÖZ", "Sanat ve Kültür Yönetimi": "SÖZ", "Sanat ve Sosyal Bilimler Programları": "EA",
+            "Sermaye Piyasası": "EA", "Seyahat İşletmeciliği": "EA", "Seyahat İşletmeciliği ve Turizm Rehberliği": "EA",
+            "Sınıf Öğretmenliği": "EA", "Siber Güvenlik Mühendisliği": "SAY", "Sigortacılık": "EA", "Sigortacılık ve Aktüerya Bilimleri": "EA",
+            "Sigortacılık ve Risk Yönetimi": "EA", "Sigortacılık ve Sosyal Güvenlik": "EA", "Sinema ve Dijital Medya": "SÖZ",
+            "Sinema ve Televizyon": "SÖZ", "Sinoloji": "DİL", "Siyasal Bilimler": "EA", "Siyaset Bilimi": "EA",
+            "Siyaset Bilimi ve Kamu Yönetimi": "EA", "Siyaset Bilimi ve Uluslararası İlişkiler": "EA", "Sosyal Bilgiler Öğretmenliği": "SÖZ",
+            "Sosyal Hizmet": "EA", "Sosyoloji": "EA", "Spor Yöneticiliği": "EA", "Su Bilimleri ve Mühendisliği": "SAY",
+            "Su Ürünleri Mühendisliği": "SAY", "Sümeroloji": "SÖZ", "Süryani Dili ve Edebiyatı": "SÖZ", "Süt Teknolojisi": "SAY",
+            "Şehir ve Bölge Planlama": "SAY", "Takı Tasarımı": "EA", "Takı Tasarımı Ve İmalatı": "EA", "Tapu Kadastro": "EA",
+            "Tarım Ekonomisi": "EA", "Tarım Makineleri ve Teknolojileri Mühendisliği": "SAY", "Tarım Ticareti ve İşletmeciliği": "EA",
+            "Tarımsal Biyoteknoloji": "SAY", "Tarımsal Genetik Mühendisliği": "SAY", "Tarımsal Yapılar ve Sulama": "SAY",
+            "Tarih Öğretmenliği": "SÖZ", "Tarih Öncesi Arkeolojisi": "EA", "Tarih": "SÖZ", "Tarla Bitkileri": "SAY",
+            "Teknoloji ve Bilgi Yönetimi": "EA", "Tekstil Mühendisliği": "SAY", "Tekstil Tasarımı": "EA", "Tekstil ve Moda Tasarımı": "EA",
+            "Televizyon Haberciliği ve Programcılığı": "SÖZ", "Tıp Mühendisliği": "SAY", "Tıp": "SAY",
+            "Tiyatro Eleştirmenliği ve Dramaturji": "SÖZ", "Tohum Bilimi ve Teknolojisi": "SAY", "Toprak Bilimi ve Bitki Besleme": "SAY",
+            "Turizm İşletmeciliği": "EA", "Turizm Rehberliği": "DİL", "Turizm ve Otel İşletmeciliği": "EA",
+            "Türk Dili ve Edebiyatı Öğretmenliği": "SÖZ", "Türk Dili ve Edebiyatı": "SÖZ", "Türk Halkbilimi": "SÖZ",
+            "Türk İslam Arkeolojisi": "EA", "Türkçe Öğretmenliği": "SÖZ", "Türkoloji": "SÖZ", "Tütün Eksperliği": "SAY",
+            "Uçak Bakım ve Onarım": "SAY", "Uçak Elektrik ve Elektroniği": "SAY", "Uçak Gövde ve Motor Bakımı": "SAY",
+            "Uçak Mühendisliği": "SAY", "Ukrayna Dili ve Edebiyatı": "DİL", "Uluslararası Ekonomi": "EA", "Uluslararası Finans": "EA",
+            "Uluslararası Finans ve Bankacılık": "EA", "Uluslararası Girişimcilik": "EA", "Uluslararası İlişkiler": "EA",
+            "Uluslararası İşletme Yönetimi": "EA", "Uluslararası Tıp": "SAY", "Uluslararası Ticaret": "EA",
+            "Uluslararası Ticaret ve Finans": "EA", "Uluslararası Ticaret ve Finansman": "EA", "Uluslararası Ticaret ve İşletmecilik": "EA",
+            "Uluslararası Ticaret ve Lojistik": "EA", "Uluslararası Ulaştırma Sistemleri": "EA", "Urdu Dili ve Edebiyatı": "DİL",
+            "Uzay Bilimleri ve Teknolojileri": "SAY", "Uzay Mühendisliği": "SAY", "Uzay ve Uydu Mühendisliği": "SAY",
+            "Veri Bilimi ve Analitiği": "SAY", "Veteriner": "SAY", "Yaban Hayatı Ekolojisi ve Yönetimi": "SAY",
+            "Yapay Zeka Mühendisliği": "SAY", "Yapay Zeka ve Makine Öğrenmesi": "SAY", "Yapay Zeka ve Veri Mühendisliği": "SAY",
+            "Yazılım Geliştirme": "SAY", "Yazılım Mühendisliği": "SAY", "Yeni Medya": "SÖZ", "Yeni Medya ve İletişim": "SÖZ",
+            "Yerel Yönetimler": "EA", "Yiyecek ve İçecek İşletmeciliği": "EA", "Yönetim Bilimleri Programları": "EA",
+            "Yönetim Bilişim Sistemleri": "EA", "Yunan Dili ve Edebiyatı": "DİL", "Zaza Dili ve Edebiyatı": "SÖZ",
+            "Ziraat Mühendisliği Programları": "SAY", "Zootekni": "SAY"
+        };
+
+        function tabloyuHizala() {
+            const satirlar = document.querySelectorAll(".veri-satiri");
+            
+            let unilerSet = new Set();
+            let toplamKontenjan = 0;
+            let enYüksekSira = Infinity;
+            let enDüşükPuan = Infinity;
+            let algilananBolumAdi = "";
+
+            satirlar.forEach(satir => {
+                const uniHucresi = satir.querySelector(".veri-uni");
+                const bolumHucresi = satir.querySelector(".veri-bolum");
+                const yilHucresi = satir.querySelector(".veri-yil");
+                const kontHucresi = satir.querySelector(".veri-kontenjan");
+                const puanHucresi = satir.querySelector(".data-puan");
+                const siraHucresi = satir.querySelector(".veri-siralamasi");
+
+                if(!uniHucresi || !bolumHucresi || !yilHucresi || !kontHucresi || !puanHucresi || !siraHucresi) return;
+
+                const hamUniMetni = uniHucresi.querySelector('span') ? uniHucresi.querySelector('span').textContent.trim() : uniHucresi.textContent.trim();
+                
+                if (!uniHucresi.querySelector('.uni-baslik')) {
+                    let uniAdi = hamUniMetni, sehir = "Belirtilmemiş", tur = "Devlet";
+                    const parantezler = hamUniMetni.match(/\(([^)]+)\)/g) || [];
+                    parantezler.forEach(p => {
+                        const icerik = p.replace(/[()]/g, '').trim().toUpperCase();
+                        uniAdi = uniAdi.replace(p, '').trim();
+                        if (icerik === "DEVLET" || icerik === "VAKIF" || icerik.includes("KIBRIS")) tur = icerik;
+                        else sehir = icerik.charAt(0) + icerik.slice(1).toLowerCase();
+                    });
+                    uniAdi = uniAdi.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+                    let turClass = tur.includes("VAKIF") ? "bg-amber-50 text-amber-800 border-amber-200" : "bg-slate-100 text-slate-700 border-slate-300";
+
+                    unilerSet.add(uniAdi);
+
+                    uniHucresi.innerHTML = `
+                        <div class="uni-baslik flex flex-col items-center justify-center w-full">
+                            <div class="font-extrabold text-slate-900 text-[11px] md:text-sm border-b border-slate-200/50 pb-0.5 tracking-tight w-full leading-tight text-center">${uniAdi}</div>
+                            <div class="flex items-center justify-center gap-1 w-full mt-0.5 flex-wrap">
+                                <span class="text-[9px] md:text-xs font-semibold text-slate-500"><i class="fa-solid fa-location-dot text-rose-500 text-[8px]"></i> ${sehir}</span>
+                                <span class="px-1 py-0.5 rounded text-[8px] font-bold border ${turClass} scale-90 md:scale-100">${tur}</span>
+                            </div>
+                        </div>`;
+                }
+
+                const hamBolumMetni = bolumHucresi.querySelector('span') ? bolumHucresi.querySelector('span').textContent.trim() : bolumHucresi.textContent.trim();
+                if (!bolumHucresi.querySelector('.bolum-baslik')) {
+                    const nitelikler = hamBolumMetni.match(/\(([^)]+)\)/g) || [];
+                    let anaBolum = hamBolumMetni.replace(/\(([^)]+)\)/g, '').trim();
+                    
+                    if (!algilananBolumAdi) algilananBolumAdi = anaBolum;
+
+                    let dilVeBurs = [], sure = "";
+                    nitelikler.forEach(n => {
+                        const icerik = n.replace(/[()]/g, '').trim();
+                        if(icerik.includes("Yıllık")) sure = icerik;
+                        else dilVeBurs.push(icerik);
+                    });
+
+                    let yeniBolumHTML = `<div class="font-normal text-slate-800 text-[11px] md:text-sm border-b border-slate-200/50 pb-0.5 tracking-tight w-full leading-tight text-center">${anaBolum}</div>`;
+                    if(dilVeBurs.length > 0) yeniBolumHTML += `<div class="text-[9px] md:text-xs font-semibold text-slate-500 flex items-center justify-center gap-0.5 leading-none mt-1"><i class="fa-solid fa-graduation-cap osym-orange-text text-[8px]"></i> ${dilVeBurs.join(" • ")}</div>`;
+                    if(sure) yeniBolumHTML += `<div class="inline-block px-1 bg-orange-100/70 text-amber-800 rounded text-[8px] font-bold border border-orange-200 scale-90 mt-1">${sure}</div>`;
+                    bolumHucresi.innerHTML = `<div class="bolum-baslik w-full flex flex-col items-center justify-center">${yeniBolumHTML}</div>`;
+                }
+
+                const hamYilText = yilHucresi.querySelector('span') ? yilHucresi.querySelector('span').innerText : yilHucresi.innerText;
+                const hamPuanText = puanHucresi.querySelector('span') ? puanHucresi.querySelector('span').innerText : puanHucresi.innerText;
+                const hamKontText = kontHucresi.querySelector('span') ? kontHucresi.querySelector('span').innerText : kontHucresi.innerText;
+                const hamSiraText = siraHucresi.querySelector('span') ? siraHucresi.querySelector('span').innerText : siraHucresi.innerText;
+
+                const yillar = hamYilText.trim().split(/[\n\s]+/);
+                let puanlar = hamPuanText.trim().split(/[\n\s]+/);
+                let kontlar = hamKontText.trim().split(/[\n\s]+/);
+                let siralamalar = hamSiraText.trim().split(/[\n\s]+/);
+
+                if (puanlar[0] && !isNaN(parseFloat(puanlar[0]))) {
+                    const puanVal = parseFloat(puanlar[0]);
+                    if (puanVal < enDüşükPuan) enDüşükPuan = puanVal;
+                }
+                if (siralamalar[0] && siralamalar[0] !== '---') {
+                    const siraClean = parseInt(siralamalar[0].replace(/\./g, '').trim());
+                    if (!isNaN(siraClean) && siraClean < enYüksekSira) enYüksekSira = siraClean;
+                }
+                if (kontlar[0] && !isNaN(parseInt(kontlar[0]))) {
+                    toplamKontenjan += parseInt(kontlar[0]);
+                }
+
+                yilHucresi.innerHTML = yillar.map(y => `<div class="h-5 md:h-7 flex items-center justify-center"><span class="px-1 bg-slate-300/40 rounded text-[9px] md:text-xs font-bold">${y.slice(-2)}</span></div>`).join("");
+                puanHucresi.innerHTML = yillar.map((_, i) => `<div class="h-5 md:h-7 flex items-center justify-center text-[10px] md:text-sm">${puanlar[i] || '-'}</div>`).join("");
+                kontHucresi.innerHTML = yillar.map((_, i) => `<div class="h-5 md:h-7 flex items-center justify-center text-[10px] md:text-sm">${kontlar[i] || kontlar[0] || '-'}</div>`).join("");
+                siraHucresi.innerHTML = yillar.map((_, i) => `<div class="h-5 md:h-7 flex items-center justify-center text-[10px] md:text-sm font-bold text-slate-900">${siralamalar[i] || '-'}</div>`).join("");
+            });
+
+            document.getElementById("karttoplamUni").textContent = unilerSet.size > 0 ? unilerSet.size : "-";
+            document.getElementById("karttoplamKont").textContent = toplamKontenjan > 0 ? toplamKontenjan : "-";
+            document.getElementById("kartenYuksekSira").textContent = enYüksekSira !== Infinity ? enYüksekSira.toLocaleString('tr-TR') : "-";
+            document.getElementById("kartenDusukPuan").textContent = enDüşükPuan !== Infinity ? enDüşükPuan.toFixed(2) : "-";
+
+            // 🎯 ALAN BİLGİSİ VE ÖZEL RENK TESPİTİ (SAY: Kırmızı, EA: Turuncu, DİL: Mavi, SÖZ: Mor)
+            const puanRozeti = document.getElementById("puanTuruRozeti");
+            if (puanRozeti) {
+                const baslik = document.querySelector("h1") ? document.querySelector("h1").textContent.trim() : "";
+                let tespitEdilenTur = "";
+
+                for (let bolum in bolumAlaniHaritasi) {
+                    if (baslik.toLowerCase().includes(bolum.toLowerCase()) || algilananBolumAdi.toLowerCase().includes(bolum.toLowerCase())) {
+                        tespitEdilenTur = bolumAlaniHaritasi[bolum];
+                        break;
+                    }
+                }
+
+                let turMetni = "YKS";
+                let renkClass = "bg-slate-100 text-slate-700 border-slate-300";
+
+                if (tespitEdilenTur === "SAY") {
+                    turMetni = "SAY (Sayısal)";
+                    renkClass = "bg-rose-100 text-rose-800 border-rose-300"; // SAYISAL: KIRMIZI
+                } else if (tespitEdilenTur === "EA") {
+                    turMetni = "EA (Eşit Ağırlık)";
+                    renkClass = "bg-orange-100 text-orange-800 border-orange-300"; // EA: TURUNCU
+                } else if (tespitEdilenTur === "DİL") {
+                    turMetni = "DİL (Yabancı Dil)";
+                    renkClass = "bg-sky-100 text-sky-800 border-sky-300"; // DİL: MAVİ
+                } else if (tespitEdilenTur === "SÖZ") {
+                    turMetni = "SÖZ (Sözel)";
+                    renkClass = "bg-purple-100 text-purple-800 border-purple-300"; // SÖZ: MOR
+                }
+
+                puanRozeti.textContent = turMetni;
+                puanRozeti.className = `px-3 py-1 rounded-full text-xs font-black uppercase shadow-xs border ${renkClass}`;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", tabloyuHizala);
+
+        // ==========================================
+// 🔍 TAM DİNAMİK VE HIZLI FRONTEND ARAMA FİLTRESİ
+// ==========================================
+const aramaKutusu = document.getElementById("aramaKutusu");
+
+aramaKutusu.addEventListener("input", function (e) {
+    const aramaTerimi = e.target.value.toLowerCase().trim();
+    const satirlar = document.querySelectorAll(".veri-satiri");
+    const tabloGövdesi = document.querySelector("tbody");
+    
+    // "Veri bulunamadı" mesajı varsa temizlemek için kontrol
+    const eskiMesaj = document.getElementById("arama-bos-mesaj");
+    if (eskiMesaj) eskiMesaj.remove();
+
+    let görünürSatirSayisi = 0;
+    let unilerSet = new Set();
+    let toplamKontenjan = 0;
+    let enYüksekSira = Infinity;
+    let enDüşükPuan = Infinity;
+
+    satirlar.forEach(satir => {
+        // Satır içindeki üniversite adı ve bölüm/özellik metinlerini topla
+        const uniHucresi = satir.querySelector(".veri-uni");
+        const bolumHucresi = satir.querySelector(".veri-bolum");
+        
+        if (!uniHucresi || !bolumHucresi) return;
+
+        const uniMetni = uniHucresi.textContent.toLowerCase();
+        const bolumMetni = bolumHucresi.textContent.toLowerCase();
+
+        // Arama terimi üniversite adında veya bölüm detayında geçiyor mu?
+        if (uniMetni.includes(aramaTerimi) || bolumMetni.includes(aramaTerimi)) {
+            satir.style.display = ""; // Şart uyuyorsa satırı göster
+            görünürSatirSayisi++;
+
+            // --- Metrik Kartlarını Anlık Yenilemek İçin Verileri Topla ---
+            // 1. Üniversite adını bul (Hizalanmış yapıdan veya ham metinden)
+            const uniBaslikDiv = uniHucresi.querySelector(".uni-baslik div:first-child");
+            const uniAdi = uniBaslikDiv ? uniBaslikDiv.textContent.trim() : uniHucresi.textContent.trim();
+            unilerSet.add(uniAdi);
+
+            // 2. Kontenjan, Puan ve Sıralama hücrelerinin İLK elemanlarını ('25 yılı) çek
+            const kontDiv = satir.querySelector(".veri-kontenjan div:first-child") || satir.querySelector(".veri-kontenjan");
+            const puanDiv = satir.querySelector(".data-puan div:first-child") || satir.querySelector(".data-puan");
+            const siraDiv = satir.querySelector(".veri-siralamasi div:first-child") || satir.querySelector(".veri-siralamasi");
+
+            if (kontDiv && !isNaN(parseInt(kontDiv.textContent))) {
+                toplamKontenjan += parseInt(kontDiv.textContent);
+            }
+            if (puanDiv && !isNaN(parseFloat(puanDiv.textContent))) {
+                const puanVal = parseFloat(puanDiv.textContent);
+                if (puanVal < enDüşükPuan) enDüşükPuan = puanVal;
+            }
+            if (siraDiv && siraDiv.textContent.trim() !== '---') {
+                const siraClean = parseInt(siraDiv.textContent.replace(/\./g, '').trim());
+                if (!isNaN(siraClean) && siraClean < enYüksekSira) enYüksekSira = siraClean;
+            }
+        } else {
+            satir.style.display = "none"; // Uymuyorsa satırı gizle
+        }
+    });
+
+    // Üstteki sayaç/metrik kartlarını arama sonuçlarına göre anlık güncelle
+    document.getElementById("karttoplamUni").textContent = unilerSet.size > 0 ? unilerSet.size : "-";
+    document.getElementById("karttoplamKont").textContent = toplamKontenjan > 0 ? toplamKontenjan : "-";
+    document.getElementById("kartenYuksekSira").textContent = enYüksekSira !== Infinity ? enYüksekSira.toLocaleString('tr-TR') : "-";
+    document.getElementById("kartenDusukPuan").textContent = enDüşükPuan !== Infinity ? enDüşükPuan.toFixed(2) : "-";
+
+    // Eğer hiçbir sonuç bulunamadıysa kullanıcıya temiz bir mesaj göster
+    if (görünürSatirSayisi === 0) {
+        const bosTr = document.createElement("tr");
+        bosTr.id = "arama-bos-mesaj";
+        bosTr.innerHTML = `<td colspan="7" class="px-6 py-12 text-slate-400 text-xs text-center">Aradığınız kriterlere uygun üniversite veya bölüm bulunamadı.</td>`;
+        tabloGövdesi.appendChild(bosTr);
+    }
+});
+        // ==========================================
+// 🚀 DİNAMİK SIRALAMA ZIPLAMA FONKSİYONU
+// ==========================================
+function siralamayaZipli(hedefSiralama) {
+    const satirlar = document.querySelectorAll(".veri-satiri");
+    let enYakinSatir = null;
+    let enKucukFark = Infinity;
+
+    satirlar.forEach(satir => {
+        const siraHucresi = satir.querySelector(".veri-siralamasi");
+        if (!siraHucresi) return;
+
+        // Hücrenin içindeki İLK satırın ('25 yılına ait olan) değerini alıyoruz
+        const ilkSiraDiv = siraHucresi.querySelector("div:first-child") || siraHucresi;
+        const hamSiraMetni = ilkSiraDiv.textContent.replace(/\./g, '').trim();
+        const siraDegeri = parseInt(hamSiraMetni);
+
+        if (!isNaN(siraDegeri)) {
+            // Hedeflenen sıralamaya en yakın olan (veya hedefi geçen) satırı buluyoruz
+            let fark = Math.abs(siraDegeri - hedefSiralama);
+            if (fark < enKucukFark) {
+                enKucukFark = fark;
+                enYakinSatir = satir;
+            }
+        }
+    });
+
+    if (enYakinSatir) {
+        // Önceki parlayan satırlar varsa temizle
+        satirlar.forEach(s => s.style.backgroundColor = "");
+
+        // Sayfayı hedefe yumuşakça kaydır (Navbar'ın altında kalmasın diye offset ayarlıyoruz)
+        const yOffset = -120; 
+        const y = enYakinSatir.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+
+        // Bulunan satırı turuncu tonda tatlıca parlatıp geri söndürelim
+        enYakinSatir.style.transition = "background-color 0.5s ease";
+        enYakinSatir.style.backgroundColor = "rgba(224, 107, 0, 0.15)";
+        
+        setTimeout(() => {
+            enYakinSatir.style.backgroundColor = "rgba(224, 107, 0, 0.05)";
+        }, 1500);
+    } else {
+        alert("Bu sıralama aralığına uygun veri bu sayfada bulunamadı.");
+    }
+}
+    </script>
+</body>
+<div class="h-16 md:h-24 w-full bg-[#FCFBF7]"></div>
+<footer class="bg-slate-900 text-slate-300 mt-auto border-t-4 border-[#E06B00] relative z-10">
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            
+            <div class="lg:col-span-2 space-y-4">
+                <a href="/" class="text-2xl font-black text-white tracking-tight" style="text-decoration: none;">
+                    Sıralama<span class="text-[#E06B00]">Merkezi</span>
+                </a>
+                <p class="text-sm text-slate-400 max-w-sm mt-2 leading-relaxed">
+                    Türkiye'nin en dinamik tercih ve sıralama portalı. Güncel ÖSYM verileri, sınav sayaçları ve akıllı hesaplama araçlarıyla geleceğe giden yolda yanındayız.
+                </p>
+                
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2">Tercih Rehberi</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="/yks/konular" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> YKS Konuları</a></li>
+                    <li><a href="/yks/tip" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> Tıp Sıralamaları</a></li>
+                    <li><a href="/yks/soru-dagilimlari" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> Soru Dağılımları</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> LGS Puanları</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2">Hesaplama</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="/hesaplama/yks" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> YKS Sıralama Hesapla</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> LGS Puan Hesaplama</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> DGS Puan Hesaplama</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> KPSS Puan Hesaplama</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2">Kurumsal</h4>
+                <ul class="space-y-2 text-sm mb-4">
+                    <!-- KURUMSAL Bölümündeki Mevcut Linkleri Şununla Güncelle -->
+<div class="flex flex-col gap-2 mt-2">
+    <a href="javascript:void(0)" onclick="acModal('modal-hakkimizda')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">Hakkımızda</a>
+    <a href="javascript:void(0)" onclick="acModal('modal-gizlilik')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">Gizlilik Politikası</a>
+    <a href="javascript:void(0)" onclick="acModal('modal-iletisim')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">İletişim</a>
+</div>
+                </ul>
+                <div class="pt-2">
+                    <div class="text-xs font-bold text-slate-400 mb-2">Gelişmelerden haberdar ol:</div>
+                    <div class="flex">
+                        <input type="email" placeholder="E-posta yaz..." class="bg-slate-800 text-white text-xs px-3 py-2 rounded-l-md border border-slate-700 focus:outline-none focus:border-[#E06B00] w-full">
+                        <button class="bg-[#E06B00] hover:bg-[#C65F00] text-white px-3 py-2 rounded-r-md text-xs font-bold transition-colors">Katıl</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="bg-slate-950 py-6 border-t border-slate-800/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            
+            <div class="text-xs text-slate-500 text-center sm:text-left">
+                &copy; 2026-2027 <span class="text-slate-400 font-semibold">SıralamaMerkezi</span>. Tüm hakları saklıdır. İzinsiz kopyalanamaz.
+            </div>
+
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+                    class="bg-[#E06B00] hover:bg-[#C65F00] text-white w-10 h-10 rounded-lg flex items-center justify-center shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer border-none"
+                    title="Yukarı Çık">
+                <i class="fa-solid fa-chevron-up text-sm"></i>
+            </button>
+            
+        </div>
+    </div>
+    <style>
+    /* Sayfa içeriği az olsa bile footer'ı en alta zorlar */
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+    footer {
+        margin-top: auto;
+    }
+</style>
+</footer>
+</html>

@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YKS Yıllara Göre Soru Dağılımları (Akıllı Panel) - SiralamaMerkezi</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .osym-orange-bg { background-color: #E06B00; }
+        .osym-orange-text { color: #E06B00; }
+        .osym-orange-hover:hover { background-color: #C65F00; }
+        .tablo-box { display: none; }
+        .tablo-box.active { display: block; animation: fadeIn 0.4s ease-in-out; }
+        .sub-menu { display: none; }
+        .sub-menu.active { display: flex; animation: slideDown 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideDown { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 500px; } }
+    </style>
+</head>
+<body class="bg-[#FCFBF7] font-sans text-slate-800 p-0 m-0 pb-24">
+
+       <!-- 🌐 NAVBAR -->
+    <nav class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center flex-shrink-0" style="margin-left: 100px;">
+                    <a href="/" class="text-2xl font-black tracking-tight flex items-center gap-2" style="text-decoration: none;">
+    <img src="/static/img/logo.png" class="h-8 w-auto transform translate-x-1">
+    <span class="osym-orange-text">Sıralama</span><span class="text-slate-800" style="margin-left: -7px;">Merkezi</span>
+</a>
+                </div>
+
+                <div class="hidden md:flex items-center flex-1 justify-center lg:justify-end space-x-1 lg:space-x-2 pl-4">
+                    <div class="flex items-center space-x-0.5 lg:space-x-1 mr-auto lg:mx-auto flex-wrap">
+                        <!-- YKS Dropdown -->
+                        <div class="relative dropdown">
+                            <button class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold flex items-center gap-1 cursor-pointer border-none bg-transparent">
+                                YKS <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 w-48 bg-white border border-slate-200 shadow-xl rounded-lg py-2 mt-0 z-50">
+    <a href="/yks/konular" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
+    <a href="/yks/soru-dagilimlari" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Soru Dağılımları</a>
+    <a href="/yks-siralamalari" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Sıralamalar</a>
+    <a href="/hesaplama/yks" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Sıralama Hesaplama</a>
+</div>
+                        </div>
+
+                        <!-- LGS Dropdown -->
+                        <div class="relative dropdown">
+                            <button class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold flex items-center gap-1 cursor-pointer border-none bg-transparent">
+                                LGS <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 w-52 bg-white border border-slate-200 shadow-xl rounded-lg py-2 mt-0 z-50">
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Puanlar / Yüzdelik Dilimler</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Puan Hesaplama</a>
+                            </div>
+                        </div>
+
+                        <!-- DGS Dropdown -->
+                        <div class="relative dropdown">
+                            <button class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold flex items-center gap-1 cursor-pointer border-none bg-transparent">
+                                DGS <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                            </button>
+                            <div class="dropdown-menu hidden absolute left-0 w-48 bg-white border border-slate-200 shadow-xl rounded-lg py-2 mt-0 z-50">
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Taban Puanlar</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Puan Hesaplama</a>
+                            </div>
+                        </div>
+
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">KPSS</a>
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">ALES</a>
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">MSÜ</a>
+                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">YDS</a>
+                    </div>
+
+                    <div class="relative dropdown pb-0 mt-0 z-50" style="margin-right: 100px;">
+                        <button class="osym-orange-bg text-white osym-orange-hover px-3 py-2 rounded-full text-xs lg:text-sm font-bold shadow-sm transition-all flex items-center gap-1.5 cursor-pointer border-none">
+                            <i class="fa-solid fa-calculator"></i> Puan/Sıralama Hesaplama <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                        </button>
+                        <div class="dropdown-menu hidden absolute right-0 w-56 bg-white border border-slate-200 shadow-xl rounded-xl py-2 mt-0 z-50 text-left">
+                            <a href="/hesaplama/yks" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">YKS Sıralama</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">LGS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">DGS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">KPSS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">ALES Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">MSÜ Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold" style="text-decoration: none;">YDS Puan</a>
+                            <a href="#" class="block px-4 py-2 text-xs md:text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text font-semibold border-t border-slate-100 mt-1 pt-2 text-amber-700" style="text-decoration: none;">OBP Hesaplama</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header (Daraltılmış max-w-5xl) -->
+    <header class="max-w-5xl mx-auto px-4 mt-8">
+        <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
+            <span class="osym-orange-bg text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase">YKS ANALİZ</span>
+            <h1 class="text-3xl font-black text-slate-900 tracking-tight mt-2">YKS Soru Dağılım Paneli</h1>
+            <p class="text-sm text-slate-500 mt-2">İncelemek istediğiniz sınav oturumunu ve dersi seçerek yıllara göre resmi ÖSYM soru dağılım tablolarına anında ulaşın.</p>
+        </div>
+    </header>
+
+    <!-- 🎛️ ANA SEÇİM PANELLERİ (Daraltılmış max-w-5xl) -->
+    <section class="max-w-5xl mx-auto px-4 mt-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- TYT ANA PANEL BUTONU -->
+            <button onclick="oturumSec('tyt')" id="btn-oturum-tyt" class="bg-white border-2 border-slate-200 hover:border-orange-500 p-6 rounded-3xl text-left shadow-sm transition-all flex items-center justify-between group cursor-pointer focus:outline-none">
+                <div>
+                    <span class="text-slate-400 text-xs font-black uppercase tracking-wider">Temel Yeterlilik Testi</span>
+                    <h2 class="text-2xl font-black text-slate-900 mt-1 group-hover:osym-orange-text transition-colors">TYT Soru Dağılımları</h2>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center text-xl font-black group-hover:osym-orange-bg group-hover:text-white transition-all">
+                    TYT
+                </div>
+            </button>
+
+            <!-- AYT ANA PANEL BUTONU -->
+            <button onclick="oturumSec('ayt')" id="btn-oturum-ayt" class="bg-white border-2 border-slate-200 hover:border-orange-500 p-6 rounded-3xl text-left shadow-sm transition-all flex items-center justify-between group cursor-pointer focus:outline-none">
+                <div>
+                    <span class="text-slate-400 text-xs font-black uppercase tracking-wider">Alan Yeterlilik Testleri</span>
+                    <h2 class="text-2xl font-black text-slate-900 mt-1 group-hover:osym-orange-text transition-colors">AYT Soru Dağılımları</h2>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center text-xl font-black group-hover:osym-orange-bg group-hover:text-white transition-all">
+                    AYT
+                </div>
+            </button>
+
+        </div>
+    </section>
+
+    <!-- 📂 ALT DERS SEÇENEKLERİ BUTON GRUPLARI (Daraltılmış max-w-5xl) -->
+    <section class="max-w-5xl mx-auto px-4 mt-6">
+        
+        <!-- TYT DERS SEÇENEKLERİ -->
+        <div id="menu-tyt" class="sub-menu hidden flex-wrap gap-3 bg-white border border-slate-200 p-4 rounded-2xl shadow-sm">
+            <button onclick="tabloGoster('tyt-mat')" class="ders-btn bg-slate-50 hover:bg-orange-50 hover:osym-orange-text border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all">🧮 TYT Matematik</button>
+            <button onclick="tabloGoster('tyt-tur')" class="ders-btn bg-slate-50 hover:bg-orange-50 hover:osym-orange-text border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all">📝 TYT Türkçe</button>
+            <button onclick="tabloGoster('tyt-fiz')" class="ders-btn bg-slate-50 hover:bg-orange-50 hover:osym-orange-text border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all">⚡ TYT Fizik</button>
+            <button onclick="tabloGoster('tyt-kim')" class="ders-btn bg-slate-50 hover:bg-orange-50 hover:osym-orange-text border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all">🧪 TYT Kimya</button>
+            <button onclick="tabloGoster('tyt-biyo')" class="ders-btn bg-slate-50 hover:bg-orange-50 hover:osym-orange-text border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all">🧬 TYT Biyoloji</button>
+            <button onclick="tabloGoster('tyt-tar')" class="ders-btn bg-slate-50 hover:bg-orange-50 hover:osym-orange-text border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all">📜 TYT Tarih</button>
+            <button onclick="tabloGoster('tyt-cog')" class="ders-btn bg-slate-50 hover:bg-orange-50 hover:osym-orange-text border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all">🌍 TYT Coğrafya</button>
+            <button onclick="tabloGoster('tyt-fel')" class="ders-btn bg-slate-50 hover:bg-orange-50 hover:osym-orange-text border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all">🧠 TYT Felsefe & Din</button>
+        </div>
+
+        <!-- AYT DERS SEÇENEKLERİ -->
+        <div id="menu-ayt" class="sub-menu hidden flex-wrap gap-3 bg-white border border-slate-200 p-4 rounded-2xl shadow-sm">
+            <button onclick="tabloGoster('ayt-mat')" class="ders-btn bg-slate-50 hover:bg-orange-50 hover:osym-orange-text border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all">🧮 AYT Matematik</button>
+            <button onclick="tabloGoster('ayt-geo')" class="ders-btn bg-slate-50 hover:bg-orange-50 hover:osym-orange-text border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all">📐 AYT Geometri</button>
+            <button onclick="tabloGoster('ayt-ede')" class="ders-btn bg-slate-50 hover:bg-orange-50 hover:osym-orange-text border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all">📚 AYT Edebiyat</button>
+            <button onclick="tabloGoster('ayt-fiz')" class="ders-btn bg-slate-50 hover:bg-orange-50 hover:osym-orange-text border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all">⚡ AYT Fizik</button>
+            <button onclick="tabloGoster('ayt-kim')" class="ders-btn bg-slate-50 hover:bg-orange-50 hover:osym-orange-text border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all">🧪 AYT Kimya</button>
+            <button onclick="tabloGoster('ayt-biyo')" class="ders-btn bg-slate-50 hover:bg-orange-50 hover:osym-orange-text border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all">🧬 AYT Biyoloji</button>
+            <button onclick="tabloGoster('ayt-tar')" class="ders-btn bg-slate-50 hover:bg-orange-50 hover:osym-orange-text border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all">📜 AYT Tarih</button>
+            <button onclick="tabloGoster('ayt-cog')" class="ders-btn bg-slate-50 hover:bg-orange-50 hover:osym-orange-text border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all">🌍 AYT Coğrafya</button>
+            <button onclick="tabloGoster('ayt-fel')" class="ders-btn bg-slate-50 hover:bg-orange-50 hover:osym-orange-text border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all">🧠 AYT Felsefe Grubu</button>
+            <button onclick="tabloGoster('ayt-din')" class="ders-btn bg-slate-50 hover:bg-orange-50 hover:osym-orange-text border border-slate-200 px-4 py-2.5 rounded-xl text-sm font-bold cursor-pointer transition-all">🕌 AYT Din Kültürü</button>
+        </div>
+
+    </section>
+
+    <!-- 📊 SEÇİLEN TABLONUN AÇILACAĞI BÖLÜM (Daraltılmış max-w-5xl ve TAM KONU LİSTELİ) -->
+    <main class="max-w-5xl mx-auto px-4 mt-8">
+        
+        <!-- ========================================================== -->
+        <!-- 🔴 TYT OTURUMU TABLOLARI (EKSİKSİZ VE DETAYLI) -->
+        <!-- ========================================================== -->
+
+        <!-- TYT MATEMATİK (TAM LİSTE) -->
+        <!-- TYT MATEMATİK (Tablo Üstü Analizli) -->
+        <div id="tablo-tyt-mat" class="tablo-box space-y-6">
+            
+            <!-- 📊 Derse Özel Akıllı Analiz Bloğu (Tablonun Üstünde) -->
+            <div class="relative bg-slate-900 text-white rounded-3xl p-6 md:p-8 shadow-xl overflow-hidden border border-slate-800 transition-all hover:border-orange-500/50 group">
+                <!-- Desenler ve Işıklar -->
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-orange-600/20 rounded-full blur-3xl opacity-60 group-hover:bg-orange-600/30 transition-all duration-500"></div>
+                <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl opacity-40"></div>
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30"></div>
+
+                <div class="relative z-10">
+                    <div class="flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider w-fit mb-6">
+                        <i class="fa-solid fa-chart-line text-[10px]"></i> TYT MATEMATİK STRATEJİ MERKEZİ
+                    </div>
+                    <h3 class="text-2xl font-black text-white mb-6">Sınavı Kazandıracak Akıllı Yol Haritası</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-slate-950/50 border border-slate-800 rounded-2xl p-4">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs"><i class="fa-solid fa-bullseye"></i></span>
+                                <span class="text-xs font-black text-slate-300 uppercase tracking-wider">Kesin Çıkan Bankolar</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-1.5">Problemler & Sayılar</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">Problemler grubu (11-13 soru) ve Temel Kavramlar (4 soru) her yıl sınavın omurgasını oluşturur. Bu iki konuyu halletmek barajı doğrudan aşırır.</p>
+                        </div>
+                        <div class="bg-slate-950/50 border border-slate-800 rounded-2xl p-4">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="w-6 h-6 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center text-xs"><i class="fa-solid fa-triangle-exclamation"></i></span>
+                                <span class="text-xs font-black text-slate-300 uppercase tracking-wider">En Kritik / En Zor</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-1.5">Permütasyon & Olasılık</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">Sınavın en düşük doğru çözülme oranına sahip konusudur. Formülleri ezberlemek yerine soru tiplerinin temel mantığını kavramak şarttır.</p>
+                        </div>
+                        <div class="bg-slate-950/50 border border-slate-800 rounded-2xl p-4">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="w-6 h-6 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xs"><i class="fa-solid fa-face-smile"></i></span>
+                                <span class="text-xs font-black text-slate-300 uppercase tracking-wider">Kolay Net Getirenler</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-1.5">Rasyonel Sayılar & Kümeler</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">Her yıl toplamda 3 soru gelir ve formül yükü sıfırdır. Sadece dikkatli okuma ve temel kurallarla cepte görebileceğiniz en tatlı netlerdir.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tablo Bloğu -->
+            <div class="bg-white border border-slate-300 shadow-md rounded-2xl overflow-hidden">
+                <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">🧮 TYT MATEMATİK SORU DAĞILIMI</div>
+                <div class="overflow-x-auto w-full">
+                    <table class="w-full text-center border-collapse min-w-[700px]">
+                        <thead>
+                            <tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase">
+                                <th class="p-4 text-left pl-6 border-r w-1/3">Soru Konuları</th>
+                                <th class="p-4 border-r font-mono">2018</th>
+                                <th class="p-4 border-r font-mono">2019</th>
+                                <th class="p-4 border-r font-mono">2020</th>
+                                <th class="p-4 border-r font-mono">2021</th>
+                                <th class="p-4 border-r font-mono">2022</th>
+                                <th class="p-4 border-r font-mono">2023</th>
+                                <th class="p-4 border-r font-mono">2024</th>
+                                <th class="p-4 font-mono">2025</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Temel Kavramlar</td><td class="p-3 border-r">4</td><td class="p-3 border-r">4</td><td class="p-3 border-r">1</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">2</td><td class="p-3 border-r">1</td><td class="p-3">3</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Sayı Basamakları</td><td class="p-3 border-r">1</td><td class="p-3 border-r">2</td><td class="p-3 border-r">1</td><td class="p-3 border-r">2</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">2</td><td class="p-3">-</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Bölme ve Bölünebilme</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">EBOB-EKOK</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3">-</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Rasyonel ve Ondalık Sayılar</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">3</td><td class="p-3 border-r">-</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Basit Eşitsizlikler</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">3</td><td class="p-3 border-r">-</td><td class="p-3">1</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Mutlak Değer</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">2</td><td class="p-3">-</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Üslü İfadeler</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Köklü İfadeler</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Çarpanlara Ayırma</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3">-</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Oran-Orantı</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3">-</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Denklem Çözme</td><td class="p-3 border-r">2</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">2</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3">2</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Problemler (Yaş, Yüzde, Karışım vb.)</td><td class="p-3 border-r">11</td><td class="p-3 border-r">12</td><td class="p-3 border-r">13</td><td class="p-3 border-r">11</td><td class="p-3 border-r">13</td><td class="p-3 border-r">10</td><td class="p-3 border-r">11</td><td class="p-3">12</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Kümeler & Kartezyen Çarpım</td><td class="p-3 border-r">2</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Mantık</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Fonksiyonlar</td><td class="p-3 border-r">1</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Polinomlar</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3">-</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Permütasyon - Kombinasyon</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">2</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">3</td><td class="p-3">1</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Olasılık</td><td class="p-3 border-r">2</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Veri & istatistik</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- TYT TÜRKÇE (Tablo Üstü Analizli) -->
+        <div id="tablo-tyt-tur" class="tablo-box space-y-6">
+            
+            <!-- 📊 Derse Özel Akıllı Analiz Bloğu (Tablonun Üstünde) -->
+            <div class="relative bg-slate-900 text-white rounded-3xl p-6 md:p-8 shadow-xl overflow-hidden border border-slate-800 transition-all hover:border-orange-500/50 group">
+                <!-- Desenler ve Işıklar -->
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-orange-600/20 rounded-full blur-3xl opacity-60 group-hover:bg-orange-600/30 transition-all duration-500"></div>
+                <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl opacity-40"></div>
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30"></div>
+
+                <div class="relative z-10">
+                    <div class="flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider w-fit mb-6">
+                        <i class="fa-solid fa-chart-line text-[10px]"></i> TYT TÜRKÇE STRATEJİ MERKEZİ
+                    </div>
+                    <h3 class="text-2xl font-black text-white mb-6">Sınavı Kazandıracak Akıllı Yol Haritası</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-slate-950/50 border border-slate-800 rounded-2xl p-4">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs"><i class="fa-solid fa-bullseye"></i></span>
+                                <span class="text-xs font-black text-slate-300 uppercase tracking-wider">Kesin Çıkan Bankolar</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-1.5">Paragrafta Anlam</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">26-27 soru doğrudan Paragraftan gelir. Sınavın tam %65'ini kapsayan bu alanı her gün en az 20 soru çözerek rutine bağlamak sınavın anahtarıdır.</p>
+                        </div>
+                        <div class="bg-slate-950/50 border border-slate-800 rounded-2xl p-4">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="w-6 h-6 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center text-xs"><i class="fa-solid fa-triangle-exclamation"></i></span>
+                                <span class="text-xs font-black text-slate-300 uppercase tracking-wider">En Kritik / En Zor</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-1.5">Sözcük Yapısı & Ögeler</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">Dil bilgisinin can yakıcı ikilisidir. Ekler-kökler ve cümlenin ögelerinde kavram karmaşası yaşamak tüm dil bilgisisi netlerini riske atar.</p>
+                        </div>
+                        <div class="bg-slate-950/50 border border-slate-800 rounded-2xl p-4">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="w-6 h-6 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xs"><i class="fa-solid fa-face-smile"></i></span>
+                                <span class="text-xs font-black text-slate-300 uppercase tracking-wider">Kolay Net Getirenler</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-1.5">Sözcükte Anlam & Ses Bilgisi</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">Toplamda 4-5 net getiren, temel kuralları bildiğinde saniyeler içinde çözülen, Türkçe netini hızlıca yukarı zıplatan bölümlerdir.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tablo Bloğu -->
+            <div class="bg-white border border-slate-300 shadow-md rounded-2xl overflow-hidden">
+                <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">📝 TYT TÜRKÇE SORU DAĞILIMI</div>
+                <div class="overflow-x-auto w-full">
+                    <table class="w-full text-center border-collapse min-w-[700px]">
+                        <thead>
+                            <tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase">
+                                <th class="p-4 text-left pl-6 border-r w-1/3">Soru Konuları</th>
+                                <th class="p-4 border-r font-mono">2018</th>
+                                <th class="p-4 border-r font-mono">2019</th>
+                                <th class="p-4 border-r font-mono">2020</th>
+                                <th class="p-4 border-r font-mono">2021</th>
+                                <th class="p-4 border-r font-mono">2022</th>
+                                <th class="p-4 border-r font-mono">2023</th>
+                                <th class="p-4 border-r font-mono">2024</th>
+                                <th class="p-4 font-mono">2025</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Sözcükte Anlam</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">1</td><td class="p-3 border-r">5</td><td class="p-3 border-r">4</td><td class="p-3 border-r">3</td><td class="p-3 border-r">5</td><td class="p-3">4</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Cümlede Anlam</td><td class="p-3 border-r">7</td><td class="p-3 border-r">3</td><td class="p-3 border-r">6</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">4</td><td class="p-3 border-r">5</td><td class="p-3">3</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Dil Bilgisi</td><td class="p-3 border-r">1</td><td class="p-3 border-r">8</td><td class="p-3 border-r">3</td><td class="p-3 border-r">2</td><td class="p-3 border-r">3</td><td class="p-3 border-r">2</td><td class="p-3 border-r">-</td><td class="p-3">3</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Yazım Kuralları</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Noktalama İşaretleri</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Paragrafta Anlam (Yorum, Yapı, Ana Düşünce)</td><td class="p-3 border-r">22</td><td class="p-3 border-r">22</td><td class="p-3 border-r">26</td><td class="p-3 border-r">25</td><td class="p-3 border-r">26</td><td class="p-3 border-r">26</td><td class="p-3 border-r">26</td><td class="p-3">26</td></tr>
+                            <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Anlatım Bozukluğu</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3">-</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="tablo-tyt-fiz" class="tablo-box space-y-6">
+            
+            <div class="relative bg-slate-900 text-white rounded-3xl p-6 md:p-8 shadow-xl overflow-hidden border border-slate-800 transition-all hover:border-orange-500/50 group mb-6">
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-orange-600/20 rounded-full blur-3xl opacity-60 group-hover:bg-orange-600/30 transition-all duration-500"></div>
+                <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl opacity-40"></div>
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30"></div>
+
+                <div class="relative z-10">
+                    <div class="flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider w-fit mb-6">
+                        <i class="fa-solid fa-chart-line text-[10px]"></i> TYT FİZİK STRATEJİ MERKEZİ
+                    </div>
+                    <h3 class="text-2xl font-black text-white mb-6">Sınavı Kazandıracak Akıllı Yol Haritası</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-slate-950/50 border border-slate-800 rounded-2xl p-4">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs"><i class="fa-solid fa-bullseye"></i></span>
+                                <span class="text-xs font-black text-slate-300 uppercase tracking-wider">Kesin Çıkan Bankolar</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-1.5">Optik & Dalgalar</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">
+                                Her yıl istisnasız 1 optik (özellikle kırılma/renkler) and 1 dalgalar sorusu gelir. Toplam 7 sorunun ikisi doğrudan bu iki üniteye aittir.
+                            </p>
+                        </div>
+                        <div class="bg-slate-950/50 border border-slate-800 rounded-2xl p-4">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="w-6 h-6 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center text-xs"><i class="fa-solid fa-triangle-exclamation"></i></span>
+                                <span class="text-xs font-black text-slate-300 uppercase tracking-wider">En Kritik / En Zor</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-1.5">Elektrik Akımı & Kaldırma Kuvveti</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">
+                                Lamba parlaklığı, devre analizleri ve kaldırma kuvveti öncüllü yorum sorularıyla kafa karıştırır. Sayısal değil dikey mantık hatası yaptırır.
+                            </p>
+                        </div>
+                        <div class="bg-slate-950/50 border border-slate-800 rounded-2xl p-4">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="w-6 h-6 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xs"><i class="fa-solid fa-face-smile"></i></span>
+                                <span class="text-xs font-black text-slate-300 uppercase tracking-wider">Kolay Net Getirenler</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-1.5">Fizik Bilimine Giriş & Isı-Sıcaklık</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">
+                                Temel büyüklük tanımları, vektörel/skaler farkları ve ısı-sıcaklık kavram farkları tamamen sözel akıl yürütmeyle hızlıca net getiren yerlerdir.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border border-slate-200 shadow-md rounded-3xl overflow-hidden">
+                <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">⚡ TYT FİZİK SORU DAĞILIMI</div>
+                <div class="overflow-x-auto w-full">
+                    <table class="w-full text-center border-collapse min-w-[700px]">
+                        <thead>
+                            <tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase">
+                                <th class="p-4 text-left pl-6 border-r w-1/3">Soru Konuları</th>
+                                <th class="p-4 border-r font-mono">2018</th>
+                                <th class="p-4 border-r font-mono">2019</th>
+                                <th class="p-4 border-r font-mono">2020</th>
+                                <th class="p-4 border-r font-mono">2021</th>
+                                <th class="p-4 border-r font-mono">2022</th>
+                                <th class="p-4 border-r font-mono">2023</th>
+                                <th class="p-4 border-r font-mono">2024</th>
+                                <th class="p-4 font-mono">2025</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                            <tr class="bg-slate-50/60 hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Fizik Bilimine Giriş</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3">-</td></tr>
+                            <tr class="bg-white hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Madde ve Özellikleri</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="bg-slate-50/60 hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Hareket ve Kuvvet</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="bg-white hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">İş, Güç ve Enerji</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3">-</td></tr>
+                            <tr class="bg-slate-50/60 hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Isı, Sıcaklık ve Genleşme</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="bg-white hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Elektrostatik</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3">1</td></tr>
+                            <tr class="bg-slate-50/60 hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Elektrik ve Manyetizma</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">2</td><td class="p-3 border-r">1</td><td class="p-3">-</td></tr>
+                            <tr class="bg-white hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Basınç</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3">-</td></tr>
+                            <tr class="bg-slate-50/60 hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Kaldırma Kuvveti</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="bg-white hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Dalgalar</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="bg-slate-50/60 hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Optik</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">2</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TYT KİMYA -->
+        <div id="tablo-tyt-kim" class="tablo-box space-y-6">
+            
+            <div class="relative bg-slate-900 text-white rounded-3xl p-6 md:p-8 shadow-xl overflow-hidden border border-slate-800 transition-all hover:border-orange-500/50 group mb-6">
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-orange-600/20 rounded-full blur-3xl opacity-60 group-hover:bg-orange-600/30 transition-all duration-500"></div>
+                <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl opacity-40"></div>
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30"></div>
+
+                <div class="relative z-10">
+                    <div class="flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider w-fit mb-6">
+                        <i class="fa-solid fa-chart-line text-[10px]"></i> TYT KİMYA STRATEJİ MERKEZİ
+                    </div>
+                    <h3 class="text-2xl font-black text-white mb-6">Sınavı Kazandıracak Akıllı Yol Haritası</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-slate-950/50 border border-slate-800 rounded-2xl p-4">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs"><i class="fa-solid fa-bullseye"></i></span>
+                                <span class="text-xs font-black text-slate-300 uppercase tracking-wider">Kesin Çıkan Bankolar</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-1.5">Kimyasal Türler & Atom</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">
+                                Periyodik cetveldeki periyodik özelliklerin değişimi ve zayıf/güçlü bağ etkileşimleri her yıl kesintisiz gelen 2 temiz nettir.
+                            </p>
+                        </div>
+                        <div class="bg-slate-950/50 border border-slate-800 rounded-2xl p-4">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="w-6 h-6 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center text-xs"><i class="fa-solid fa-triangle-exclamation"></i></span>
+                                <span class="text-xs font-black text-slate-300 uppercase tracking-wider">En Kritik / En Zor</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-1.5">Kimyasal Hesaplamalar</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">
+                                Mol kavramı, sınırlayıcı bileşen hesaplamaları ve kimyanın temel kanunları, sözel veya eşit ağırlık öğrencilerin en çok elendiği sayısal kısımdır.
+                            </p>
+                        </div>
+                        <div class="bg-slate-950/50 border border-slate-800 rounded-2xl p-4">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="w-6 h-6 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xs"><i class="fa-solid fa-face-smile"></i></span>
+                                <span class="text-xs font-black text-slate-300 uppercase tracking-wider">Kolay Net Getirenler</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-1.5">Kimya Bilimi & Maddenin Halleri</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">
+                                Laboratuvar güvenlik logoları, bileşik adlandırma kuralları ve katı/sıvı özellikleri (viskozite vb.) tamamen ezbere dayalı, kaçırılmaması gereken yerlerdir.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border border-slate-200 shadow-md rounded-3xl overflow-hidden">
+                <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">🧪 TYT KİMYA SORU DAĞILIMI</div>
+                <div class="overflow-x-auto w-full">
+                    <table class="w-full text-center border-collapse min-w-[700px]">
+                        <thead>
+                            <tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase">
+                                <th class="p-4 text-left pl-6 border-r w-1/3">Soru Konuları</th>
+                                <th class="p-4 border-r font-mono">2018</th>
+                                <th class="p-4 border-r font-mono">2019</th>
+                                <th class="p-4 border-r font-mono">2020</th>
+                                <th class="p-4 border-r font-mono">2021</th>
+                                <th class="p-4 border-r font-mono">2022</th>
+                                <th class="p-4 border-r font-mono">2023</th>
+                                <th class="p-4 border-r font-mono">2024</th>
+                                <th class="p-4 font-mono">2025</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                            <tr class="bg-slate-50/60 hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Kimya Bilimi</td><td class="p-3 border-r">2</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="bg-white hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Atomun Yapısı</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="bg-slate-50/60 hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Periyodik Sistem</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3">-</td></tr>
+                            <tr class="bg-white hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Kimyasal Türler Arası Etkileşimler</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="bg-slate-50/60 hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Maddenin Halleri</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="bg-white hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Kimyanın Temel Kanunları</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3">-</td></tr>
+                            <tr class="bg-slate-50/60 hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Kimyasal Hesaplamalar</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="bg-white hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Karışımlar</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="bg-slate-50/60 hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Asitler, Bazlar ve Tuzlar</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="bg-white hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Kimya Her Yerde</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3">-</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TYT BİYOLOJİ (Tablo Üstü Analizli) -->
+        <div id="tablo-tyt-biyo" class="tablo-box space-y-6">
+            
+            <div class="relative bg-slate-900 text-white rounded-3xl p-6 md:p-8 shadow-xl overflow-hidden border border-slate-800 transition-all hover:border-orange-500/50 group">
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-orange-600/20 rounded-full blur-3xl opacity-60 group-hover:bg-orange-600/30 transition-all duration-500"></div>
+                <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl opacity-40"></div>
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-30"></div>
+
+                <div class="relative z-10">
+                    <div class="flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-black px-3.5 py-1.5 rounded-full uppercase tracking-wider w-fit mb-6">
+                        <i class="fa-solid fa-chart-line text-[10px]"></i> TYT BİYOLOJİ STRATEJİ MERKEZİ
+                    </div>
+                    <h3 class="text-2xl font-black text-white mb-6">Sınavı Kazandıracak Akıllı Yol Haritası</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-slate-950/50 border border-slate-800 rounded-2xl p-4">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xs"><i class="fa-solid fa-bullseye"></i></span>
+                                <span class="text-xs font-black text-slate-300 uppercase tracking-wider">Kesin Çıkan Bankolar</span>
+                            </div>
+                            <h4 class="text-sm font-black text-white mb-1.5">Kalıtım İlkeleri</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">ÖSYM her yıl istisnasız 1 adet soy ağacı ya da Mendel çaprazlaması sorusu sorar. Soru kalıpları standarttır, cepte net diyebiliriz.</p>
+                        </div>
+                        <div class="bg-slate-950/50 border border-slate-800 rounded-2xl p-4">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="w-6 h-6 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center text-xs"><i class="fa-solid fa-triangle-exclamation"></i></span>
+                                <span class="text-xs font-black text-slate-300 uppercase tracking-wider">En Kritik / En Zor</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-1.5">Canlıların Sınıflandırılması</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">Sadece 1 soru çıkar ancak omurgalılar, omurgasızlar ve arkelerin ekstrem özellikleri çok detaylı sorulabildiği için hata oranı yüksektir.</p>
+                        </div>
+                        <div class="bg-slate-950/50 border border-slate-800 rounded-2xl p-4">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="w-6 h-6 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xs"><i class="fa-solid fa-face-smile"></i></span>
+                                <span class="text-xs font-black text-slate-300 uppercase tracking-wider">Kolay Net Getirenler</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mb-1.5">Ekoloji & Hücre Bölünmeleri</h4>
+                            <p class="text-[11px] text-slate-400 leading-relaxed">Mitoz-mayoz evreleri ile ekosistemdeki madde döngüleri/çevre kirliliği konuları tamamen okuduğunu anlama ve basit genel kültürle çözülür.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border border-slate-200 shadow-md rounded-3xl overflow-hidden">
+                <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">🧬 TYT BİYOLOJİ SORU DAĞILIMI</div>
+                <div class="overflow-x-auto w-full">
+                    <table class="w-full text-center border-collapse min-w-[700px]">
+                        <thead>
+                            <tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase">
+                                <th class="p-4 text-left pl-6 border-r w-1/3">Soru Konuları</th>
+                                <th class="p-4 border-r font-mono">2018</th>
+                                <th class="p-4 border-r font-mono">2019</th>
+                                <th class="p-4 border-r font-mono">2020</th>
+                                <th class="p-4 border-r font-mono">2021</th>
+                                <th class="p-4 border-r font-mono">2022</th>
+                                <th class="p-4 border-r font-mono">2023</th>
+                                <th class="p-4 border-r font-mono">2024</th>
+                                <th class="p-4 font-mono">2025</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                            <tr class="bg-slate-50/60 hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Canlıların Ortak Özellikleri</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3">1</td></tr>
+                            <tr class="bg-white hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Canlıların Temel Bileşenleri</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">-</td></tr>
+                            <tr class="bg-slate-50/60 hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Hücre ve Organelleri</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">-</td></tr>
+                            <tr class="bg-white hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Hücre Zarından Madde Geçişleri</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3">1</td></tr>
+                            <tr class="bg-slate-50/60 hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Canlıların Sınıflandırılması</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="bg-white hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Mitoz - Mayoz Hücre Bölünmeleri & Üreme</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="bg-slate-50/60 hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Kalıtım İlkeleri (Mendel Genetiği)</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                            <tr class="bg-white hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Ekosistem Ekolojisi</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">-</td></tr>
+                            <tr class="bg-slate-50/60 hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Güncel Çevre Sorunları</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">1</td><td class="p-3 border-r">-</td><td class="p-3 border-r">-</td><td class="p-3">1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- TYT TARİH -->
+        <div id="tablo-tyt-tar" class="tablo-box bg-white border border-slate-300 shadow-md rounded-2xl overflow-hidden">
+            <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">📜 TYT TARİH SORU DAĞILIMI</div>
+            <div class="overflow-x-auto w-full"><table class="w-full text-center border-collapse min-w-[700px]"><thead><tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase"><th class="p-4 text-left pl-6 border-r w-1/3">Soru Konuları</th><th class="p-4 border-r font-mono">2018</th><th class="p-4 border-r font-mono">2019</th><th class="p-4 border-r font-mono">2020</th><th class="p-4 border-r font-mono">2021</th><th class="p-4 border-r font-mono">2022</th><th class="p-4 border-r font-mono">2023</th><th class="p-4 border-r font-mono">2024</th><th class="p-4 font-mono">2025</th></tr></thead><tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Tarih Bilimi ve İlk Uygarlıklar</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3">0</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">İlk ve Orta Çağlarda Türk Dünyası</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Türk İslam Tarihi (İlk Devletler ve Selçuklular)</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Osmanlı Devleti Dönemi (Yönetim, Siyaset, Kültür)</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Kurtuluş Savaşı Hazırlık ve Milli Mücadele</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Atatürk İlkeleri ve Türk İnkılabı</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+            </tbody></table></div>
+        </div>
+
+        <!-- TYT COĞRAFYA -->
+        <div id="tablo-tyt-cog" class="tablo-box bg-white border border-slate-300 shadow-md rounded-2xl overflow-hidden">
+            <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">🌍 TYT COĞRAFYA SORU DAĞILIMI</div>
+            <div class="overflow-x-auto w-full"><table class="w-full text-center border-collapse min-w-[700px]"><thead><tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase"><th class="p-4 text-left pl-6 border-r w-1/3">Soru Konuları</th><th class="p-4 border-r font-mono">2018</th><th class="p-4 border-r font-mono">2019</th><th class="p-4 border-r font-mono">2020</th><th class="p-4 border-r font-mono">2021</th><th class="p-4 border-r font-mono">2022</th><th class="p-4 border-r font-mono">2023</th><th class="p-4 border-r font-mono">2024</th><th class="p-4 font-mono">2025</th></tr></thead><tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Doğa ve İnsan & Harita Bilgisi</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Coğrafi Koordinatlar & Yer Hareketleri</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">İklim Tipleri ve Bitki Örtüsü</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Nüfus ve Göç & Bölge Türleri</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Yerleşmeler & Doğal Afetler</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+            </tbody></table></div>
+        </div>
+
+        <!-- TYT FELSEFE & DİN KÜLTÜRÜ -->
+        <div id="tablo-tyt-fel" class="tablo-box bg-white border border-slate-300 shadow-md rounded-2xl overflow-hidden">
+            <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">🧠 TYT FELSEFE & DİN KÜLTÜRÜ SORU DAĞILIMI</div>
+            <div class="overflow-x-auto w-full"><table class="w-full text-center border-collapse min-w-[700px]"><thead><tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase"><th class="p-4 text-left pl-6 border-r w-1/3">Soru Konuları</th><th class="p-4 border-r font-mono">2018</th><th class="p-4 border-r font-mono">2019</th><th class="p-4 border-r font-mono">2020</th><th class="p-4 border-r font-mono">2021</th><th class="p-4 border-r font-mono">2022</th><th class="p-4 border-r font-mono">2023</th><th class="p-4 border-r font-mono">2024</th><th class="p-4 font-mono">2025</th></tr></thead><tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Felsefeyi Tanıma & Felsefe ile Düşünme</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Bilgi, Varlık ve Ahlak Felsefesi</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Siyaset, Din ve Sanat Felsefesi</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Kur'ani Kavramlar & İbadet Kuralları (Din Kültürü)</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3">3</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Ahlak, Değerler & Hz. Muhammed'in Örnekliği</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+            </tbody></table></div>
+        </div>
+
+
+        <!-- ========================================================== -->
+        <!-- 🔵 AYT OTURUMU TABLOLARI (EKSİKSİZ VE DETAYLI) -->
+        <!-- ========================================================== -->
+
+        <!-- AYT MATEMATİK (TAM LİSTE - 22 KONU) -->
+        <div id="tablo-ayt-mat" class="tablo-box bg-white border border-slate-300 shadow-md rounded-2xl overflow-hidden">
+            <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">🧮 AYT MATEMATİK SORU DAĞILIMI</div>
+            <div class="overflow-x-auto w-full"><table class="w-full text-center border-collapse min-w-[700px]"><thead><tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase"><th class="p-4 text-left pl-6 border-r w-1/3">Soru Konuları</th><th class="p-4 border-r font-mono">2018</th><th class="p-4 border-r font-mono">2019</th><th class="p-4 border-r font-mono">2020</th><th class="p-4 border-r font-mono">2021</th><th class="p-4 border-r font-mono">2022</th><th class="p-4 border-r font-mono">2023</th><th class="p-4 border-r font-mono">2024</th><th class="p-4 font-mono">2025</th></tr></thead><tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">1. Sayılar ve Sayı Basamakları</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">2</td><td class="p-3 border-r">5</td><td class="p-3 border-r">4</td><td class="p-3">3</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">2. OBEB – OKEK</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3">0</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">3. Rasyonel Sayılar</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3">0</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">4. Üslü Sayılar</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3">0</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">5. Köklü Sayılar</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3">0</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">6. Mutlak Değer</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">7. Çarpanlara Ayırma</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">8. Oran – Orantı</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3">0</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">9. Denklem Çözme</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3">0</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">10. Fonksiyonlar</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">11. Polinomlar</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">12. 2. Dereceden Denklemler</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">13. Eşitsizlikler</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">14. Karmaşık Sayılar</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">15. Permütasyon – Kombinasyon – Binom – Olasılık</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">16. Logaritma</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">17. Trigonometri</td><td class="p-3 border-r">4</td><td class="p-3 border-r">4</td><td class="p-3 border-r">3</td><td class="p-3 border-r">4</td><td class="p-3 border-r">4</td><td class="p-3 border-r">3</td><td class="p-3 border-r">4</td><td class="p-3">4</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">18. Analitik Geometri</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3">3</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">19. Limit</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">0*</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">0*</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">20. Süreklilik</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0*</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0*</td><td class="p-3 border-r">0</td><td class="p-3">0</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">21. Türev ve Uygulamaları</td><td class="p-3 border-r">4</td><td class="p-3 border-r">4</td><td class="p-3 border-r">0*</td><td class="p-3 border-r">4</td><td class="p-3 border-r">4</td><td class="p-3 border-r">0*</td><td class="p-3 border-r">4</td><td class="p-3">4</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">22. İntegral ve Uygulamaları</td><td class="p-3 border-r">4</td><td class="p-3 border-r">4</td><td class="p-3 border-r">0*</td><td class="p-3 border-r">4</td><td class="p-3 border-r">4</td><td class="p-3 border-r">0*</td><td class="p-3 border-r">4</td><td class="p-3">4</td></tr>
+            </tbody></table></div>
+        </div>
+
+        <!-- AYT GEOMETRİ (TAM LİSTE - 8 KONU) -->
+        <div id="tablo-ayt-geo" class="tablo-box bg-white border border-slate-300 shadow-md rounded-2xl overflow-hidden">
+            <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">📐 AYT GEOMETRİ SORU DAĞILIMI</div>
+            <div class="overflow-x-auto w-full"><table class="w-full text-center border-collapse min-w-[700px]"><thead><tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase"><th class="p-4 text-left pl-6 border-r w-1/3">Soru Konuları</th><th class="p-4 border-r font-mono">2018</th><th class="p-4 border-r font-mono">2019</th><th class="p-4 border-r font-mono">2020</th><th class="p-4 border-r font-mono">2021</th><th class="p-4 border-r font-mono">2022</th><th class="p-4 border-r font-mono">2023</th><th class="p-4 border-r font-mono">2024</th><th class="p-4 font-mono">2025</th></tr></thead><tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">1. Temel Kavramlar ve Doğrular</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">2. Üçgenler</td><td class="p-3 border-r">2</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">2</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">3. Çokgenler</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3">3</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">4. Çember ve Daire</td><td class="p-3 border-r">1</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">5. Analitik Geometri</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">2</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">2</td><td class="p-3 border-r">3</td><td class="p-3">3</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">6. Katı Cisimler</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">7. Dönüşümler Geometrisi</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">8. Trigonometri (Geometri Bağlantılı)</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+            </tbody></table></div>
+        </div>
+
+        <!-- AYT EDEBİYAT (TAM LİSTE - 8 KONU) -->
+        <div id="tablo-ayt-ede" class="tablo-box bg-white border border-slate-300 shadow-md rounded-2xl overflow-hidden">
+            <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">📚 AYT EDEBİYAT SORU DAĞILIMI</div>
+            <div class="overflow-x-auto w-full"><table class="w-full text-center border-collapse min-w-[700px]"><thead><tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase"><th class="p-4 text-left pl-6 border-r w-1/3">Soru Konuları</th><th class="p-4 border-r font-mono">2018</th><th class="p-4 border-r font-mono">2019</th><th class="p-4 border-r font-mono">2020</th><th class="p-4 border-r font-mono">2021</th><th class="p-4 border-r font-mono">2022</th><th class="p-4 border-r font-mono">2023</th><th class="p-4 border-r font-mono">2024</th><th class="p-4 font-mono">2025</th></tr></thead><tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">1. Türk Edebiyatının Dönemleri</td><td class="p-3 border-r">4</td><td class="p-3 border-r">4</td><td class="p-3 border-r">5</td><td class="p-3 border-r">5</td><td class="p-3 border-r">4</td><td class="p-3 border-r">5</td><td class="p-3 border-r">4</td><td class="p-3">4</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">2. Edebi Sanatlar – Söz Sanatları</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">2</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">3. Nazım Şekilleri ve Türleri</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">4. Şiir Bilgisi</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">5. Roman – Hikâye – Masal – Destan</td><td class="p-3 border-r">6</td><td class="p-3 border-r">5</td><td class="p-3 border-r">6</td><td class="p-3 border-r">6</td><td class="p-3 border-r">5</td><td class="p-3 border-r">6</td><td class="p-3 border-r">6</td><td class="p-3">6</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">6. Tiyatro</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">7. Edebi Akımlar</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">8. Cumhuriyet Dönemi Türk Edebiyatı</td><td class="p-3 border-r">4</td><td class="p-3 border-r">3</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">5</td><td class="p-3 border-r">3</td><td class="p-3 border-r">4</td><td class="p-3">4</td></tr>
+            </tbody></table></div>
+        </div>
+
+        <!-- AYT FİZİK -->
+        <div id="tablo-ayt-fiz" class="tablo-box bg-white border border-slate-300 shadow-md rounded-2xl overflow-hidden">
+            <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">⚡ AYT FİZİK SORU DAĞILIMI</div>
+            <div class="overflow-x-auto w-full"><table class="w-full text-center border-collapse min-w-[700px]"><thead><tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase"><th class="p-4 text-left pl-6 border-r w-1/3">Soru Konuları</th><th class="p-4 border-r font-mono">2018</th><th class="p-4 border-r font-mono">2019</th><th class="p-4 border-r font-mono">2020</th><th class="p-4 border-r font-mono">2021</th><th class="p-4 border-r font-mono">2022</th><th class="p-4 border-r font-mono">2023</th><th class="p-4 border-r font-mono">2024</th><th class="p-4 font-mono">2025</th></tr></thead><tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Vektörler & Bağıl Hareket</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Newton’ın Hareket Yasaları & Atışlar</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">İş, Güç ve Enerji</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">İtme ve Çizgisel Momentum</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Tork, Denge ve Basit Makineler</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Elektriksel Kuvvet, Alan ve Sığa</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Manyetizma & Alternatif Akım</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Düzgün Çembersel Hareket & Açısal Momentum</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Kütle Çekim & Kepler Yasaları</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Basit Harmonik Hareket & Dalga Mekaniği</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Radyoaktivite & Modern Fizik ve Teknolojideki Uygulamaları</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">2</td><td class="p-3 border-r">3</td><td class="p-3">3</td></tr>
+            </tbody></table></div>
+        </div>
+
+        <!-- AYT KİMYA -->
+        <div id="tablo-ayt-kim" class="tablo-box bg-white border border-slate-300 shadow-md rounded-2xl overflow-hidden">
+            <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">🧪 AYT KİMYA SORU DAĞILIMI</div>
+            <div class="overflow-x-auto w-full"><table class="w-full text-center border-collapse min-w-[700px]"><thead><tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase"><th class="p-4 text-left pl-6 border-r w-1/3">Soru Konuları</th><th class="p-4 border-r font-mono">2018</th><th class="p-4 border-r font-mono">2019</th><th class="p-4 border-r font-mono">2020</th><th class="p-4 border-r font-mono">2021</th><th class="p-4 border-r font-mono">2022</th><th class="p-4 border-r font-mono">2023</th><th class="p-4 border-r font-mono">2024</th><th class="p-4 font-mono">2025</th></tr></thead><tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Modern Atom Teorisi</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Gazlar</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Sıvı Çözeltiler ve Çözünürlük</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Kimyasal Tepkimelerde Enerji</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Kimyasal Tepkimelerde Hız</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Kimyasal Tepkimelerde Denge</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Asit-Baz Dengesi & Sulu Çözelti Dengeleri</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Çözünürlük Dengesi (KÇÇ)</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Kimya ve Elektrik (Redoks, Piller, Elektroliz)</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Karbon Kimyasına Giriş</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Organik Bileşikler</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+            </tbody></table></div>
+        </div>
+
+        <!-- AYT BİYOLOJİ -->
+        <div id="tablo-ayt-biyo" class="tablo-box bg-white border border-slate-300 shadow-md rounded-2xl overflow-hidden">
+            <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">🧬 AYT BİYOLOJİ SORU DAĞILIMI</div>
+            <div class="overflow-x-auto w-full"><table class="w-full text-center border-collapse min-w-[700px]"><thead><tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase"><th class="p-4 text-left pl-6 border-r w-1/3">Soru Konuları</th><th class="p-4 border-r font-mono">2018</th><th class="p-4 border-r font-mono">2019</th><th class="p-4 border-r font-mono">2020</th><th class="p-4 border-r font-mono">2021</th><th class="p-4 border-r font-mono">2022</th><th class="p-4 border-r font-mono">2023</th><th class="p-4 border-r font-mono">2024</th><th class="p-4 font-mono">2025</th></tr></thead><tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Denetleyici ve Düzenleyici Sistemler, Duyu Organları</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Destek ve Hareket Sistemi</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3">0</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Sindirim Sistemi</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Dolaşım ve Bağışıklık Sistemleri</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Solunum Sistemi</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Üriner Sistem (Boşaltım Sistemi)</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Üreme Sistemi ve Embriyonik Gelişim</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3 border-r">0</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">0</td><td class="p-3">0</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Komünite ve Popülasyon Ekolojisi</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Genden Proteine (Nükleik Asitler, Protein Sentezi)</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Canlılarda Enerji Dönüşümleri (Solunum, Fotosentez)</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3">3</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Bitki Biyolojisi</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+            </tbody></table></div>
+        </div>
+
+        <!-- AYT TARİH (TAM LİSTE) -->
+        <div id="tablo-ayt-tar" class="tablo-box bg-white border border-slate-300 shadow-md rounded-2xl overflow-hidden">
+            <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">📜 AYT TARİH SORU DAĞILIMI</div>
+            <div class="overflow-x-auto w-full"><table class="w-full text-center border-collapse min-w-[700px]"><thead><tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase"><th class="p-4 text-left pl-6 border-r w-1/3">Soru Konuları</th><th class="p-4 border-r font-mono">2018</th><th class="p-4 border-r font-mono">2019</th><th class="p-4 border-r font-mono">2020</th><th class="p-4 border-r font-mono">2021</th><th class="p-4 border-r font-mono">2022</th><th class="p-4 border-r font-mono">2023</th><th class="p-4 border-r font-mono">2024</th><th class="p-4 font-mono">2025</th></tr></thead><tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Tarih ve Zaman, İnsanlığın İlk Dönemleri</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">İlk ve Orta Çağlarda Türk Dünyası</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">İslam Medeniyetinin Doğuşu & İlk Türk İslam Devletleri</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Yerleşme ve Devletleşme Sürecinde Selçuklu Türkiyesi</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Beylikten Devlete Osmanlı Siyaseti (1302-1453)</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Dünya Gücü Osmanlı (1453-1595) & Teşkilat</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Değişim Çağında Avrupa ve Osmanlı & Denge Stratejisi</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">20. Yüzyıl Başlarında Osmanlı Devleti ve Dünya</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Milli Mücadele (Kurtuluş Savaşı ve Cepheler)</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3">3</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Atatürkçülük ve Türk İnkılabı</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">İki Savaş Arasındaki Dönem & II. Dünya Savaşı Süreci</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Soğuk Savaş Dönemi & Yumuşama Dönemi ve Sonrası</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Küreselleşen Dünya ve 21. Yüzyılın Eşiğinde Türkiye</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+            </tbody></table></div>
+        </div>
+
+        <!-- AYT COĞRAFYA (TAM LİSTE) -->
+        <div id="tablo-ayt-cog" class="tablo-box bg-white border border-slate-300 shadow-md rounded-2xl overflow-hidden">
+            <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">🌍 AYT COĞRAFYA SORU DAĞILIMI</div>
+            <div class="overflow-x-auto w-full"><table class="w-full text-center border-collapse min-w-[700px]"><thead><tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase"><th class="p-4 text-left pl-6 border-r w-1/3">Soru Konuları</th><th class="p-4 border-r font-mono">2018</th><th class="p-4 border-r font-mono">2019</th><th class="p-4 border-r font-mono">2020</th><th class="p-4 border-r font-mono">2021</th><th class="p-4 border-r font-mono">2022</th><th class="p-4 border-r font-mono">2023</th><th class="p-4 border-r font-mono">2024</th><th class="p-4 font-mono">2025</th></tr></thead><tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Doğal Sistemler (Ekosistem, Biyoçeşitlilik, Döngüler, Ekstrem Doğa Olayları)</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Beşeri Sistemler (Nüfus Politikaları, Şehirleşme, Göç, Doğal Kaynaklar)</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Türkiye'de Tarım, Sanayi, Maden ve Enerji Kaynakları</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">İşlevsel Bölgeler ve Bölgesel Kalkınma Projeleri (GAP, DAP, ZBK vb.)</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Hizmet Sektörü, Ulaşım Ağları ve Ticaret</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Türkiye'de ve Dünyada Turizm</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Kültür Bölgeleri ve Türk Kültürü</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Küreselleşen Dünya, Bölgesel ve Küresel Örgütler</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Jeopolitik Konum ve Çevre ve Toplum İlişkisi</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+            </tbody></table></div>
+        </div>
+
+        <!-- AYT FELSEFE GRUBU (TAM LİSTE) -->
+        <div id="tablo-ayt-fel" class="tablo-box bg-white border border-slate-300 shadow-md rounded-2xl overflow-hidden">
+            <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">🧠 AYT FELSEFE GRUBU SORU DAĞILIMI</div>
+            <div class="overflow-x-auto w-full"><table class="w-full text-center border-collapse min-w-[700px]"><thead><tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase"><th class="p-4 text-left pl-6 border-r w-1/3">Soru Konuları</th><th class="p-4 border-r font-mono">2018</th><th class="p-4 border-r font-mono">2019</th><th class="p-4 border-r font-mono">2020</th><th class="p-4 border-r font-mono">2021</th><th class="p-4 border-r font-mono">2022</th><th class="p-4 border-r font-mono">2023</th><th class="p-4 border-r font-mono">2024</th><th class="p-4 font-mono">2025</th></tr></thead><tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Felsefeyi Tanıma & Felsefe İle Düşünme</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Felsefenin Temel Konuları ve Problemleri</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">MÖ 6. Yüzyıl – MS 15. Yüzyıl Felsefesi</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">15. Yüzyıl – 19. Yüzyıl Felsefesi & 20. Yüzyıl Felsefesi</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Psikoloji Bilimini Tanıyalım & Psikolojinin Temel Süreçleri</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Öğrenme, Bellek, Düşünme & Ruh Sağlığının Temelleri</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Sosyolojiye Giriş & Birey ve Toplum & Toplumsal Yapı</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Toplumsal Değişme ve Gelişme & Kültür & Toplumsal Kurumlar</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Mantığa Giriş & Klasik Mantık & Mantık ve Dil & Sembolik Mantık</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3 border-r">3</td><td class="p-3">3</td></tr>
+            </tbody></table></div>
+        </div>
+
+        <!-- AYT DİN KÜLTÜRÜ (TAM LİSTE) -->
+        <div id="tablo-ayt-din" class="tablo-box bg-white border border-slate-300 shadow-md rounded-2xl overflow-hidden">
+            <div class="bg-[#1E293B] text-white p-4 font-bold text-sm tracking-wide uppercase">🕌 AYT DİN KÜLTÜRÜ SORU DAĞILIMI</div>
+            <div class="overflow-x-auto w-full"><table class="w-full text-center border-collapse min-w-[700px]"><thead><tr class="bg-slate-100 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase"><th class="p-4 text-left pl-6 border-r w-1/3">Soru Konuları</th><th class="p-4 border-r font-mono">2018</th><th class="p-4 border-r font-mono">2019</th><th class="p-4 border-r font-mono">2020</th><th class="p-4 border-r font-mono">2021</th><th class="p-4 border-r font-mono">2022</th><th class="p-4 border-r font-mono">2023</th><th class="p-4 border-r font-mono">2024</th><th class="p-4 font-mono">2025</th></tr></thead><tbody class="divide-y divide-slate-200 text-sm font-semibold text-slate-700">
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Gönül Coğrafyamız & Anadolu'da İslam</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">İslam ve İbadet & Allah İnsan İlişkisi</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Hz. Muhammed ve Gençlik & Örnekliği</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Din ve Hayat & Ahlaki Tutum ve Davranışlar</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">İslam Düşüncesinde İtikadi, Siyasi ve Fıkhi Yorumlar (Mezhepler)</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Kur'an'da Bazı Kavramlar & İslam ve Bilim</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3 border-r">1</td><td class="p-3">1</td></tr>
+                <tr class="hover:bg-orange-50/30"><td class="p-3 text-left pl-6 border-r font-bold text-slate-900">Yahudilik, Hristiyanlık & Hint ve Çin Dinleri</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3 border-r">2</td><td class="p-3">2</td></tr>
+            </tbody></table></div>
+        </div>
+
+    </main>
+
+    <!-- 🧠 AKILLI SEÇİM MOTORU (JAVASCRIPT) -->
+    <script>
+        function oturumSec(oturum) {
+            document.querySelectorAll('.sub-menu').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tablo-box').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.ders-btn').forEach(el => el.classList.remove('bg-orange-50', 'osym-orange-text', 'border-orange-500'));
+            
+            const hedefMenu = document.getElementById('menu-' + oturum);
+            if(hedefMenu) {
+                hedefMenu.classList.add('active');
+                hedefMenu.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            document.getElementById('btn-oturum-tyt').className = "bg-white border-2 p-6 rounded-3xl text-left shadow-sm transition-all flex items-center justify-between group cursor-pointer focus:outline-none " + (oturum === 'tyt' ? 'border-orange-500 shadow-md' : 'border-slate-200');
+            document.getElementById('btn-oturum-ayt').className = "bg-white border-2 p-6 rounded-3xl text-left shadow-sm transition-all flex items-center justify-between group cursor-pointer focus:outline-none " + (oturum === 'ayt' ? 'border-orange-500 shadow-md' : 'border-slate-200');
+        }
+
+        function tabloGoster(tabloId) {
+            document.querySelectorAll('.tablo-box').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.ders-btn').forEach(el => el.classList.remove('bg-orange-50', 'osym-orange-text', 'border-orange-500'));
+            
+            event.currentTarget.classList.add('bg-orange-50', 'osym-orange-text', 'border-orange-500');
+
+            const hedefTablo = document.getElementById('tablo-' + tabloId);
+            if (hedefTablo) {
+                hedefTablo.classList.add('active');
+                hedefTablo.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+    </script>
+
+</body>
+<div class="h-16 md:h-24 w-full bg-[#FCFBF7]"></div>
+<footer class="bg-slate-900 text-slate-300 mt-auto border-t-4 border-[#E06B00] relative z-10">
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+            
+            <div class="lg:col-span-2 space-y-4">
+                <a href="/" class="text-2xl font-black text-white tracking-tight" style="text-decoration: none;">
+                    Sıralama<span class="text-[#E06B00]">Merkezi</span>
+                </a>
+                <p class="text-sm text-slate-400 max-w-sm mt-2 leading-relaxed">
+                    Türkiye'nin en dinamik tercih ve sıralama portalı. Güncel ÖSYM verileri, sınav sayaçları ve akıllı hesaplama araçlarıyla geleceğe giden yolda yanındayız.
+                </p>
+                
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2">Tercih Rehberi</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="/yks/konular" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> YKS Konuları</a></li>
+                    <li><a href="/yks/tip" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> Tıp Sıralamaları</a></li>
+                    <li><a href="/yks/soru-dagilimlari" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> Soru Dağılımları</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> LGS Puanları</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2">Hesaplama</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="/hesaplama/yks" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> YKS Sıralama Hesapla</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> LGS Puan Hesaplama</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> DGS Puan Hesaplama</a></li>
+                    <li><a href="#" class="hover:text-[#E06B00] transition-colors text-slate-400" style="text-decoration: none;"><i class="fa-solid fa-chevron-right text-[10px] mr-1.5 text-[#E06B00]"></i> KPSS Puan Hesaplama</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-3">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2">Kurumsal</h4>
+                <ul class="space-y-2 text-sm mb-4">
+                    <!-- KURUMSAL Bölümündeki Mevcut Linkleri Şununla Güncelle -->
+<div class="flex flex-col gap-2 mt-2">
+    <a href="javascript:void(0)" onclick="acModal('modal-hakkimizda')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">Hakkımızda</a>
+    <a href="javascript:void(0)" onclick="acModal('modal-gizlilik')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">Gizlilik Politikası</a>
+    <a href="javascript:void(0)" onclick="acModal('modal-iletisim')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">İletişim</a>
+</div>
+                </ul>
+                <div class="pt-2">
+                    <div class="text-xs font-bold text-slate-400 mb-2">Gelişmelerden haberdar ol:</div>
+                    <div class="flex">
+                        <input type="email" placeholder="E-posta yaz..." class="bg-slate-800 text-white text-xs px-3 py-2 rounded-l-md border border-slate-700 focus:outline-none focus:border-[#E06B00] w-full">
+                        <button class="bg-[#E06B00] hover:bg-[#C65F00] text-white px-3 py-2 rounded-r-md text-xs font-bold transition-colors">Katıl</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="bg-slate-950 py-6 border-t border-slate-800/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            
+            <div class="text-xs text-slate-500 text-center sm:text-left">
+                &copy; 2026-2027 <span class="text-slate-400 font-semibold">SıralamaMerkezi</span>. Tüm hakları saklıdır. İzinsiz kopyalanamaz.
+            </div>
+
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" 
+                    class="bg-[#E06B00] hover:bg-[#C65F00] text-white w-10 h-10 rounded-lg flex items-center justify-center shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-pointer border-none"
+                    title="Yukarı Çık">
+                <i class="fa-solid fa-chevron-up text-sm"></i>
+            </button>
+            
+        </div>
+    </div>
+    <style>
+    /* Sayfa içeriği az olsa bile footer'ı en alta zorlar */
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+    footer {
+        margin-top: auto;
+    }
+</style>
+</footer>
+</html>
