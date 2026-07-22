@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, abort
+from flask import Flask, render_template, request, jsonify, send_from_directory
 import sqlite3
 import math
 import csv
@@ -6,9 +6,15 @@ import os
 
 app = Flask(__name__)
 
-# =====================================================================
+# --- ADS.TXT ROTASI (Buraya ekliyoruz) ---
+@app.route('/ads.txt')
+def ads_txt():
+    return send_from_directory(app.root_path, 'ads.txt')
+
+
+# ==============================================================================
 # 🛠️ YARDIMCI VERİTABANI VE DOSYA FONKSİYONLARI (En Tepede Olmalı)
-# =====================================================================
+# ==============================================================================
 
 def csv_oku(dosya_adi):
     # CSV dosyaların 'data' klasöründe olmalı
