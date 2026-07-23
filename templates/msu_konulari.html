@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 DGS Konuları ve Müfredatı - SiralamaMerkezi</title>
+    <title>2026 MSÜ Konuları ve Soru Dağılımı - SiralamaMerkezi</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -18,7 +18,6 @@
         .osym-orange-text { color: #E06B00; }
         .osym-orange-hover:hover { background-color: #C65F00; }
 
-        /* Sayfa içeriği az olsa bile footer'ı en alta zorlar */
         html, body {
             height: 100%;
             margin: 0;
@@ -82,8 +81,8 @@
                         </div>
 
                         <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">KPSS</a>
-                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">ALES</a>
-                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">MSÜ</a>
+                        <a href="/ales/konular" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">ALES</a>
+                        <a href="/msu/konular" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">MSÜ</a>
                         <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">YDS</a>
                     </div>
 
@@ -119,155 +118,281 @@
                     <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-0.5"></i> Geri Dön
                 </a>
 
-                <span class="osym-orange-bg text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">DGS 2026</span> 
+                <span class="osym-orange-bg text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">MSÜ 2026</span> 
                 <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight mt-2 mb-2">
-                    2026 DGS Konuları ve Soru Dağılımı
+                    2026 MSÜ Konuları ve Soru Dağılımı
                 </h1>
                 <p class="text-sm text-slate-500 leading-relaxed">
-                    ÖSYM tarafından ön lisans mezunlarının lisans programlarına geçişi için düzenlenen Dikey Geçiş Sınavı (DGS) güncel Sayısal (Matematik-Geometri) ve Sözel (Türkçe) müfredatı ve soru dağılımları.
+                    Milli Savunma Üniversitesi Askeri Öğrenci Aday Belirleme Sınavı (MSÜ) Türkçe, Matematik, Fen Bilimleri ve Sosyal Bilimler testlerinin güncel konu müfredatı ve soru dağılımı.
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- 📊 ANA İÇERİK IZGARASI (ÖZET + KONULAR + SAĞ REKLAM) -->
+    <!-- 📊 ANA İÇERİK IZGARASI -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
-            <!-- SOL VE ORTA ALAN (DGS Ders Konuları) -->
+            <!-- SOL VE ORTA ALAN -->
             <div class="lg:col-span-2 space-y-8">
 
-                <!-- DGS SINAV ÖZET KARTI -->
+                <!-- MSÜ SINAV ÖZET KARTI -->
                 <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-4">
                     <h2 class="text-lg font-black text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
-                        <i class="fa-solid fa-circle-info text-orange-500"></i> DGS Hakkında Önemli Bilgiler
+                        <i class="fa-solid fa-shield-halved text-orange-500"></i> MSÜ Sınavı Yapısı ve Testler
                     </h2>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
                         <div class="bg-orange-50/60 border border-orange-100 rounded-2xl p-3">
-                            <span class="text-xs text-slate-500 font-bold block">Toplam Soru</span>
-                            <span class="text-xl font-black text-slate-900">100 Soru</span>
-                            <span class="text-[10px] text-slate-400 block mt-0.5">50 Sayısal / 50 Sözel</span>
+                            <span class="text-xs text-slate-500 font-bold block">Türkçe</span>
+                            <span class="text-lg font-black text-slate-900">40 Soru</span>
                         </div>
                         <div class="bg-blue-50/60 border border-blue-100 rounded-2xl p-3">
-                            <span class="text-xs text-slate-500 font-bold block">Sınav Süresi</span>
-                            <span class="text-xl font-black text-slate-900">135 Dakika</span>
-                            <span class="text-[10px] text-slate-400 block mt-0.5">2 Saat 15 Dakika</span>
+                            <span class="text-xs text-slate-500 font-bold block">Matematik</span>
+                            <span class="text-lg font-black text-slate-900">40 Soru</span>
+                            <span class="text-[9px] text-slate-400 block mt-0.5">28 Mat / 12 Geo</span>
                         </div>
                         <div class="bg-emerald-50/60 border border-emerald-100 rounded-2xl p-3">
-                            <span class="text-xs text-slate-500 font-bold block">Puan Etkisi</span>
-                            <span class="text-xl font-black text-slate-900">Ham Puan + OBP</span>
-                            <span class="text-[10px] text-slate-400 block mt-0.5">Netler + Okul Puanı</span>
+                            <span class="text-xs text-slate-500 font-bold block">Fen Bilimleri</span>
+                            <span class="text-lg font-black text-slate-900">20 Soru</span>
+                            <span class="text-[9px] text-slate-400 block mt-0.5">7 Fiz / 7 Kim / 6 Biyo</span>
+                        </div>
+                        <div class="bg-purple-50/60 border border-purple-100 rounded-2xl p-3">
+                            <span class="text-xs text-slate-500 font-bold block">Sosyal Bilimler</span>
+                            <span class="text-lg font-black text-slate-900">20 Soru</span>
+                            <span class="text-[9px] text-slate-400 block mt-0.5">5 Tar/5 Coğ/5 Fel/5 Din</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- 1. SAYISAL (MATEMATİK & GEOMETRİ) -->
+                <!-- 1. TÜRKÇE DERSİ -->
                 <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6">
                     <div class="flex items-center justify-between border-b border-slate-100 pb-4">
                         <h2 class="text-xl font-black text-slate-900 flex items-center gap-2.5">
-                            <i class="fa-solid fa-calculator text-blue-500"></i> DGS Sayısal Konuları
+                            <i class="fa-solid fa-book-open text-orange-500"></i> MSÜ Türkçe Konuları
                         </h2>
-                        <span class="bg-blue-50 text-blue-800 text-xs font-bold px-3 py-1 rounded-full border border-blue-100">50 Soru</span>
+                        <span class="bg-orange-50 text-orange-800 text-xs font-bold px-3 py-1 rounded-full border border-orange-100">40 Soru</span>
+                    </div>
+
+                    <div class="bg-slate-50/60 border border-slate-200/80 rounded-2xl p-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-xs font-semibold text-slate-700">
+                            <li>• Sözcükte Anlam</li>
+                            <li>• Cümlede Anlam</li>
+                            <li>• Paragraf</li>
+                            <li>• Sözcükte Yapı</li>
+                            <li>• Ses Bilgisi</li>
+                            <li>• Yazım Kuralları</li>
+                            <li>• Noktalama İşaretleri</li>
+                            <li>• İsimler</li>
+                            <li>• Sıfatlar</li>
+                            <li>• Zarflar</li>
+                            <li>• Zamirler</li>
+                            <li>• Edat - Bağlaç - Ünlem</li>
+                            <li>• Fiiller</li>
+                            <li>• Fiilde Çatı</li>
+                            <li>• Fiilimsiler</li>
+                            <li>• Cümle Türleri</li>
+                            <li>• Cümlenin Öğeleri</li>
+                            <li>• Anlatım Bozuklukları</li>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. MATEMATİK & GEOMETRİ -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                        <h2 class="text-xl font-black text-slate-900 flex items-center gap-2.5">
+                            <i class="fa-solid fa-calculator text-blue-500"></i> MSÜ Temel Matematik & Geometri
+                        </h2>
+                        <span class="bg-blue-50 text-blue-800 text-xs font-bold px-3 py-1 rounded-full border border-blue-100">40 Soru</span>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Matematik -->
                         <div class="bg-slate-50/60 border border-slate-200/80 rounded-2xl p-4 space-y-3">
-                            <h3 class="text-sm font-extrabold text-slate-800 border-b pb-2 flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-orange-500"></span> Matematik Konuları
+                            <h3 class="text-sm font-extrabold text-slate-800 border-b pb-2 flex items-center justify-between">
+                                <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-orange-500"></span> Matematik</span>
+                                <span class="text-[10px] text-orange-600 bg-orange-50 px-2 py-0.5 rounded-md font-bold">28 Soru</span>
                             </h3>
                             <ul class="space-y-1.5 text-xs font-semibold text-slate-700">
-                                <li>• Temel Kavramlar (Sayılar)</li>
+                                <li>• Temel Kavramlar</li>
                                 <li>• Sayı Basamakları</li>
-                                <li>• Bölme - Bölünebilme</li>
-                                <li>• OBEB - OKEK</li>
-                                <li>• Rasyonel Sayılar</li>
-                                <li>• Basit Eşitsizlikler</li>
-                                <li>• Mutlak Değer</li>
-                                <li>• Üslü Sayılar</li>
-                                <li>• Köklü Sayılar</li>
-                                <li>• Çarpanlara Ayırma</li>
+                                <li>• Rasyonel ve Ondalık Sayılar</li>
+                                <li>• Basit Eşitsizlikler & Mutlak Değer</li>
+                                <li>• Üslü Sayılar & Köklü Sayılar</li>
+                                <li>• Çarpanlara Ayırma & Denklem Çözme</li>
                                 <li>• Oran - Orantı</li>
-                                <li class="font-bold text-slate-900 pt-1">PROBLEMLER</li>
-                                <li class="pl-2 font-normal text-slate-600">• Sayı - Kesir - Yaş Problemleri</li>
-                                <li class="pl-2 font-normal text-slate-600">• Yüzde - Kar/Zarar - Karışım</li>
-                                <li class="pl-2 font-normal text-slate-600">• Hız - Hareket - İşçi Problemleri</li>
-                                <li class="pl-2 font-normal text-slate-600">• Tablo - Grafik Problemleri</li>
-                                <li>• Kümeler & Fonksiyonlar</li>
-                                <li>• İşlem & Modüler Aritmetik</li>
-                                <li>• Permütasyon - Kombinasyon - Olasılık</li>
-                                <li class="font-bold text-slate-900 pt-1">• Sayısal Mantık & Tablo Yorumlama</li>
+                                <li>• Problemler</li>
+                                <li>• Kümeler</li>
+                                <li>• Fonksiyonlar</li>
+                                <li>• Permütasyon, Kombinasyon, Olasılık</li>
+                                <li>• Binom & Polinomlar</li>
+                                <li>• İkinci Dereceden Denklemler</li>
+                                <li>• Karmaşık Sayılar & Parabol</li>
+                                <li>• İstatistik</li>
                             </ul>
                         </div>
 
                         <!-- Geometri -->
                         <div class="bg-slate-50/60 border border-slate-200/80 rounded-2xl p-4 space-y-3">
-                            <h3 class="text-sm font-extrabold text-slate-800 border-b pb-2 flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-blue-500"></span> Geometri Konuları
+                            <h3 class="text-sm font-extrabold text-slate-800 border-b pb-2 flex items-center justify-between">
+                                <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-blue-500"></span> Geometri</span>
+                                <span class="text-[10px] text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md font-bold">12 Soru</span>
                             </h3>
                             <ul class="space-y-1.5 text-xs font-semibold text-slate-700">
-                                <li class="font-bold text-slate-900">AÇILAR VE ÜÇGENLER</li>
-                                <li class="pl-2 font-normal text-slate-600">• Doğruda ve Üçgende Açılar</li>
-                                <li class="pl-2 font-normal text-slate-600">• Dik Üçgen (Pisagor & Öklid)</li>
-                                <li class="pl-2 font-normal text-slate-600">• Açıortay & Kenarortay Teoremleri</li>
-                                <li class="pl-2 font-normal text-slate-600">• Üçgende Alan & Benzerlik</li>
-                                <li class="font-bold text-slate-900 pt-1">ÇOKGENLER VE DÖRTGENLER</li>
-                                <li class="pl-2 font-normal text-slate-600">• Paralelkenar, Eşkenar Dörtgen</li>
-                                <li class="pl-2 font-normal text-slate-600">• Dikdörtgen, Kare, Yamuk, Deltoid</li>
-                                <li class="font-bold text-slate-900 pt-1">ÇEMBER VE DAİRE</li>
-                                <li class="pl-2 font-normal text-slate-600">• Çemberde Açı ve Uzunluk</li>
-                                <li class="pl-2 font-normal text-slate-600">• Dairede Alan</li>
-                                <li class="font-bold text-slate-900 pt-1">ANALİTİK GEOMETRİ</li>
-                                <li class="pl-2 font-normal text-slate-600">• Noktanın ve Doğrunun Analitiği</li>
-                                <li class="font-bold text-slate-900 pt-1">KATI CİSİMLER</li>
-                                <li class="pl-2 font-normal text-slate-600">• Prizma, Küp, Silindir, Piramit, Küre</li>
+                                <li>• Doğruda ve Üçgende Açılar</li>
+                                <li>• Dik, Özel, İkizkenar ve Eşkenar Üçgen</li>
+                                <li>• Üçgende Trigonometrik Bağıntılar</li>
+                                <li>• Açıortay, Kenarortay ve Eşlik-Benzerlik</li>
+                                <li>• Üçgende Alanlar ve Açı-Kenar Bağıntıları</li>
+                                <li>• Çokgenler ve Dörtgenler</li>
+                                <li>• Paralelkenar, Eşkenar Dörtgen, Deltoid</li>
+                                <li>• Dikdörtgen ve Yamuk</li>
+                                <li>• Çemberde Uzunluk ve Daire</li>
+                                <li>• Noktanın ve Doğrunun Analitiği</li>
+                                <li>• Katı Cisimler (Prizmalar, Küre)</li>
+                                <li>• Vektörler-1</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- 2. SÖZEL (TÜRKÇE) -->
+                <!-- 3. FEN BİLİMLERİ (FİZİK, KİMYA, BİYOLOJİ) -->
                 <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6">
                     <div class="flex items-center justify-between border-b border-slate-100 pb-4">
                         <h2 class="text-xl font-black text-slate-900 flex items-center gap-2.5">
-                            <i class="fa-solid fa-book-open text-orange-500"></i> DGS Sözel (Türkçe) Konuları
+                            <i class="fa-solid fa-flask text-emerald-500"></i> MSÜ Fen Bilimleri Konuları
                         </h2>
-                        <span class="bg-orange-50 text-orange-800 text-xs font-bold px-3 py-1 rounded-full border border-orange-100">50 Soru</span>
+                        <span class="bg-emerald-50 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full border border-emerald-100">20 Soru</span>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Anlam Bilgisi -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Fizik -->
                         <div class="bg-slate-50/60 border border-slate-200/80 rounded-2xl p-4 space-y-3">
-                            <h3 class="text-sm font-extrabold text-slate-800 border-b pb-2 flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-orange-500"></span> Anlam & Paragraf
+                            <h3 class="text-xs font-extrabold text-slate-800 border-b pb-2 flex items-center justify-between">
+                                <span>Fizik</span>
+                                <span class="text-[9px] text-emerald-700 font-bold">7 Soru</span>
                             </h3>
-                            <ul class="space-y-1.5 text-xs font-semibold text-slate-700">
-                                <li class="font-bold text-slate-900">SÖZCÜKTE ANLAM</li>
-                                <li class="pl-2 font-normal text-slate-600">• Gerçek, Mecaz, Terim Anlam</li>
-                                <li class="pl-2 font-normal text-slate-600">• Söz Öbekleri, Deyim & Atasözleri</li>
-                                <li class="font-bold text-slate-900 pt-1">CÜMLEDE ANLAM</li>
-                                <li class="pl-2 font-normal text-slate-600">• Cümle Yorumlama & Kesin Yargı</li>
-                                <li class="pl-2 font-normal text-slate-600">• Cümle Tamamlama & Oluşturma</li>
-                                <li class="font-bold text-slate-900 pt-1">ANLATIM BİÇİMLERİ</li>
-                                <li class="pl-2 font-normal text-slate-600">• Öyküleme, Betimleme, Açıklama</li>
-                                <li class="pl-2 font-normal text-slate-600">• Düşünceyi Geliştirme Yolları</li>
-                                <li class="font-bold text-slate-900 pt-1">PARAGRAF</li>
-                                <li class="pl-2 font-normal text-slate-600">• Paragrafta Ana & Yardımcı Düşünce</li>
-                                <li class="pl-2 font-normal text-slate-600">• Paragraf Yapısı ve Bölümleri</li>
+                            <ul class="space-y-1.5 text-[11px] font-semibold text-slate-700">
+                                <li>• Fizik Bilimine Giriş</li>
+                                <li>• Madde ve Özellikleri</li>
+                                <li>• Basit Makineler</li>
+                                <li>• Vektör, Kuvvet & Denge</li>
+                                <li>• Kaldırma Kuvveti & Basınç</li>
+                                <li>• Isı, Sıcaklık & Genleşme</li>
+                                <li>• İş, Güç & Enerji</li>
+                                <li>• Doğrusal Hareket</li>
+                                <li>• Optik (Aynalar, Mercekler, Işık)</li>
+                                <li>• Elektrostatik & Elektrik Akımı</li>
+                                <li>• Dalgalar (Yay, Su, Ses, Deprem)</li>
                             </ul>
                         </div>
 
-                        <!-- Sözel Mantık -->
+                        <!-- Kimya -->
                         <div class="bg-slate-50/60 border border-slate-200/80 rounded-2xl p-4 space-y-3">
-                            <h3 class="text-sm font-extrabold text-slate-800 border-b pb-2 flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-blue-500"></span> Sözel Mantık
+                            <h3 class="text-xs font-extrabold text-slate-800 border-b pb-2 flex items-center justify-between">
+                                <span>Kimya</span>
+                                <span class="text-[9px] text-emerald-700 font-bold">7 Soru</span>
+                            </h3>
+                            <ul class="space-y-1.5 text-[11px] font-semibold text-slate-700">
+                                <li>• Kimya Bilimi</li>
+                                <li>• Atom ve Yapısı</li>
+                                <li>• Periyodik Sistem</li>
+                                <li>• Kimyasal Türler Arası Etkileşimler</li>
+                                <li>• Bileşikler & Karışımlar</li>
+                                <li>• Maddenin Halleri</li>
+                                <li>• Kimyasal Tepkimeler & Yasalar</li>
+                                <li>• Asitler, Bazlar ve Tuzlar</li>
+                                <li>• Endüstride & Canlılarda Enerji</li>
+                                <li>• Kimya Her Yerde</li>
+                            </ul>
+                        </div>
+
+                        <!-- Biyoloji -->
+                        <div class="bg-slate-50/60 border border-slate-200/80 rounded-2xl p-4 space-y-3">
+                            <h3 class="text-xs font-extrabold text-slate-800 border-b pb-2 flex items-center justify-between">
+                                <span>Biyoloji</span>
+                                <span class="text-[9px] text-emerald-700 font-bold">6 Soru</span>
+                            </h3>
+                            <ul class="space-y-1.5 text-[11px] font-semibold text-slate-700">
+                                <li>• İnorganik & Organik Bileşikler</li>
+                                <li>• Hücre & Madde Geçişleri</li>
+                                <li>• Enzimler & DNA-RNA</li>
+                                <li>• Hücre Bölünmeleri & Üreme</li>
+                                <li>• Canlıların Sınıflandırılması</li>
+                                <li>• Ekoloji</li>
+                                <li>• Mendel Genetiği & Kalıtım</li>
+                                <li>• Kan Grupları</li>
+                                <li>• İnsanda Üreme ve Gelişme</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. SOSYAL BİLİMLER (TARİH, COĞRAFYA, FELSEFE, DİN) -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                        <h2 class="text-xl font-black text-slate-900 flex items-center gap-2.5">
+                            <i class="fa-solid fa-landmark text-amber-500"></i> MSÜ Sosyal Bilimler Konuları
+                        </h2>
+                        <span class="bg-amber-50 text-amber-800 text-xs font-bold px-3 py-1 rounded-full border border-amber-100">20 Soru</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Tarih -->
+                        <div class="bg-slate-50/60 border border-slate-200/80 rounded-2xl p-4 space-y-3">
+                            <h3 class="text-sm font-extrabold text-slate-800 border-b pb-2 flex items-center justify-between">
+                                <span>Tarih</span>
+                                <span class="text-[10px] text-amber-700 font-bold">5 Soru</span>
                             </h3>
                             <ul class="space-y-1.5 text-xs font-semibold text-slate-700">
-                                <li class="font-bold text-slate-900">SÖZEL MANTIK SORU TİPLERİ</li>
-                                <li class="pl-2 font-normal text-slate-600">• Çıkarım & Sıralama Soruları</li>
-                                <li class="pl-2 font-normal text-slate-600">• Yer - Konum Bildiren Sorular</li>
-                                <li class="pl-2 font-normal text-slate-600">• Özne - Nesne İlişkili Sorular</li>
-                                <li class="pl-2 font-normal text-slate-600">• Tablo Oluşturma ve Yorumlama</li>
+                                <li>• Tarih Bilimine Giriş & İlk Uygarlıklar</li>
+                                <li>• Eski Türk ve Türk-İslam Tarihi</li>
+                                <li>• Osmanlı Devleti (Siyaset, Medeniyet, En Uzun Yüzyıl)</li>
+                                <li>• 20. Yüzyıl Başlarında Osmanlı & I. Dünya Savaşı</li>
+                                <li>• Milli Mücadele Hazırlık & Cepheler</li>
+                                <li>• Atatürkçülük, İnkılaplar & Dış Politika</li>
+                            </ul>
+                        </div>
+
+                        <!-- Coğrafya -->
+                        <div class="bg-slate-50/60 border border-slate-200/80 rounded-2xl p-4 space-y-3">
+                            <h3 class="text-sm font-extrabold text-slate-800 border-b pb-2 flex items-center justify-between">
+                                <span>Coğrafya</span>
+                                <span class="text-[10px] text-amber-700 font-bold">5 Soru</span>
+                            </h3>
+                            <ul class="space-y-1.5 text-xs font-semibold text-slate-700">
+                                <li>• Dünyanın Şekli, Harita Bilgisi & İklim</li>
+                                <li>• Türkiye'nin İklimi ve Yer Şekilleri</li>
+                                <li>• İç ve Dış Kuvvetler & Toprak Tipleri</li>
+                                <li>• Nüfus, Bölge Kavramı & Ulaşım Yolları</li>
+                                <li>• Çevre, İnsan & Doğal Afetler</li>
+                            </ul>
+                        </div>
+
+                        <!-- Felsefe -->
+                        <div class="bg-slate-50/60 border border-slate-200/80 rounded-2xl p-4 space-y-3">
+                            <h3 class="text-sm font-extrabold text-slate-800 border-b pb-2 flex items-center justify-between">
+                                <span>Felsefe</span>
+                                <span class="text-[10px] text-amber-700 font-bold">5 Soru</span>
+                            </h3>
+                            <ul class="space-y-1.5 text-xs font-semibold text-slate-700">
+                                <li>• Felsefenin Alanı</li>
+                                <li>• Bilgi, Bilim, Varlık Felsefesi</li>
+                                <li>• Ahlak, Sanat, Siyaset & Din Felsefesi</li>
+                            </ul>
+                        </div>
+
+                        <!-- Din Kültürü -->
+                        <div class="bg-slate-50/60 border border-slate-200/80 rounded-2xl p-4 space-y-3">
+                            <h3 class="text-sm font-extrabold text-slate-800 border-b pb-2 flex items-center justify-between">
+                                <span>Din Kültürü ve Ahlak Bilgisi</span>
+                                <span class="text-[10px] text-amber-700 font-bold">5 Soru</span>
+                            </h3>
+                            <ul class="space-y-1.5 text-xs font-semibold text-slate-700">
+                                <li>• Hz. Muhammed'in Hayatı</li>
+                                <li>• İslam Düşüncesinde Yorumlar & Tasavvuf</li>
+                                <li>• Kur'an ve Yorumu (Vahiy ve Akıl)</li>
+                                <li>• İslam Dinine Göre Kötü Alışkanlıklar</li>
                             </ul>
                         </div>
                     </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 DGS Konuları ve Müfredatı - SiralamaMerkezi</title>
+    <title>2026 YDS Konuları ve Soru Dağılımı - SiralamaMerkezi</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -18,7 +18,6 @@
         .osym-orange-text { color: #E06B00; }
         .osym-orange-hover:hover { background-color: #C65F00; }
 
-        /* Sayfa içeriği az olsa bile footer'ı en alta zorlar */
         html, body {
             height: 100%;
             margin: 0;
@@ -82,9 +81,9 @@
                         </div>
 
                         <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">KPSS</a>
-                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">ALES</a>
-                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">MSÜ</a>
-                        <a href="#" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">YDS</a>
+                        <a href="/ales/konular" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">ALES</a>
+                        <a href="/msu/konular" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">MSÜ</a>
+                        <a href="/yds/konular" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">YDS</a>
                     </div>
 
                     <div class="relative dropdown pb-0 mt-0 z-50" style="margin-right: 100px;">
@@ -111,7 +110,7 @@
     <div class="max-w-5xl mx-auto px-4 mt-8">
         <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col md:flex-row items-center gap-6 overflow-hidden">
             <div class="w-full md:w-1/3 h-48 rounded-2xl bg-cover bg-center shrink-0 border border-slate-100 shadow-inner" 
-                 style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600&auto=format&fit=crop');">
+                 style="background-image: url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=600&auto=format&fit=crop');">
             </div>
             <div class="flex-1 flex flex-col items-start">
                 
@@ -119,156 +118,196 @@
                     <i class="fa-solid fa-arrow-left transition-transform group-hover:-translate-x-0.5"></i> Geri Dön
                 </a>
 
-                <span class="osym-orange-bg text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">DGS 2026</span> 
+                <span class="osym-orange-bg text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">YDS 2026</span> 
                 <h1 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight mt-2 mb-2">
-                    2026 DGS Konuları ve Soru Dağılımı
+                    2026 YDS Konuları ve Soru Dağılımı
                 </h1>
                 <p class="text-sm text-slate-500 leading-relaxed">
-                    ÖSYM tarafından ön lisans mezunlarının lisans programlarına geçişi için düzenlenen Dikey Geçiş Sınavı (DGS) güncel Sayısal (Matematik-Geometri) ve Sözel (Türkçe) müfredatı ve soru dağılımları.
+                    ÖSYM tarafından yılda 3 defa düzenlenen Yabancı Dil Seviye Tespit Sınavı (YDS) güncel soru tipleri, konu başlıkları, soru aralıkları ve detaylı sınav yapısı.
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- 📊 ANA İÇERİK IZGARASI (ÖZET + KONULAR + SAĞ REKLAM) -->
+    <!-- 📊 ANA İÇERİK IZGARASI -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
-            <!-- SOL VE ORTA ALAN (DGS Ders Konuları) -->
+            <!-- SOL VE ORTA ALAN -->
             <div class="lg:col-span-2 space-y-8">
 
-                <!-- DGS SINAV ÖZET KARTI -->
+                <!-- YDS SINAV ÖZET KARTI -->
                 <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-4">
                     <h2 class="text-lg font-black text-slate-900 border-b border-slate-100 pb-3 flex items-center gap-2">
-                        <i class="fa-solid fa-circle-info text-orange-500"></i> DGS Hakkında Önemli Bilgiler
+                        <i class="fa-solid fa-earth-americas text-orange-500"></i> YDS Sınav Yapısı ve Dönemleri
                     </h2>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
                         <div class="bg-orange-50/60 border border-orange-100 rounded-2xl p-3">
                             <span class="text-xs text-slate-500 font-bold block">Toplam Soru</span>
-                            <span class="text-xl font-black text-slate-900">100 Soru</span>
-                            <span class="text-[10px] text-slate-400 block mt-0.5">50 Sayısal / 50 Sözel</span>
+                            <span class="text-xl font-black text-slate-900">80 Soru</span>
+                            <span class="text-[10px] text-slate-400 block mt-0.5">Çoktan Seçmeli</span>
                         </div>
                         <div class="bg-blue-50/60 border border-blue-100 rounded-2xl p-3">
                             <span class="text-xs text-slate-500 font-bold block">Sınav Süresi</span>
-                            <span class="text-xl font-black text-slate-900">135 Dakika</span>
-                            <span class="text-[10px] text-slate-400 block mt-0.5">2 Saat 15 Dakika</span>
+                            <span class="text-xl font-black text-slate-900">180 Dakika</span>
+                            <span class="text-[10px] text-slate-400 block mt-0.5">3 Saat</span>
                         </div>
                         <div class="bg-emerald-50/60 border border-emerald-100 rounded-2xl p-3">
-                            <span class="text-xs text-slate-500 font-bold block">Puan Etkisi</span>
-                            <span class="text-xl font-black text-slate-900">Ham Puan + OBP</span>
-                            <span class="text-[10px] text-slate-400 block mt-0.5">Netler + Okul Puanı</span>
+                            <span class="text-xs text-slate-500 font-bold block">Yıllık Frekans</span>
+                            <span class="text-xl font-black text-slate-900">Yılda 3 Kez</span>
+                            <span class="text-[10px] text-slate-400 block mt-0.5">İlkbahar, Sonbahar, Kış</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- 1. SAYISAL (MATEMATİK & GEOMETRİ) -->
+                <!-- DETAYLI SORU DAĞILIMI KARTLARI -->
                 <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6">
                     <div class="flex items-center justify-between border-b border-slate-100 pb-4">
                         <h2 class="text-xl font-black text-slate-900 flex items-center gap-2.5">
-                            <i class="fa-solid fa-calculator text-blue-500"></i> DGS Sayısal Konuları
+                            <i class="fa-solid fa-list-check text-sky-500"></i> YDS Soru Tipleri ve Soru Aralıkları
                         </h2>
-                        <span class="bg-blue-50 text-blue-800 text-xs font-bold px-3 py-1 rounded-full border border-blue-100">50 Soru</span>
+                        <span class="bg-sky-50 text-sky-800 text-xs font-bold px-3 py-1 rounded-full border border-sky-100">80 Soru</span>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Matematik -->
-                        <div class="bg-slate-50/60 border border-slate-200/80 rounded-2xl p-4 space-y-3">
-                            <h3 class="text-sm font-extrabold text-slate-800 border-b pb-2 flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-orange-500"></span> Matematik Konuları
-                            </h3>
-                            <ul class="space-y-1.5 text-xs font-semibold text-slate-700">
-                                <li>• Temel Kavramlar (Sayılar)</li>
-                                <li>• Sayı Basamakları</li>
-                                <li>• Bölme - Bölünebilme</li>
-                                <li>• OBEB - OKEK</li>
-                                <li>• Rasyonel Sayılar</li>
-                                <li>• Basit Eşitsizlikler</li>
-                                <li>• Mutlak Değer</li>
-                                <li>• Üslü Sayılar</li>
-                                <li>• Köklü Sayılar</li>
-                                <li>• Çarpanlara Ayırma</li>
-                                <li>• Oran - Orantı</li>
-                                <li class="font-bold text-slate-900 pt-1">PROBLEMLER</li>
-                                <li class="pl-2 font-normal text-slate-600">• Sayı - Kesir - Yaş Problemleri</li>
-                                <li class="pl-2 font-normal text-slate-600">• Yüzde - Kar/Zarar - Karışım</li>
-                                <li class="pl-2 font-normal text-slate-600">• Hız - Hareket - İşçi Problemleri</li>
-                                <li class="pl-2 font-normal text-slate-600">• Tablo - Grafik Problemleri</li>
-                                <li>• Kümeler & Fonksiyonlar</li>
-                                <li>• İşlem & Modüler Aritmetik</li>
-                                <li>• Permütasyon - Kombinasyon - Olasılık</li>
-                                <li class="font-bold text-slate-900 pt-1">• Sayısal Mantık & Tablo Yorumlama</li>
-                            </ul>
+                    <div class="space-y-4">
+                        <!-- 1. Kelime & Phrasal Verb -->
+                        <div class="bg-slate-50/70 border border-slate-200/80 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-black text-slate-900">1. Kelime & Phrasal Verb Soruları</span>
+                                    <span class="text-[10px] font-bold bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Soru 1 - 6</span>
+                                </div>
+                                <p class="text-xs text-slate-500 leading-relaxed">
+                                    Verilen cümleyi uygun sözcük veya ifadeyle tamamlama sorularıdır. Doğrudan kelime bilginizi ölçer.
+                                </p>
+                            </div>
+                            <span class="shrink-0 bg-orange-100 text-orange-800 font-black text-xs px-3 py-1.5 rounded-xl border border-orange-200 text-center">6 Soru</span>
                         </div>
 
-                        <!-- Geometri -->
-                        <div class="bg-slate-50/60 border border-slate-200/80 rounded-2xl p-4 space-y-3">
-                            <h3 class="text-sm font-extrabold text-slate-800 border-b pb-2 flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-blue-500"></span> Geometri Konuları
-                            </h3>
-                            <ul class="space-y-1.5 text-xs font-semibold text-slate-700">
-                                <li class="font-bold text-slate-900">AÇILAR VE ÜÇGENLER</li>
-                                <li class="pl-2 font-normal text-slate-600">• Doğruda ve Üçgende Açılar</li>
-                                <li class="pl-2 font-normal text-slate-600">• Dik Üçgen (Pisagor & Öklid)</li>
-                                <li class="pl-2 font-normal text-slate-600">• Açıortay & Kenarortay Teoremleri</li>
-                                <li class="pl-2 font-normal text-slate-600">• Üçgende Alan & Benzerlik</li>
-                                <li class="font-bold text-slate-900 pt-1">ÇOKGENLER VE DÖRTGENLER</li>
-                                <li class="pl-2 font-normal text-slate-600">• Paralelkenar, Eşkenar Dörtgen</li>
-                                <li class="pl-2 font-normal text-slate-600">• Dikdörtgen, Kare, Yamuk, Deltoid</li>
-                                <li class="font-bold text-slate-900 pt-1">ÇEMBER VE DAİRE</li>
-                                <li class="pl-2 font-normal text-slate-600">• Çemberde Açı ve Uzunluk</li>
-                                <li class="pl-2 font-normal text-slate-600">• Dairede Alan</li>
-                                <li class="font-bold text-slate-900 pt-1">ANALİTİK GEOMETRİ</li>
-                                <li class="pl-2 font-normal text-slate-600">• Noktanın ve Doğrunun Analitiği</li>
-                                <li class="font-bold text-slate-900 pt-1">KATI CİSİMLER</li>
-                                <li class="pl-2 font-normal text-slate-600">• Prizma, Küp, Silindir, Piramit, Küre</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2. SÖZEL (TÜRKÇE) -->
-                <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm space-y-6">
-                    <div class="flex items-center justify-between border-b border-slate-100 pb-4">
-                        <h2 class="text-xl font-black text-slate-900 flex items-center gap-2.5">
-                            <i class="fa-solid fa-book-open text-orange-500"></i> DGS Sözel (Türkçe) Konuları
-                        </h2>
-                        <span class="bg-orange-50 text-orange-800 text-xs font-bold px-3 py-1 rounded-full border border-orange-100">50 Soru</span>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Anlam Bilgisi -->
-                        <div class="bg-slate-50/60 border border-slate-200/80 rounded-2xl p-4 space-y-3">
-                            <h3 class="text-sm font-extrabold text-slate-800 border-b pb-2 flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-orange-500"></span> Anlam & Paragraf
-                            </h3>
-                            <ul class="space-y-1.5 text-xs font-semibold text-slate-700">
-                                <li class="font-bold text-slate-900">SÖZCÜKTE ANLAM</li>
-                                <li class="pl-2 font-normal text-slate-600">• Gerçek, Mecaz, Terim Anlam</li>
-                                <li class="pl-2 font-normal text-slate-600">• Söz Öbekleri, Deyim & Atasözleri</li>
-                                <li class="font-bold text-slate-900 pt-1">CÜMLEDE ANLAM</li>
-                                <li class="pl-2 font-normal text-slate-600">• Cümle Yorumlama & Kesin Yargı</li>
-                                <li class="pl-2 font-normal text-slate-600">• Cümle Tamamlama & Oluşturma</li>
-                                <li class="font-bold text-slate-900 pt-1">ANLATIM BİÇİMLERİ</li>
-                                <li class="pl-2 font-normal text-slate-600">• Öyküleme, Betimleme, Açıklama</li>
-                                <li class="pl-2 font-normal text-slate-600">• Düşünceyi Geliştirme Yolları</li>
-                                <li class="font-bold text-slate-900 pt-1">PARAGRAF</li>
-                                <li class="pl-2 font-normal text-slate-600">• Paragrafta Ana & Yardımcı Düşünce</li>
-                                <li class="pl-2 font-normal text-slate-600">• Paragraf Yapısı ve Bölümleri</li>
-                            </ul>
+                        <!-- 2. Tense, Preposition & Grammer -->
+                        <div class="bg-slate-50/70 border border-slate-200/80 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-black text-slate-900">2. Tense, Preposition & Dilbilgisi</span>
+                                    <span class="text-[10px] font-bold bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Soru 7 - 16</span>
+                                </div>
+                                <p class="text-xs text-slate-500 leading-relaxed">
+                                    3 Tense (Zamanlar), 2 Preposition (Edat) ve 5 Dilbilgisi (Bağlaç) sorusundan oluşur.
+                                </p>
+                            </div>
+                            <span class="shrink-0 bg-blue-100 text-blue-800 font-black text-xs px-3 py-1.5 rounded-xl border border-blue-200 text-center">10 Soru</span>
                         </div>
 
-                        <!-- Sözel Mantık -->
-                        <div class="bg-slate-50/60 border border-slate-200/80 rounded-2xl p-4 space-y-3">
-                            <h3 class="text-sm font-extrabold text-slate-800 border-b pb-2 flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-blue-500"></span> Sözel Mantık
-                            </h3>
-                            <ul class="space-y-1.5 text-xs font-semibold text-slate-700">
-                                <li class="font-bold text-slate-900">SÖZEL MANTIK SORU TİPLERİ</li>
-                                <li class="pl-2 font-normal text-slate-600">• Çıkarım & Sıralama Soruları</li>
-                                <li class="pl-2 font-normal text-slate-600">• Yer - Konum Bildiren Sorular</li>
-                                <li class="pl-2 font-normal text-slate-600">• Özne - Nesne İlişkili Sorular</li>
-                                <li class="pl-2 font-normal text-slate-600">• Tablo Oluşturma ve Yorumlama</li>
-                            </ul>
+                        <!-- 3. Cloze Test -->
+                        <div class="bg-slate-50/70 border border-slate-200/80 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-black text-slate-900">3. Cloze Test Soruları</span>
+                                    <span class="text-[10px] font-bold bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Soru 17 - 26</span>
+                                </div>
+                                <p class="text-xs text-slate-500 leading-relaxed">
+                                    İki ayrı paragraf içerisinde boş bırakılan beşer kısmın uygun kelimelerle tamamlanması istenir.
+                                </p>
+                            </div>
+                            <span class="shrink-0 bg-emerald-100 text-emerald-800 font-black text-xs px-3 py-1.5 rounded-xl border border-emerald-200 text-center">10 Soru</span>
+                        </div>
+
+                        <!-- 4. Cümle Tamamlama -->
+                        <div class="bg-slate-50/70 border border-slate-200/80 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-black text-slate-900">4. Cümle Tamamlama Soruları</span>
+                                    <span class="text-[10px] font-bold bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Soru 27 - 36</span>
+                                </div>
+                                <p class="text-xs text-slate-500 leading-relaxed">
+                                    Verilen bir cümlenin anlamca bütünlük sağlayan diğer yarısını seçenekler arasından bulma sorularıdır.
+                                </p>
+                            </div>
+                            <span class="shrink-0 bg-purple-100 text-purple-800 font-black text-xs px-3 py-1.5 rounded-xl border border-purple-200 text-center">10 Soru</span>
+                        </div>
+
+                        <!-- 5. Çeviri Soruları -->
+                        <div class="bg-slate-50/70 border border-slate-200/80 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-black text-slate-900">5. Çeviri Soruları (İngilizce - Türkçe / Türkçe - İngilizce)</span>
+                                    <span class="text-[10px] font-bold bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Soru 37 - 42</span>
+                                </div>
+                                <p class="text-xs text-slate-500 leading-relaxed">
+                                    3 tane İngilizce-Türkçe, 3 tane Türkçe-İngilizce birebir ve en doğru tam çeviri sorusudur.
+                                </p>
+                            </div>
+                            <span class="shrink-0 bg-amber-100 text-amber-800 font-black text-xs px-3 py-1.5 rounded-xl border border-amber-200 text-center">6 Soru</span>
+                        </div>
+
+                        <!-- 6. Paragraf (Okuma - Anlama) -->
+                        <div class="bg-slate-50/70 border border-slate-200/80 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-black text-slate-900">6. Paragraf (Okuma & Anlama) Soruları</span>
+                                    <span class="text-[10px] font-bold bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Soru 43 - 62</span>
+                                </div>
+                                <p class="text-xs text-slate-500 leading-relaxed">
+                                    Toplam 5 adet okuma parçası verilir. Her paragraf için 4'er adet okuduğunu anlama sorusu yöneltilir.
+                                </p>
+                            </div>
+                            <span class="shrink-0 bg-rose-100 text-rose-800 font-black text-xs px-3 py-1.5 rounded-xl border border-rose-200 text-center">20 Soru</span>
+                        </div>
+
+                        <!-- 7. Diyalog Tamamlama -->
+                        <div class="bg-slate-50/70 border border-slate-200/80 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-black text-slate-900">7. Diyalog Tamamlama Soruları</span>
+                                    <span class="text-[10px] font-bold bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Soru 63 - 67</span>
+                                </div>
+                                <p class="text-xs text-slate-500 leading-relaxed">
+                                    Karşılıklı konuşmada boş bırakılan yere bağlama ve anlam bütünlüğüne en uygun sözü yerleştirme.
+                                </p>
+                            </div>
+                            <span class="shrink-0 bg-sky-100 text-sky-800 font-black text-xs px-3 py-1.5 rounded-xl border border-sky-200 text-center">5 Soru</span>
+                        </div>
+
+                        <!-- 8. Yakın Anlamlı Cümle -->
+                        <div class="bg-slate-50/70 border border-slate-200/80 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-black text-slate-900">8. Yakın Anlamlı Cümle (Restatement)</span>
+                                    <span class="text-[10px] font-bold bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Soru 68 - 71</span>
+                                </div>
+                                <p class="text-xs text-slate-500 leading-relaxed">
+                                    Verilen İngilizce cümleye anlamca en yakın eşdeğer cümleyi seçenekler arasından tespit etme.
+                                </p>
+                            </div>
+                            <span class="shrink-0 bg-teal-100 text-teal-800 font-black text-xs px-3 py-1.5 rounded-xl border border-teal-200 text-center">4 Soru</span>
+                        </div>
+
+                        <!-- 9. Paragraf Tamamlama -->
+                        <div class="bg-slate-50/70 border border-slate-200/80 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-black text-slate-900">9. Paragraf Tamamlama Soruları</span>
+                                    <span class="text-[10px] font-bold bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Soru 72 - 75</span>
+                                </div>
+                                <p class="text-xs text-slate-500 leading-relaxed">
+                                    Bir cümlesi eksiltilmiş paragrafın akışını bozmayacak tamamlayıcı cümleyi bulma.
+                                </p>
+                            </div>
+                            <span class="shrink-0 bg-indigo-100 text-indigo-800 font-black text-xs px-3 py-1.5 rounded-xl border border-indigo-200 text-center">4 Soru</span>
+                        </div>
+
+                        <!-- 10. Anlam Bütünlüğünü Bozan Cümle -->
+                        <div class="bg-slate-50/70 border border-slate-200/80 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs font-black text-slate-900">10. Anlam Bütünlüğünü Bozan Cümle</span>
+                                    <span class="text-[10px] font-bold bg-slate-200 text-slate-700 px-2 py-0.5 rounded">Soru 76 - 80</span>
+                                </div>
+                                <p class="text-xs text-slate-500 leading-relaxed">
+                                    5 numaralandırılmış cümleden oluşan paragrafta konudan sapan veya akışı bozan cümleyi çıkarma.
+                                </p>
+                            </div>
+                            <span class="shrink-0 bg-pink-100 text-pink-800 font-black text-xs px-3 py-1.5 rounded-xl border border-pink-200 text-center">5 Soru</span>
                         </div>
                     </div>
                 </div>

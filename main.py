@@ -152,7 +152,23 @@ def dgs_konulari():
 @app.route('/lgs/konular')
 def lgs_konulari_sayfasi():
     return render_template('lgs_konulari.html')
-    
+
+@app.route('/ales/konular')
+def ales_konulari():
+    return render_template('ales_konulari.html')
+
+@app.route('/msu/konular')
+def msu_konulari():
+    return render_template('msu_konulari.html')
+
+@app.route('/yds/konular')
+def yds_konulari():
+    return render_template('yds_konulari.html')
+
+@app.route('/kpss/konular')
+def kpss_konulari():
+    return render_template('kpss_konulari.html')
+            
 @app.route('/yks/ayt-matematik')
 def ayt_matematik():
     yillar, satirlar = csv_oku('ayt_matematik')

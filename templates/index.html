@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ sayfa_basligi }} - SiralamaMerkezi</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link class="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5383817964849882"
+            crossorigin="anonymous"></script>
+
     <style>
         *, *::before, *::after { box-sizing: border-box; }
         .dropdown:hover .dropdown-menu { display: block; }
@@ -14,19 +19,31 @@
         .osym-orange-text { color: #E06B00; }
         .osym-orange-border { border-color: #E06B00; }
         .osym-orange-hover:hover { background-color: #C65F00; }
+        
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        footer {
+            margin-top: auto;
+        }
     </style>
 </head>
 <body class="bg-[#FCFBF7] font-sans text-slate-800 p-0 m-0">
 
-       <!-- 🌐 NAVBAR -->
+    <!-- 🌐 NAVBAR -->
     <nav class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center flex-shrink-0" style="margin-left: 100px;">
                     <a href="/" class="text-2xl font-black tracking-tight flex items-center gap-2" style="text-decoration: none;">
-    <img src="/static/img/logo.png" class="h-8 w-auto transform translate-x-1">
-    <span class="osym-orange-text">Sıralama</span><span class="text-slate-800" style="margin-left: -7px;">Merkezi</span>
-</a>
+                        <img src="/static/img/logo.png" class="h-8 w-auto transform translate-x-1">
+                        <span class="osym-orange-text">Sıralama</span><span class="text-slate-800" style="margin-left: -7px;">Merkezi</span>
+                    </a>
                 </div>
 
                 <div class="hidden md:flex items-center flex-1 justify-center lg:justify-end space-x-1 lg:space-x-2 pl-4">
@@ -37,11 +54,11 @@
                                 YKS <i class="fa-solid fa-chevron-down text-[10px]"></i>
                             </button>
                             <div class="dropdown-menu hidden absolute left-0 w-48 bg-white border border-slate-200 shadow-xl rounded-lg py-2 mt-0 z-50">
-    <a href="/yks/konular" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
-    <a href="/yks/soru-dagilimlari" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Soru Dağılımları</a>
-    <a href="/yks-siralamalari" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Sıralamalar</a>
-    <a href="/hesaplama/yks" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Sıralama Hesaplama</a>
-</div>
+                                <a href="/yks/konular" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
+                                <a href="/yks/soru-dagilimlari" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Soru Dağılımları</a>
+                                <a href="/yks-siralamalari" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Sıralamalar</a>
+                                <a href="/hesaplama/yks" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Sıralama Hesaplama</a>
+                            </div>
                         </div>
 
                         <!-- LGS Dropdown -->
@@ -62,7 +79,7 @@
                                 DGS <i class="fa-solid fa-chevron-down text-[10px]"></i>
                             </button>
                             <div class="dropdown-menu hidden absolute left-0 w-48 bg-white border border-slate-200 shadow-xl rounded-lg py-2 mt-0 z-50">
-                                <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
+                                <a href="/dgs/konular" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Konular</a>
                                 <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Taban Puanlar</a>
                                 <a href="#" class="block px-4 py-2 text-sm text-slate-700 hover:bg-orange-50 hover:osym-orange-text" style="text-decoration: none;">Puan Hesaplama</a>
                             </div>
@@ -108,109 +125,99 @@
             </div>
         </div>
 
-       <div class="flex-1 max-w-4xl w-full overflow-hidden">
-    <main>
-        <!-- ==========================================
-             🔍 TEMİZLENMİŞ KUSURSUZ BAŞLIK & ARAMA ALANI (ÇİFT KAYITLAR SİLİNDİ)
-             ========================================== -->
-        <div class="text-center max-w-4xl mx-auto mb-6 px-2">
-            <span class="osym-orange-bg text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
-                ÖSYM TERCİH REHBERİ
-            </span>
-            <h1 class="text-2xl font-black text-slate-900 tracking-tight sm:text-4xl mt-3 mb-6 leading-tight">
-                {{ sayfa_basligi }}
-            </h1>
-            
-            <!-- Arama Çubuğu ve Butonların Yan Yana Kusursuz Durduğu Flex Yapı -->
-            <div class="flex flex-col md:flex-row items-center gap-3 w-full">
-                
-                <!-- Arama Kutusu -->
-                <div class="relative rounded-full shadow-md flex-1 w-full">
-                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+        <div class="flex-1 max-w-4xl w-full overflow-hidden">
+            <main>
+                <div class="text-center max-w-4xl mx-auto mb-6 px-2">
+                    <span class="osym-orange-bg text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider">
+                        ÖSYM TERCİH REHBERİ
+                    </span>
+                    <h1 class="text-2xl font-black text-slate-900 tracking-tight sm:text-4xl mt-3 mb-6 leading-tight">
+                        {{ sayfa_basligi }}
+                    </h1>
+                    
+                    <div class="flex flex-col md:flex-row items-center gap-3 w-full">
+                        <div class="relative rounded-full shadow-md flex-1 w-full">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
+                            </div>
+                            <input type="text" id="aramaKutusu" placeholder="Üniversite, şehir veya burs oranı ara..." 
+                                   class="block w-full pl-10 pr-4 py-3 border border-slate-200 rounded-full bg-white text-sm shadow-inner focus:outline-none focus:ring-2 focus:ring-orange-500">
+                        </div>
+
+                        <div class="flex items-center justify-center gap-1.5 shrink-0 w-full md:w-auto mt-2 md:mt-0 bg-slate-100/80 border border-slate-200/60 rounded-full px-3 py-1.5">
+                            <span class="text-[11px] font-bold text-slate-500 mr-1 hidden sm:inline"><i class="fa-solid fa-bolt text-amber-500"></i> Bul:</span>
+                            <button onclick="siralamayaZipli(20000)" class="bg-white border border-slate-200 hover:osym-orange-border hover:osym-orange-text text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm cursor-pointer transition-all">20k</button>
+                            <button onclick="siralamayaZipli(50000)" class="bg-white border border-slate-200 hover:osym-orange-border hover:osym-orange-text text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm cursor-pointer transition-all">50k</button>
+                            <button onclick="siralamayaZipli(100000)" class="bg-white border border-slate-200 hover:osym-orange-border hover:osym-orange-text text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm cursor-pointer transition-all">100k</button>
+                            <button onclick="siralamayaZipli(200000)" class="bg-white border border-slate-200 hover:osym-orange-border hover:osym-orange-text text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm cursor-pointer transition-all">200k</button>
+                            <button onclick="siralamayaZipli(300000)" class="bg-white border border-slate-200 hover:osym-orange-border hover:osym-orange-text text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm cursor-pointer transition-all">300k</button>
+                            <button onclick="siralamayaZipli(500000)" class="bg-white border border-slate-200 hover:osym-orange-border hover:osym-orange-text text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm cursor-pointer transition-all">500k</button>
+                        </div>
                     </div>
-                    <input type="text" id="aramaKutusu" placeholder="Üniversite, şehir veya burs oranı ara..." 
-                           class="block w-full pl-10 pr-4 py-3 border border-slate-200 rounded-full bg-white text-sm shadow-inner focus:outline-none focus:ring-2 focus:ring-orange-500">
                 </div>
 
-                <!-- Hızlı Zıplama Butonları -->
-                <div class="flex items-center justify-center gap-1.5 shrink-0 w-full md:w-auto mt-2 md:mt-0 bg-slate-100/80 border border-slate-200/60 rounded-full px-3 py-1.5">
-                    <span class="text-[11px] font-bold text-slate-500 mr-1 hidden sm:inline"><i class="fa-solid fa-bolt text-amber-500"></i> Bul:</span>
-                    <button onclick="siralamayaZipli(20000)" class="bg-white border border-slate-200 hover:osym-orange-border hover:osym-orange-text text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm cursor-pointer transition-all">20k</button>
-                    <button onclick="siralamayaZipli(50000)" class="bg-white border border-slate-200 hover:osym-orange-border hover:osym-orange-text text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm cursor-pointer transition-all">50k</button>
-                    <button onclick="siralamayaZipli(100000)" class="bg-white border border-slate-200 hover:osym-orange-border hover:osym-orange-text text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm cursor-pointer transition-all">100k</button>
-                    <button onclick="siralamayaZipli(200000)" class="bg-white border border-slate-200 hover:osym-orange-border hover:osym-orange-text text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm cursor-pointer transition-all">200k</button>
-                    <button onclick="siralamayaZipli(300000)" class="bg-white border border-slate-200 hover:osym-orange-border hover:osym-orange-text text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm cursor-pointer transition-all">300k</button>
-                    <button onclick="siralamayaZipli(500000)" class="bg-white border border-slate-200 hover:osym-orange-border hover:osym-orange-text text-slate-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm cursor-pointer transition-all">500k</button>
+                <div class="flex items-center justify-between mb-3 mx-1">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Alan Bilgisi:</span>
+                        <span id="puanTuruRozeti" class="px-3 py-1 rounded-full text-xs font-black uppercase shadow-xs bg-slate-200 text-slate-700 border border-slate-300">
+                            -
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 mx-1">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
+                        <div class="text-[10px] font-black text-slate-400 uppercase">Kontenjan Durumu</div>
+                        <div class="text-base md:text-lg font-black text-slate-800 mt-1" id="karttoplamKont">-</div>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
+                        <div class="text-[10px] font-black text-slate-400 uppercase">En Yüksek Sıralama</div>
+                        <div class="text-base md:text-lg font-black text-emerald-600 mt-1" id="kartenYuksekSira">-</div>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
+                        <div class="text-[10px] font-black text-slate-400 uppercase">En Düşük Puan</div>
+                        <div class="text-base md:text-lg font-black text-rose-600 mt-1" id="kartenDusukPuan">-</div>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
+                        <div class="text-[10px] font-black text-slate-400 uppercase">Aktif Üniversiteler</div>
+                        <div class="text-base md:text-lg font-black text-blue-600 mt-1" id="karttoplamUni">-</div>
+                    </div>
                 </div>
 
-            </div>
+                <div class="bg-white shadow-md rounded-2xl overflow-hidden border-2 border-slate-400 mx-1">
+                    <table class="table-fixed w-full text-center border-collapse">
+                        <thead>
+                            <tr class="bg-slate-800 text-white text-[10px] md:text-xs font-bold uppercase tracking-wider">
+                                <th class="p-3 border border-slate-600 w-[26%] md:w-auto">Üniversite</th>
+                                <th class="p-3 border border-slate-600 w-[24%] md:w-48">Bölüm / Özellik</th>
+                                <th class="p-0.5 border border-slate-600 w-[11%] md:w-16">Yıl</th>
+                                <th class="p-0.5 border border-slate-600 w-[11%] md:w-20">Kont.</th>
+                                <th class="p-0.5 border border-slate-600 w-[11%] md:w-24">Puan</th>
+                                <th class="p-0.5 border border-slate-600 w-[17%] md:w-28">Sıralama</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y-2 divide-slate-300 text-[11px] md:text-sm font-medium">
+                            {% if veriler %}
+                                {% for veri in veriler %}
+                                <tr class="odd:bg-white even:bg-slate-200/70 hover:bg-orange-50 transition-colors veri-satiri">
+                                    <td class="p-2 align-middle border-r border-slate-300 veri-uni break-words"><span>{{ veri[0] }}</span></td>
+                                    <td class="p-2 align-middle border-r border-slate-300 veri-bolum break-words"><span>{{ veri[1] }}</span></td>
+                                    <td class="p-0 bg-slate-500/5 align-middle border-r border-slate-300 veri-yil"><span>{{ veri[3] }}</span></td> 
+                                    <td class="p-0 align-middle border-r border-slate-300 veri-kontenjan"><span>{{ veri[4] }}</span></td> 
+                                    <td class="p-0 font-semibold text-slate-700 align-middle border-r border-slate-300 data-puan"><span>{{ veri[6] }}</span></td> 
+                                    <td class="p-0 font-bold text-slate-900 align-middle veri-siralamasi"><span>{{ veri[7] }}</span></td> 
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="6" class="px-6 py-12 text-slate-400 text-xs text-center">Veri bulunamadı.</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </main>
         </div>
-
-        <!-- 🎯 DİNAMİK ALAN BİLGİSİ ROZETİ -->
-        <div class="flex items-center justify-between mb-3 mx-1">
-            <div class="flex items-center gap-2">
-                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Alan Bilgisi:</span>
-                <span id="puanTuruRozeti" class="px-3 py-1 rounded-full text-xs font-black uppercase shadow-xs bg-slate-200 text-slate-700 border border-slate-300">
-                    -
-                </span>
-            </div>
-        </div>
-        
-        <!-- Sayaç/Metrik Kartları -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 mx-1">
-            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
-                <div class="text-[10px] font-black text-slate-400 uppercase">Kontenjan Durumu</div>
-                <div class="text-base md:text-lg font-black text-slate-800 mt-1" id="karttoplamKont">-</div>
-            </div>
-            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
-                <div class="text-[10px] font-black text-slate-400 uppercase">En Yüksek Sıralama</div>
-                <div class="text-base md:text-lg font-black text-emerald-600 mt-1" id="kartenYuksekSira">-</div>
-            </div>
-            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
-                <div class="text-[10px] font-black text-slate-400 uppercase">En Düşük Puan</div>
-                <div class="text-base md:text-lg font-black text-rose-600 mt-1" id="kartenDusukPuan">-</div>
-            </div>
-            <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
-                <div class="text-[10px] font-black text-slate-400 uppercase">Aktif Üniversiteler</div>
-                <div class="text-base md:text-lg font-black text-blue-600 mt-1" id="karttoplamUni">-</div>
-            </div>
-        </div>
-
-        <div class="bg-white shadow-md rounded-2xl overflow-hidden border-2 border-slate-400 mx-1">
-            <table class="table-fixed w-full text-center border-collapse">
-                <thead>
-                    <tr class="bg-slate-800 text-white text-[10px] md:text-xs font-bold uppercase tracking-wider">
-                        <th class="p-3 border border-slate-600 w-[26%] md:w-auto">Üniversite</th>
-                        <th class="p-3 border border-slate-600 w-[24%] md:w-48">Bölüm / Özellik</th>
-                        <th class="p-0.5 border border-slate-600 w-[11%] md:w-16">Yıl</th>
-                        <th class="p-0.5 border border-slate-600 w-[11%] md:w-20">Kont.</th>
-                        <th class="p-0.5 border border-slate-600 w-[11%] md:w-24">Puan</th>
-                        <th class="p-0.5 border border-slate-600 w-[17%] md:w-28">Sıralama</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y-2 divide-slate-300 text-[11px] md:text-sm font-medium">
-                    {% if veriler %}
-                        {% for veri in veriler %}
-                        <tr class="odd:bg-white even:bg-slate-200/70 hover:bg-orange-50 transition-colors veri-satiri">
-                            <td class="p-2 align-middle border-r border-slate-300 veri-uni break-words"><span>{{ veri[0] }}</span></td>
-                            <td class="p-2 align-middle border-r border-slate-300 veri-bolum break-words"><span>{{ veri[1] }}</span></td>
-                            <td class="p-0 bg-slate-500/5 align-middle border-r border-slate-300 veri-yil"><span>{{ veri[3] }}</span></td> 
-                            <td class="p-0 align-middle border-r border-slate-300 veri-kontenjan"><span>{{ veri[4] }}</span></td> 
-                            <td class="p-0 font-semibold text-slate-700 align-middle border-r border-slate-300 data-puan"><span>{{ veri[6] }}</span></td> 
-                            <td class="p-0 font-bold text-slate-900 align-middle veri-siralamasi"><span>{{ veri[7] }}</span></td> 
-                        </tr>
-                        {% endfor %}
-                    {% else %}
-                        <tr>
-                            <td colspan="6" class="px-6 py-12 text-slate-400 text-xs text-center">Veri bulunamadı.</td>
-                        </tr>
-                    {% endif %}
-                </tbody>
-            </table>
-        </div>
-    </main>
-</div>
 
         <div class="hidden xl:block sticky top-24 w-[160px] min-w-[160px] h-[600px] select-none">
             <div class="w-full h-full bg-slate-200/50 border border-dashed border-slate-300 rounded-xl flex flex-col items-center justify-center text-center p-2 text-slate-400 text-xs font-bold">
@@ -223,7 +230,6 @@
     <script>
         const mevcutMeslek = "{{ mevcut_meslek }}";
 
-        // 📚 TÜM BÖLÜMLER VE ALANLARI
         const bolumAlaniHaritasi = {
             "Acil Yardım ve Afet Yönetimi": "SAY", "Adli Bilimler": "SAY", "Adli Bilişim Mühendisliği": "SAY",
             "Ağaç İşleri Endüstri Mühendisliği": "SAY", "Aile ve Tüketici Bilimleri": "EA", "Aktüerya Bilimleri": "SAY",
@@ -414,9 +420,9 @@
                 let kontlar = hamKontText.trim().split(/[\n\s]+/);
                 let siralamalar = hamSiraText.trim().split(/[\n\s]+/);
 
-                if (puanlar[0] && !isNaN(parseFloat(puanlar[0]))) {
-                    const puanVal = parseFloat(puanlar[0]);
-                    if (puanVal < enDüşükPuan) enDüşükPuan = puanVal;
+                if (puanlar[0]) {
+                    const temPuan = parseFloat(puanlar[0].replace(',', '.'));
+                    if (!isNaN(temPuan) && temPuan < enDüşükPuan) enDüşükPuan = temPuan;
                 }
                 if (siralamalar[0] && siralamalar[0] !== '---') {
                     const siraClean = parseInt(siralamalar[0].replace(/\./g, '').trim());
@@ -427,7 +433,15 @@
                 }
 
                 yilHucresi.innerHTML = yillar.map(y => `<div class="h-5 md:h-7 flex items-center justify-center"><span class="px-1 bg-slate-300/40 rounded text-[9px] md:text-xs font-bold">${y.slice(-2)}</span></div>`).join("");
-                puanHucresi.innerHTML = yillar.map((_, i) => `<div class="h-5 md:h-7 flex items-center justify-center text-[10px] md:text-sm">${puanlar[i] || '-'}</div>`).join("");
+                
+                // 🎯 PUANLARI VİRGÜLDEN SONRA 3 BASAMAĞA YUVARLAMA MANTIĞI
+                puanHucresi.innerHTML = yillar.map((_, i) => {
+                    let pVal = puanlar[i] ? puanlar[i].replace(',', '.') : '';
+                    let pNum = parseFloat(pVal);
+                    let formatliPuan = !isNaN(pNum) ? pNum.toFixed(3) : (puanlar[i] || '-');
+                    return `<div class="h-5 md:h-7 flex items-center justify-center text-[10px] md:text-sm whitespace-nowrap">${formatliPuan}</div>`;
+                }).join("");
+
                 kontHucresi.innerHTML = yillar.map((_, i) => `<div class="h-5 md:h-7 flex items-center justify-center text-[10px] md:text-sm">${kontlar[i] || kontlar[0] || '-'}</div>`).join("");
                 siraHucresi.innerHTML = yillar.map((_, i) => `<div class="h-5 md:h-7 flex items-center justify-center text-[10px] md:text-sm font-bold text-slate-900">${siralamalar[i] || '-'}</div>`).join("");
             });
@@ -435,9 +449,8 @@
             document.getElementById("karttoplamUni").textContent = unilerSet.size > 0 ? unilerSet.size : "-";
             document.getElementById("karttoplamKont").textContent = toplamKontenjan > 0 ? toplamKontenjan : "-";
             document.getElementById("kartenYuksekSira").textContent = enYüksekSira !== Infinity ? enYüksekSira.toLocaleString('tr-TR') : "-";
-            document.getElementById("kartenDusukPuan").textContent = enDüşükPuan !== Infinity ? enDüşükPuan.toFixed(2) : "-";
+            document.getElementById("kartenDusukPuan").textContent = enDüşükPuan !== Infinity ? enDüşükPuan.toFixed(3) : "-";
 
-            // 🎯 ALAN BİLGİSİ VE ÖZEL RENK TESPİTİ (SAY: Kırmızı, EA: Turuncu, DİL: Mavi, SÖZ: Mor)
             const puanRozeti = document.getElementById("puanTuruRozeti");
             if (puanRozeti) {
                 const baslik = document.querySelector("h1") ? document.querySelector("h1").textContent.trim() : "";
@@ -455,16 +468,16 @@
 
                 if (tespitEdilenTur === "SAY") {
                     turMetni = "SAY (Sayısal)";
-                    renkClass = "bg-rose-100 text-rose-800 border-rose-300"; // SAYISAL: KIRMIZI
+                    renkClass = "bg-rose-100 text-rose-800 border-rose-300";
                 } else if (tespitEdilenTur === "EA") {
                     turMetni = "EA (Eşit Ağırlık)";
-                    renkClass = "bg-orange-100 text-orange-800 border-orange-300"; // EA: TURUNCU
+                    renkClass = "bg-orange-100 text-orange-800 border-orange-300";
                 } else if (tespitEdilenTur === "DİL") {
                     turMetni = "DİL (Yabancı Dil)";
-                    renkClass = "bg-sky-100 text-sky-800 border-sky-300"; // DİL: MAVİ
+                    renkClass = "bg-sky-100 text-sky-800 border-sky-300";
                 } else if (tespitEdilenTur === "SÖZ") {
                     turMetni = "SÖZ (Sözel)";
-                    renkClass = "bg-purple-100 text-purple-800 border-purple-300"; // SÖZ: MOR
+                    renkClass = "bg-purple-100 text-purple-800 border-purple-300";
                 }
 
                 puanRozeti.textContent = turMetni;
@@ -475,133 +488,122 @@
         document.addEventListener("DOMContentLoaded", tabloyuHizala);
 
         // ==========================================
-// 🔍 TAM DİNAMİK VE HIZLI FRONTEND ARAMA FİLTRESİ
-// ==========================================
-const aramaKutusu = document.getElementById("aramaKutusu");
-
-aramaKutusu.addEventListener("input", function (e) {
-    const aramaTerimi = e.target.value.toLowerCase().trim();
-    const satirlar = document.querySelectorAll(".veri-satiri");
-    const tabloGövdesi = document.querySelector("tbody");
-    
-    // "Veri bulunamadı" mesajı varsa temizlemek için kontrol
-    const eskiMesaj = document.getElementById("arama-bos-mesaj");
-    if (eskiMesaj) eskiMesaj.remove();
-
-    let görünürSatirSayisi = 0;
-    let unilerSet = new Set();
-    let toplamKontenjan = 0;
-    let enYüksekSira = Infinity;
-    let enDüşükPuan = Infinity;
-
-    satirlar.forEach(satir => {
-        // Satır içindeki üniversite adı ve bölüm/özellik metinlerini topla
-        const uniHucresi = satir.querySelector(".veri-uni");
-        const bolumHucresi = satir.querySelector(".veri-bolum");
-        
-        if (!uniHucresi || !bolumHucresi) return;
-
-        const uniMetni = uniHucresi.textContent.toLowerCase();
-        const bolumMetni = bolumHucresi.textContent.toLowerCase();
-
-        // Arama terimi üniversite adında veya bölüm detayında geçiyor mu?
-        if (uniMetni.includes(aramaTerimi) || bolumMetni.includes(aramaTerimi)) {
-            satir.style.display = ""; // Şart uyuyorsa satırı göster
-            görünürSatirSayisi++;
-
-            // --- Metrik Kartlarını Anlık Yenilemek İçin Verileri Topla ---
-            // 1. Üniversite adını bul (Hizalanmış yapıdan veya ham metinden)
-            const uniBaslikDiv = uniHucresi.querySelector(".uni-baslik div:first-child");
-            const uniAdi = uniBaslikDiv ? uniBaslikDiv.textContent.trim() : uniHucresi.textContent.trim();
-            unilerSet.add(uniAdi);
-
-            // 2. Kontenjan, Puan ve Sıralama hücrelerinin İLK elemanlarını ('25 yılı) çek
-            const kontDiv = satir.querySelector(".veri-kontenjan div:first-child") || satir.querySelector(".veri-kontenjan");
-            const puanDiv = satir.querySelector(".data-puan div:first-child") || satir.querySelector(".data-puan");
-            const siraDiv = satir.querySelector(".veri-siralamasi div:first-child") || satir.querySelector(".veri-siralamasi");
-
-            if (kontDiv && !isNaN(parseInt(kontDiv.textContent))) {
-                toplamKontenjan += parseInt(kontDiv.textContent);
-            }
-            if (puanDiv && !isNaN(parseFloat(puanDiv.textContent))) {
-                const puanVal = parseFloat(puanDiv.textContent);
-                if (puanVal < enDüşükPuan) enDüşükPuan = puanVal;
-            }
-            if (siraDiv && siraDiv.textContent.trim() !== '---') {
-                const siraClean = parseInt(siraDiv.textContent.replace(/\./g, '').trim());
-                if (!isNaN(siraClean) && siraClean < enYüksekSira) enYüksekSira = siraClean;
-            }
-        } else {
-            satir.style.display = "none"; // Uymuyorsa satırı gizle
-        }
-    });
-
-    // Üstteki sayaç/metrik kartlarını arama sonuçlarına göre anlık güncelle
-    document.getElementById("karttoplamUni").textContent = unilerSet.size > 0 ? unilerSet.size : "-";
-    document.getElementById("karttoplamKont").textContent = toplamKontenjan > 0 ? toplamKontenjan : "-";
-    document.getElementById("kartenYuksekSira").textContent = enYüksekSira !== Infinity ? enYüksekSira.toLocaleString('tr-TR') : "-";
-    document.getElementById("kartenDusukPuan").textContent = enDüşükPuan !== Infinity ? enDüşükPuan.toFixed(2) : "-";
-
-    // Eğer hiçbir sonuç bulunamadıysa kullanıcıya temiz bir mesaj göster
-    if (görünürSatirSayisi === 0) {
-        const bosTr = document.createElement("tr");
-        bosTr.id = "arama-bos-mesaj";
-        bosTr.innerHTML = `<td colspan="7" class="px-6 py-12 text-slate-400 text-xs text-center">Aradığınız kriterlere uygun üniversite veya bölüm bulunamadı.</td>`;
-        tabloGövdesi.appendChild(bosTr);
-    }
-});
+        // 🔍 FRONTEND ARAMA FİLTRESİ
         // ==========================================
-// 🚀 DİNAMİK SIRALAMA ZIPLAMA FONKSİYONU
-// ==========================================
-function siralamayaZipli(hedefSiralama) {
-    const satirlar = document.querySelectorAll(".veri-satiri");
-    let enYakinSatir = null;
-    let enKucukFark = Infinity;
+        const aramaKutusu = document.getElementById("aramaKutusu");
 
-    satirlar.forEach(satir => {
-        const siraHucresi = satir.querySelector(".veri-siralamasi");
-        if (!siraHucresi) return;
+        aramaKutusu.addEventListener("input", function (e) {
+            const aramaTerimi = e.target.value.toLowerCase().trim();
+            const satirlar = document.querySelectorAll(".veri-satiri");
+            const tabloGövdesi = document.querySelector("tbody");
+            
+            const eskiMesaj = document.getElementById("arama-bos-mesaj");
+            if (eskiMesaj) eskiMesaj.remove();
 
-        // Hücrenin içindeki İLK satırın ('25 yılına ait olan) değerini alıyoruz
-        const ilkSiraDiv = siraHucresi.querySelector("div:first-child") || siraHucresi;
-        const hamSiraMetni = ilkSiraDiv.textContent.replace(/\./g, '').trim();
-        const siraDegeri = parseInt(hamSiraMetni);
+            let görünürSatirSayisi = 0;
+            let unilerSet = new Set();
+            let toplamKontenjan = 0;
+            let enYüksekSira = Infinity;
+            let enDüşükPuan = Infinity;
 
-        if (!isNaN(siraDegeri)) {
-            // Hedeflenen sıralamaya en yakın olan (veya hedefi geçen) satırı buluyoruz
-            let fark = Math.abs(siraDegeri - hedefSiralama);
-            if (fark < enKucukFark) {
-                enKucukFark = fark;
-                enYakinSatir = satir;
+            satirlar.forEach(satir => {
+                const uniHucresi = satir.querySelector(".veri-uni");
+                const bolumHucresi = satir.querySelector(".veri-bolum");
+                
+                if (!uniHucresi || !bolumHucresi) return;
+
+                const uniMetni = uniHucresi.textContent.toLowerCase();
+                const bolumMetni = bolumHucresi.textContent.toLowerCase();
+
+                if (uniMetni.includes(aramaTerimi) || bolumMetni.includes(aramaTerimi)) {
+                    satir.style.display = "";
+                    görünürSatirSayisi++;
+
+                    const uniBaslikDiv = uniHucresi.querySelector(".uni-baslik div:first-child");
+                    const uniAdi = uniBaslikDiv ? uniBaslikDiv.textContent.trim() : uniHucresi.textContent.trim();
+                    unilerSet.add(uniAdi);
+
+                    const kontDiv = satir.querySelector(".veri-kontenjan div:first-child") || satir.querySelector(".veri-kontenjan");
+                    const puanDiv = satir.querySelector(".data-puan div:first-child") || satir.querySelector(".data-puan");
+                    const siraDiv = satir.querySelector(".veri-siralamasi div:first-child") || satir.querySelector(".veri-siralamasi");
+
+                    if (kontDiv && !isNaN(parseInt(kontDiv.textContent))) {
+                        toplamKontenjan += parseInt(kontDiv.textContent);
+                    }
+                    if (puanDiv) {
+                        const pVal = parseFloat(puanDiv.textContent.replace(',', '.'));
+                        if (!isNaN(pVal) && pVal < enDüşükPuan) enDüşükPuan = pVal;
+                    }
+                    if (siraDiv && siraDiv.textContent.trim() !== '---') {
+                        const siraClean = parseInt(siraDiv.textContent.replace(/\./g, '').trim());
+                        if (!isNaN(siraClean) && siraClean < enYüksekSira) enYüksekSira = siraClean;
+                    }
+                } else {
+                    satir.style.display = "none";
+                }
+            });
+
+            document.getElementById("karttoplamUni").textContent = unilerSet.size > 0 ? unilerSet.size : "-";
+            document.getElementById("karttoplamKont").textContent = toplamKontenjan > 0 ? toplamKontenjan : "-";
+            document.getElementById("kartenYuksekSira").textContent = enYüksekSira !== Infinity ? enYüksekSira.toLocaleString('tr-TR') : "-";
+            document.getElementById("kartenDusukPuan").textContent = enDüşükPuan !== Infinity ? enDüşükPuan.toFixed(3) : "-";
+
+            if (görünürSatirSayisi === 0) {
+                const bosTr = document.createElement("tr");
+                bosTr.id = "arama-bos-mesaj";
+                bosTr.innerHTML = `<td colspan="7" class="px-6 py-12 text-slate-400 text-xs text-center">Aradığınız kriterlere uygun üniversite veya bölüm bulunamadı.</td>`;
+                tabloGövdesi.appendChild(bosTr);
+            }
+        });
+
+        // ==========================================
+        // 🚀 DİNAMİK SIRALAMA ZIPLAMA FONKSİYONU
+        // ==========================================
+        function siralamayaZipli(hedefSiralama) {
+            const satirlar = document.querySelectorAll(".veri-satiri");
+            let enYakinSatir = null;
+            let enKucukFark = Infinity;
+
+            satirlar.forEach(satir => {
+                const siraHucresi = satir.querySelector(".veri-siralamasi");
+                if (!siraHucresi) return;
+
+                const ilkSiraDiv = siraHucresi.querySelector("div:first-child") || siraHucresi;
+                const hamSiraMetni = ilkSiraDiv.textContent.replace(/\./g, '').trim();
+                const siraDegeri = parseInt(hamSiraMetni);
+
+                if (!isNaN(siraDegeri)) {
+                    let fark = Math.abs(siraDegeri - hedefSiralama);
+                    if (fark < enKucukFark) {
+                        enKucukFark = fark;
+                        enYakinSatir = satir;
+                    }
+                }
+            });
+
+            if (enYakinSatir) {
+                satirlar.forEach(s => s.style.backgroundColor = "");
+
+                const yOffset = -120; 
+                const y = enYakinSatir.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+
+                enYakinSatir.style.transition = "background-color 0.5s ease";
+                enYakinSatir.style.backgroundColor = "rgba(224, 107, 0, 0.15)";
+                
+                setTimeout(() => {
+                    enYakinSatir.style.backgroundColor = "rgba(224, 107, 0, 0.05)";
+                }, 1500);
+            } else {
+                alert("Bu sıralama aralığına uygun veri bu sayfada bulunamadı.");
             }
         }
-    });
-
-    if (enYakinSatir) {
-        // Önceki parlayan satırlar varsa temizle
-        satirlar.forEach(s => s.style.backgroundColor = "");
-
-        // Sayfayı hedefe yumuşakça kaydır (Navbar'ın altında kalmasın diye offset ayarlıyoruz)
-        const yOffset = -120; 
-        const y = enYakinSatir.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-
-        // Bulunan satırı turuncu tonda tatlıca parlatıp geri söndürelim
-        enYakinSatir.style.transition = "background-color 0.5s ease";
-        enYakinSatir.style.backgroundColor = "rgba(224, 107, 0, 0.15)";
-        
-        setTimeout(() => {
-            enYakinSatir.style.backgroundColor = "rgba(224, 107, 0, 0.05)";
-        }, 1500);
-    } else {
-        alert("Bu sıralama aralığına uygun veri bu sayfada bulunamadı.");
-    }
-}
     </script>
 </body>
+
 <div class="h-16 md:h-24 w-full bg-[#FCFBF7]"></div>
+
 <footer class="bg-slate-900 text-slate-300 mt-auto border-t-4 border-[#E06B00] relative z-10">
-    
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             
@@ -612,7 +614,6 @@ function siralamayaZipli(hedefSiralama) {
                 <p class="text-sm text-slate-400 max-w-sm mt-2 leading-relaxed">
                     Türkiye'nin en dinamik tercih ve sıralama portalı. Güncel ÖSYM verileri, sınav sayaçları ve akıllı hesaplama araçlarıyla geleceğe giden yolda yanındayız.
                 </p>
-                
             </div>
 
             <div class="space-y-3">
@@ -637,14 +638,11 @@ function siralamayaZipli(hedefSiralama) {
 
             <div class="space-y-3">
                 <h4 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-800 pb-2">Kurumsal</h4>
-                <ul class="space-y-2 text-sm mb-4">
-                    <!-- KURUMSAL Bölümündeki Mevcut Linkleri Şununla Güncelle -->
-<div class="flex flex-col gap-2 mt-2">
-    <a href="javascript:void(0)" onclick="acModal('modal-hakkimizda')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">Hakkımızda</a>
-    <a href="javascript:void(0)" onclick="acModal('modal-gizlilik')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">Gizlilik Politikası</a>
-    <a href="javascript:void(0)" onclick="acModal('modal-iletisim')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">İletişim</a>
-</div>
-                </ul>
+                <div class="flex flex-col gap-2 mt-2">
+                    <a href="javascript:void(0)" onclick="acModal('modal-hakkimizda')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">Hakkımızda</a>
+                    <a href="javascript:void(0)" onclick="acModal('modal-gizlilik')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">Gizlilik Politikası</a>
+                    <a href="javascript:void(0)" onclick="acModal('modal-iletisim')" class="hover:text-white transition-all text-slate-400 font-medium" style="text-decoration: none;">İletişim</a>
+                </div>
                 <div class="pt-2">
                     <div class="text-xs font-bold text-slate-400 mb-2">Gelişmelerden haberdar ol:</div>
                     <div class="flex">
@@ -659,7 +657,6 @@ function siralamayaZipli(hedefSiralama) {
 
     <div class="bg-slate-950 py-6 border-t border-slate-800/60 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            
             <div class="text-xs text-slate-500 text-center sm:text-left">
                 &copy; 2026-2027 <span class="text-slate-400 font-semibold">SıralamaMerkezi</span>. Tüm hakları saklıdır. İzinsiz kopyalanamaz.
             </div>
@@ -669,22 +666,7 @@ function siralamayaZipli(hedefSiralama) {
                     title="Yukarı Çık">
                 <i class="fa-solid fa-chevron-up text-sm"></i>
             </button>
-            
         </div>
     </div>
-    <style>
-    /* Sayfa içeriği az olsa bile footer'ı en alta zorlar */
-    html, body {
-        height: 100%;
-        margin: 0;
-    }
-    body {
-        display: flex;
-        flex-direction: column;
-    }
-    footer {
-        margin-top: auto;
-    }
-</style>
 </footer>
 </html>
