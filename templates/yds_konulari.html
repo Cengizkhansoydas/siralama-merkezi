@@ -30,28 +30,28 @@
 </head>
 <body class="bg-[#FCFBF7] font-sans text-slate-800 p-0 m-0 pb-24">
 
-    <!-- 🌐 NAVBAR -->
+    <!-- 🌐 NAVBAR (Masaüstü Ana Sayfanla Birebir Aynı + Mobil Desteği) -->
     <nav class="bg-white shadow-sm border-b border-slate-200 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                
-                <!-- 🏠 SOL: ANA SAYFA İKONU (Sadece Mobilde Görünür) -->
+
+                <!-- 🏠 SOL: MOBİL ANA SAYFA İKONU (Sadece Mobilde Görünür) -->
                 <div class="flex items-center md:hidden w-10">
                     <a href="/" class="text-slate-600 hover:text-[#E06B00] text-lg p-2 transition-colors" title="Ana Sayfa">
                         <i class="fa-solid fa-house"></i>
                     </a>
                 </div>
 
-                <!-- 🎯 ORTA / SOL: LOGO -->
-                <div class="flex-1 md:flex-none flex items-center justify-center md:justify-start">
-                    <a href="/" class="text-xl sm:text-2xl font-black tracking-tight flex items-center gap-1.5" style="text-decoration: none;">
-                        <img src="/static/img/logo.png" class="h-7 sm:h-8 w-auto">
-                        <span class="osym-orange-text">Sıralama</span><span class="text-slate-800 -ml-1">Merkezi</span>
+                <!-- 🎯 LOGO (Masaüstünde senin istediğin margin-left:100px ile durur, Mobilde tam ortalanır) -->
+                <div class="flex items-center flex-shrink-0 md:ml-[100px] justify-center flex-1 md:flex-none">
+                    <a href="/" class="text-2xl font-black tracking-tight flex items-center gap-2" style="text-decoration: none;">
+                        <img src="/static/img/logo.png" class="h-8 w-auto transform translate-x-1">
+                        <span class="osym-orange-text">Sıralama</span><span class="text-slate-800" style="margin-left: -7px;">Merkezi</span>
                     </a>
                 </div>
 
-                <!-- 🖥️ MASAÜSTÜ MENÜ (Mobil Ekranda Gizlenir) -->
-                <div class="hidden md:flex items-center flex-1 justify-end space-x-1 lg:space-x-2 pl-4">
+                <!-- 🖥️ MASAÜSTÜ MENÜ (Masaüstünde orijinal ana sayfanın düzeni) -->
+                <div class="hidden md:flex items-center flex-1 justify-center lg:justify-end space-x-1 lg:space-x-2 pl-4">
                     <div class="flex items-center space-x-0.5 lg:space-x-1 mr-auto lg:mx-auto flex-wrap">
                         <!-- YKS Dropdown -->
                         <div class="relative dropdown">
@@ -96,7 +96,7 @@
                         <a href="/yds/konular" class="text-slate-600 hover:osym-orange-text px-2 lg:px-3 py-2 rounded-md text-sm font-semibold" style="text-decoration: none;">YDS</a>
                     </div>
 
-                    <div class="relative dropdown">
+                    <div class="relative dropdown pb-0 mt-0 z-50 md:mr-[100px]">
                         <button class="osym-orange-bg text-white osym-orange-hover px-3 py-2 rounded-full text-xs lg:text-sm font-bold shadow-sm transition-all flex items-center gap-1.5 cursor-pointer border-none">
                             <i class="fa-solid fa-calculator"></i> Puan/Sıralama Hesaplama <i class="fa-solid fa-chevron-down text-[10px]"></i>
                         </button>
@@ -113,7 +113,7 @@
                     </div>
                 </div>
 
-                <!-- ☰ SAĞ ÜST: MOBİL HAMBURGER BUTONU (3 Çizgi) -->
+                <!-- ☰ SAĞ: MOBİL HAMBURGER BUTONU (Sadece Mobilde Görünür) -->
                 <div class="flex items-center justify-end md:hidden w-10">
                     <button onclick="toggleMobilMenu()" class="text-slate-700 hover:text-[#E06B00] text-xl p-2 cursor-pointer border-none bg-transparent focus:outline-none">
                         <i class="fa-solid fa-bars"></i>
@@ -124,7 +124,7 @@
         </div>
     </nav>
 
-    <!-- 📱 SAĞDAN AÇILAN MOBİL MENÜ (DRAWER) -->
+    <!-- 📱 SAĞDAN AÇILAN MOBİL ÇEKMECE (DRAWER) -->
     <div id="mobilMenuBackdrop" onclick="toggleMobilMenu()" class="fixed inset-0 bg-slate-950/50 backdrop-blur-xs z-50 hidden opacity-0 transition-opacity duration-300"></div>
 
     <div id="mobilMenuDrawer" class="fixed top-0 right-0 bottom-0 w-[280px] sm:w-[320px] bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col overflow-y-auto">

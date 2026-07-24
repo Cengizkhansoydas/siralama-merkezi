@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import Flask, render_template, request, jsonify, send_from_directory, abort
 import sqlite3
 import math
 import csv
@@ -148,10 +148,18 @@ def yks_konular_sayfasi():
 @app.route('/dgs/konular')
 def dgs_konulari():
     return render_template('dgs_konulari.html')
-    
+
+@app.route('/hesaplama/dgs')
+def dgs_hesaplama():
+    return render_template('dgs_hesaplama.html')
+        
 @app.route('/lgs/konular')
 def lgs_konulari_sayfasi():
     return render_template('lgs_konulari.html')
+
+@app.route('/hesaplama/lgs')
+def lgs_hesaplama():
+    return render_template('lgs_hesaplama.html')
 
 @app.route('/ales/konular')
 def ales_konulari():
@@ -238,37 +246,41 @@ def not_birak():
             
     return jsonify({"durum": "success"})
 # =====================================================================
-# 📝 2. KATMAN: DİNAMİK DERS VE MÜFREDAT ROTALARI (GÜNCELLENDİ)
+# 📝 2. KATMAN: DİNAMİK DERS VE MÜFREDAT ROTALARI (BİREBİR EŞLEŞTİRİLDİ)
 # =====================================================================
 
 @app.route('/yks/konular/<ders_kodu>')
 def dinamik_ders_sayfalari(ders_kodu):
-    # URL'den gelen 'ayt-edebiyat' gibi yapıyı 'yks_konu_ayt_edebiyat' tablo ismine dönüştürüyoruz
+    # Sol taraftaki templates/ klasöründe yer alan dosya isimlerinle eşleme yapıyoruz
     if ders_kodu in ['ayt-tarih-1', 'ayt-tarih-2']:
         tablo_adi = 'yks_konu_ayt_tarih'
+        sablon_adi = 'ayt_tarih'
+    elif ders_kodu == 'tyt-din-kulturu':
+        tablo_adi = 'yks_konu_tyt_din'
+        sablon_adi = 'tyt_din'  # templates/tyt_din.html dosyasını çağırır
+    elif ders_kodu == 'ayt-din-kulturu':
+        tablo_adi = 'yks_konu_ayt_din'
+        sablon_adi = 'ayt_din'  # templates/ayt_din.html dosyasını çağırır
     else:
         tablo_adi = f"yks_konu_{ders_kodu.replace('-', '_')}"
+        sablon_adi = ders_kodu.replace('-', '_')
         
     try:
-        # csv_aktar.py'nin oluşturduğu tablodan tüm verileri çekiyoruz
         tum_veri = db_query(f"SELECT * FROM {tablo_adi}")
         
         yillar = []
         satirlar = []
         
         if tum_veri:
-            # SQLite üzerinden tablonun kolon isimlerini (yılları) dinamik olarak alıyoruz
             conn = sqlite3.connect('veritabani.db')
             cursor = conn.cursor()
             cursor.execute(f"PRAGMA table_info({tablo_adi})")
             kolonlar = [col[1] for col in cursor.fetchall()]
             conn.close()
             
-            # İlk kolon "Soru Konuları" metnidir, onu atlayıp yılları alıyoruz
             yillar = kolonlar[1:]
             satirlar = [list(satir) for satir in tum_veri]
             
-        sablon_adi = ders_kodu.replace('-', '_')
         return render_template(f"{sablon_adi}.html", 
                                yillar=yillar, 
                                satirlar=satirlar, 
