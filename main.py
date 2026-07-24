@@ -176,7 +176,12 @@ def yds_konulari():
 @app.route('/kpss/konular')
 def kpss_konulari():
     return render_template('kpss_konulari.html')
-            
+
+@app.route('/hesaplama/obp')
+@app.route('/obp-hesaplama')
+def obp_hesaplama():
+    return render_template('obp_hesaplama.html')
+               
 @app.route('/yks/ayt-matematik')
 def ayt_matematik():
     yillar, satirlar = csv_oku('ayt_matematik')
